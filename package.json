@@ -2,7 +2,8 @@
   "name": "isla-huemul",
   "description": "Tesis de Artes Multimediales de Agustín Esparza",
   "scripts": {
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "build": "rm -rf dist/* && parcel build --no-scope-hoist"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "source": "src/index.html",
@@ -16,6 +17,11 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "parcel": "^2.2.1"
+    "parcel": "^2.2.1",
+    "parcel-reporter-static-files-copy": "^1.3.4"
+  },
+  "staticFiles": {
+    "staticPath": "./src/assets",
+    "staticOutPath": "assets"
   }
 }
