@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": [
+    "node_modules/@types/p5/global.d.ts",
+    "src/**/*.d.ts",
+    "src/**/*.js"
+  ]
+}
