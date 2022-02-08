@@ -1,17 +1,5 @@
-import {
-  // img,
-  islavectorliso,
-  grillamapa,
-  reactor,
-  auditorio,
-  cruz,
-  topografia,
-  usina,
-  reactorcenital,
-  muelle
-} from "./variables";
-
-module.exports = function preload() {
+function preload() {
+  console.log("preload");
   loadFont("assets/Bison-Bold.ttf");
 
   // img = loadImage('assets/fondos/mapa-bche-extendido-ok.jpg'); // Cargar la imagen
@@ -30,4 +18,4 @@ module.exports = function preload() {
   // gemelas = loadImage('assets/imgedificios/gemelas-transp.png');
   // huemulscan = loadImage('assets/masimg/huemulscan.png');
   // retorno = loadImage('assets/imgtargets/retorno_transp.png'); // Cargar la imagen
-};
+}
