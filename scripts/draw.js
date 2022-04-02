@@ -31,8 +31,9 @@ function draw() {
   // que se genera al hacer zoom
   cursor(CROSS);
 
-  bubble.x = mouseX;
-  bubble.y = mouseY;
+  let zoomMult = easycam.getZoomMult();
+  bubble.x = mouseX * zoomMult;
+  bubble.y = mouseY * zoomMult;
 
   // array
   if (mouseX !== pmouseX && mouseY !== pmouseY) {
@@ -59,7 +60,14 @@ function draw() {
   let distanciacam = easycam.state.distance;
   let zoomopacity = map(distanciacam, 500, 1000, 255, 0);
 
-  easycam.setRotationScale(0); //BLOQUEAR ROTACION MAPA!
+  // easycam.setRotationScale(0); //BLOQUEAR ROTACION MAPA!
+  // projection
+  // var cam_dist = easycam.getDistance();
+  // var oscale = cam_dist * 0.001;
+  // var ox = (width / 2) * oscale;
+  // var oy = (height / 2) * oscale;
+  // ortho(-ox, +ox, -oy, +oy, -10000, 10000);
+  // easycam.setPanScale(0.004 / sqrt(cam_dist));
 
   //Marco un punto en el origen de coordenadas nuevo
   noStroke();
@@ -310,15 +318,13 @@ touchmove : function(event){
     easycam.state.center[1] >= 40 &&
     easycam.state.center[1] <= 120
   ) {
-    /*
-  // fade in edificios
-  if (fade >= 0 ) {
-    fadeAmount=20; 
- // if (fade>200) fadeAmount=0; 
-  fade += fadeAmount; 
-  opacidad = 0;
-} 
-*/
+    // fade in edificios
+    if (fade >= 0) {
+      fadeAmount = 20;
+      // if (fade>200) fadeAmount=0;
+      fade += fadeAmount;
+      opacidad = 0;
+    }
 
     push();
     tint(255, 255);

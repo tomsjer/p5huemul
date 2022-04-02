@@ -23,9 +23,9 @@ function mousePressed() {
   print(int(current.x), int(current.y));
 }
 
-// window.addEventListener("resize", () => {
-//   VIEWPORT_WIDTH = window.innerWidth;
-//   VIEWPORT_HEIGHT = window.innerHeight;
-// });
-
-// document.body.addEventListener("click", console.log);
+function windowResized() {
+  VIEWPORT_WIDTH = windowWidth;
+  VIEWPORT_HEIGHT = windowHeight;
+  resizeCanvas(windowWidth, windowHeight);
+  easycam.setViewport([0, 0, windowWidth, windowHeight]);
+}

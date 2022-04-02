@@ -4,21 +4,21 @@ function setup() {
   // createCanvas(displayWidth, displayHeight, WEBGL);
   // createCanvas(800, 450, WEBGL); //A mitad de resolucion anda mucho mas fluido.
   createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, WEBGL); // resolucion monitor
+  setAttributes("antialias", true);
 
-  // createEasyCam();
-  easycam = createEasyCam();
+  // Setup EasyCam
+  easycam = createEasyCam(state);
   easycam.setRotationScale(0); // BLOQUEO ROTACION 3D!!!
-  // FIXME: using createEasyCam instead
-  easycam = new Dw.EasyCam(this._renderer, {
-    distance: 600,
-    center: [0, 0, 0]
-  });
+
+  // slower transitions look nicer in the ortho mode
+  easycam.setDefaultInterpolationTime(2000); //slower transition
 
   easycam.setState(state, 2000); // animate to state in 1 second
   easycam.state_reset = state; // state to use on reset
 
   easycam.setDistanceMin(150); // MAXIMO ZOOM IN
-  easycam.setDistanceMax(1000); // MAXIMO ZOOM OUT
+  easycam.setDistanceMax(2000); // MAXIMO ZOOM OUT
+
   // CON ESTE SETEO SE ABRE BASTANTE BIEN EN EL TV BOOSTER
 
   // setRotationConstraint(100, 100, 100);

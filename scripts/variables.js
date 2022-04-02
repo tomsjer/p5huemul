@@ -1,8 +1,9 @@
 var easycam;
+
 var state = {
   distance: 750,
-  center: [0, 0, 0],
-  rotation: [1, 0, 0, 0]
+  center: [0, 0, 0]
+  // rotation: [1, 0, 0, 0]
 };
 var x = 50;
 var y = 50; // Posicion Hud State
@@ -13,9 +14,9 @@ var auditorio,
   reactorcenital,
   topografia,
   usina,
-  gemelas,
-  height,
-  width;
+  gemelas;
+// height,
+// width;
 var img, huemulscan, grillamapa; // Declarar variable 'img'.
 var reactor;
 var bubble;
@@ -52,5 +53,5 @@ var slider, slider2, slider3;
 var myImg = new Image();
 myImg.src = "https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg";
 
-var VIEWPORT_WIDTH = 1600; // window.innerWidth;
-var VIEWPORT_HEIGHT = 800; //  window.innerHeight;
+var VIEWPORT_WIDTH = window.innerWidth;
+var VIEWPORT_HEIGHT = window.innerHeight;
