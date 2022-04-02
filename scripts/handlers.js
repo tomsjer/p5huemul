@@ -21,7 +21,11 @@ function keyPressed() {
 function mousePressed() {
   current.x = mouseX;
   current.y = mouseY;
-  print(int(current.x), int(current.y));
+  locations.forEach((location) => {
+    if (location.intersectsCursor(mouseX, mouseY)) {
+      location.onClick();
+    }
+  });
 }
 
 function windowResized() {

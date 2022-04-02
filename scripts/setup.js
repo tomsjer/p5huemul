@@ -51,4 +51,6 @@ function setup() {
     image: imgUsina,
     bounds: [250, -80, -200, -300, -250]
   });
+
+  locations = [reactorLocation, usinaLocation];
 }

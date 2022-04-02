@@ -11,6 +11,7 @@ class Location {
     this.label = config.label;
     this.text = config.text;
     this.bounds = config.bounds;
+    this.isActive = false;
 
     // window.addEventListener("resize", () => {
     //   setTimeout(() => {
@@ -22,7 +23,9 @@ class Location {
   update() {
     this.draw();
     this.drawLabel();
+    this.isActive = false;
     if (this.intersects()) {
+      this.isActive = true;
       this.drawHUD();
     }
   }
@@ -77,6 +80,10 @@ class Location {
   }
   intersectsBubble() {
     return bubble.intersects(this);
+  }
+  intersectsCursor() {
+    let d = dist(this.x, this.y, mouseX, mouseY);
+    return d < this.r + 30;
   }
   onClick() {
     console.log("onClick", this);

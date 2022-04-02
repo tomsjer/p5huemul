@@ -51,4 +51,4 @@ myImg.src = "https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg";
 var VIEWPORT_WIDTH = window.innerWidth;
 var VIEWPORT_HEIGHT = window.innerHeight;
 
-var reactorLocation, usinaLocation;
+var reactorLocation, usinaLocation, locations;
