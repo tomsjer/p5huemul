@@ -14,6 +14,7 @@ function keyPressed() {
   if (key === "f") {
     let fs = fullscreen();
     fullscreen(!fs);
+    setTimeout(() => windowResized);
   }
 }
 
@@ -26,7 +27,8 @@ function mousePressed() {
 function windowResized() {
   VIEWPORT_WIDTH = windowWidth;
   VIEWPORT_HEIGHT = windowWidth * 0.5625;
-  resizeCanvas(windowWidth, VIEWPORT_HEIGHT);
+  HEIGHT_OFFSET = (windowHeight - VIEWPORT_HEIGHT) / 2;
+  resizeCanvas(windowWidth, windowHeight);
   easycam.setViewport([0, 0, windowWidth, VIEWPORT_HEIGHT]);
 }
 

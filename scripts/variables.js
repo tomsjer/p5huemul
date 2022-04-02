@@ -3,14 +3,15 @@ var easycam,
   myEasyCam;
 var x = 50,
   y = 50; // Posicion Hud State
+var HEIGHT_OFFSET;
 var auditorio,
   cruz,
   islavectorliso,
   muelle,
-  imgReactorCenital,
   topografia,
-  usina,
-  gemelas;
+  gemelas,
+  imgReactorCenital,
+  imgUsina;
 var img, huemulscan, grillamapa; // Declarar variable 'img'.
 var reactor;
 var bubble;
@@ -35,7 +36,7 @@ var fade;
 var fadeAmount = 1;
 
 // array
-var numPoints = 20; // how many points to keep?
+var numPoints = 0; // how many points to keep?
 var points = []; // list of points
 
 // perlin noise circle
@@ -50,4 +51,4 @@ myImg.src = "https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg";
 var VIEWPORT_WIDTH = window.innerWidth;
 var VIEWPORT_HEIGHT = window.innerHeight;
 
-var reactorLocation;
+var reactorLocation, usinaLocation;

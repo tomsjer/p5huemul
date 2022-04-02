@@ -11,7 +11,7 @@ function preload() {
 
   cruz = loadImage("assets/masimg/cruz.png"); // Cargar la imagen
   topografia = loadImage("assets/masimg/topografia.png"); // Cargar la imagen
-  usina = loadImage("assets/imgedificios/usina-transp.png"); // Cargar la imagen
+  imgUsina = loadImage("assets/imgedificios/usina-transp.png"); // Cargar la imagen
   imgReactorCenital = loadImage("assets/imgedificios/reactor-transp.png");
   muelle = loadImage("assets/imgedificios/muelle-transp.png");
 

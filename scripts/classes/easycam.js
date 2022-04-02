@@ -22,6 +22,20 @@ class EasyCamHandler {
     this.easycam.attachMouseListeners(this._renderer);
   }
 
+  draw() {
+    updatePoints();
+    this.drawHUD();
+    this.drawCursor();
+  }
+
+  drawCursor() {
+    noStroke();
+    fill(255, 0, 0);
+    textSize(25);
+    text("X: " + int(mouseX), mouseX + 25, mouseY);
+    text("Y: " + int(mouseY), mouseX + 25, mouseY + 25);
+  }
+
   drawHUD() {
     //HUD CON DATOS DE LA POSICION DE LA CAMARA VIRTUAL
     // 2D screen-aligned rendering section
