@@ -1,22 +1,16 @@
-var easycam;
-
-var state = {
-  distance: 750,
-  center: [0, 0, 0]
-  // rotation: [1, 0, 0, 0]
-};
-var x = 50;
-var y = 50; // Posicion Hud State
+var easycam,
+  state = { distance: 750, center: [0, 0, 0] },
+  myEasyCam;
+var x = 50,
+  y = 50; // Posicion Hud State
 var auditorio,
   cruz,
   islavectorliso,
   muelle,
-  reactorcenital,
+  imgReactorCenital,
   topografia,
   usina,
   gemelas;
-// height,
-// width;
 var img, huemulscan, grillamapa; // Declarar variable 'img'.
 var reactor;
 var bubble;
@@ -30,7 +24,7 @@ var pg;
 var colorfondo;
 var textomuelle =
   "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.";
-var textoreactor =
+var textoReactor =
   "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.";
 var current;
 var opacidad = 255;
@@ -41,7 +35,7 @@ var fade;
 var fadeAmount = 1;
 
 // array
-var numPoints = 10; // how many points to keep?
+var numPoints = 20; // how many points to keep?
 var points = []; // list of points
 
 // perlin noise circle
@@ -55,3 +49,5 @@ myImg.src = "https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg";
 
 var VIEWPORT_WIDTH = window.innerWidth;
 var VIEWPORT_HEIGHT = window.innerHeight;
+
+var reactorLocation;

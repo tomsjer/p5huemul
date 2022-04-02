@@ -1,6 +1,6 @@
 function preload() {
   console.log("preload");
-  loadFont("assets/Bison-Bold.ttf");
+  font = loadFont("assets/Bison-Bold.ttf");
 
   // img = loadImage('assets/fondos/mapa-bche-extendido-ok.jpg'); // Cargar la imagen
   // img = loadImage('assets/fondos/islafondo.png'); // Cargar la imagen
@@ -12,7 +12,7 @@ function preload() {
   cruz = loadImage("assets/masimg/cruz.png"); // Cargar la imagen
   topografia = loadImage("assets/masimg/topografia.png"); // Cargar la imagen
   usina = loadImage("assets/imgedificios/usina-transp.png"); // Cargar la imagen
-  reactorcenital = loadImage("assets/imgedificios/reactor-transp.png");
+  imgReactorCenital = loadImage("assets/imgedificios/reactor-transp.png");
   muelle = loadImage("assets/imgedificios/muelle-transp.png");
 
   // gemelas = loadImage('assets/imgedificios/gemelas-transp.png');
