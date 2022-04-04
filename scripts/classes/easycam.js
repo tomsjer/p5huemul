@@ -32,7 +32,9 @@ class EasyCamHandler {
 
   draw() {
     updatePoints();
-    this.drawHUD();
+    if (DEBUG) {
+      this.drawHUD();
+    }
     this.drawCursor();
   }
 

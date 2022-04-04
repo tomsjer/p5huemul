@@ -1,7 +1,7 @@
 /** ---------------------------------------- */
 /** -------------- GENERAL  ---------------- */
 /** ---------------------------------------- */
-var DEBUG = false;
+var DEBUG = true;
 var VIEWPORT_WIDTH = window.innerWidth;
 var VIEWPORT_HEIGHT = window.innerHeight;
 var HEIGHT_OFFSET;
@@ -17,21 +17,56 @@ var myEasyCam; // EasyCamHandler instance
 /** ---------------------------------------- */
 /** ------------- LOCATIONS ---------------- */
 /** ---------------------------------------- */
-var reactorLocation, usinaLocation, locations; // Location instances & container
-var auditorio,
-  cruz,
-  imgIslaVectorLiso,
-  muelle,
-  topografia,
-  gemelas,
-  imgReactorCenital,
-  imgUsina;
-var imgGuia, huemulscan, imgGrillaMapa; // Declarar variable 'img'.
-var reactor;
-var textomuelle =
-  "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.";
-var textoReactor =
-  "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.";
+var locations; // Location instances & container
+var auditorio, cruz, imgIslaVectorLiso, topografia, gemelas, reactor;
+// Imgs se instancian en preload.js
+var imgGuia, huemulscan, imgGrillaMapa, imgMuelle, imgReactorCenital, imgUsina;
+
+var LocationTypes = {
+  RADIOACTIVE: RadioactiveLocation,
+  DEFAULT: Location
+};
+var LOCATIONS_CONFIG = [
+  {
+    type: "RADIOACTIVE",
+    config: {
+      x: VIEWPORT_WIDTH * (640 / 1600),
+      y: VIEWPORT_HEIGHT * (310 / 900),
+      w: 70,
+      h: 70,
+      label: "Reactor Principal",
+      text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
+      image: "imgReactorCenital",
+      bounds: [250, -60, -160, -130, -80]
+    }
+  },
+  {
+    type: "DEFAULT",
+    config: {
+      x: VIEWPORT_WIDTH * (630 / 1600),
+      y: VIEWPORT_HEIGHT * (150 / 900),
+      w: 120,
+      h: 120,
+      label: "Usina",
+      text: "Texto usina",
+      image: "imgUsina",
+      bounds: [250, -80, -200, -300, -250]
+    }
+  },
+  {
+    type: "DEFAULT",
+    config: {
+      x: VIEWPORT_WIDTH * (320 / 1600),
+      y: VIEWPORT_HEIGHT * (660 / 900),
+      w: 120,
+      h: 120,
+      label: "El muelle",
+      text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
+      image: "imgMuelle",
+      bounds: [250, -80, -200, -300, -250]
+    }
+  }
+];
 
 /** ---------------------------------------- */
 /** ----------------- UI ------------------- */

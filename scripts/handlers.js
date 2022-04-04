@@ -51,6 +51,9 @@ function setupSliders() {
 }
 
 function updateSliders() {
+  fill(255);
+  textSize(15);
+  text("Topografia", 103, 240);
   // cambio el color del fondo
   colorFondo = slider2.value();
   // toogle topografico

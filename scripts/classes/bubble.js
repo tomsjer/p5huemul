@@ -34,8 +34,15 @@ class Bubble {
       this.y = this.y + random(-2, 2);
     }
   */
+  update() {
+    // FIXME: algun calculo para mapear mouseX/Y ?
+    // let zoomMult = easycam.getZoomMult();
+    this.x = mouseX; // * zoomMult;
+    this.y = mouseY - HEIGHT_OFFSET; // * zoomMult;
+  }
 
   show() {
+    this.update();
     //stroke(255);
     //strokeWeight(4);
     noStroke();

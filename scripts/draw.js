@@ -18,25 +18,22 @@ function draw() {
     image(topografia, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
   }
 
-  //noCursor(); //saco al cursor para que no se note el desvio con respecto al objeto bubble
-  // que se genera al hacer zoom
-  cursor(CROSS);
-
-  let zoomMult = easycam.getZoomMult();
-  bubble.x = mouseX; // * zoomMult;
-  bubble.y = mouseY - HEIGHT_OFFSET; // * zoomMult;
-
-  // image(cruz, 712, 298, 18, 18);
-  // fill(255);
-  // textSize(15);
-  // text("Reactor Principal", 735, 312);
+  if (DEBUG) {
+    cursor(CROSS);
+  } else {
+    // saco al cursor para que no se note el desvio con respecto al objeto bubble
+    // que se genera al hacer zoom
+    noCursor();
+  }
 
   ////////// Nombre de la isla Huemul   //////////////
-  // fill(255);
-  // textSize(30);
-  // text("Isla Huemul", 1130, 100);
-  reactorLocation.update();
-  usinaLocation.update();
+  // FIXME: embeber en la imagen de fondo?
+  fill(255);
+  textSize(30);
+  text("Isla Huemul", 1130, 100);
+
+  // Actualizo Locations
+  locations.forEach((location) => location.update());
 
   myEasyCam.draw();
   bubble.show();

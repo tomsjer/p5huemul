@@ -46,15 +46,17 @@ class Location {
     }
   }
   draw() {
-    push();
-    // tint(255, fade);
-    translate(-this.w / 2, -this.h / 2);
-    image(this.image, this.x, this.y, this.w, this.h);
-    strokeWeight(2);
-    stroke(255, this.opacity);
-    fill(255, 0, 0, 0);
-    rect(this.x, this.y, this.w, this.h);
-    pop();
+    if (this.image) {
+      push();
+      // tint(255, fade);
+      translate(-this.w / 2, -this.h / 2);
+      image(this.image, this.x, this.y, this.w, this.h);
+      strokeWeight(2);
+      stroke(255, this.opacity);
+      fill(255, 0, 0, 0);
+      rect(this.x, this.y, this.w, this.h);
+      pop();
+    }
   }
   drawLabel() {
     push();
