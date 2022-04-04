@@ -19,8 +19,6 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  current.x = mouseX;
-  current.y = mouseY;
   locations.forEach((location) => {
     if (location.intersectsCursor(mouseX, mouseY)) {
       location.onClick();
@@ -42,25 +40,21 @@ function setupSliders() {
   slider = createSlider(0, 5, 3, 0.1);
   slider.position(500, 140);
   */
-  // // slideR color agua/fondo
-  // slider2 = createSlider(40, 150, 40, 1);
-  // slider2.position(100, 180);
-  // // slider topografia on/off
-  // slider3 = createSlider(0, 1, 0, 1);
-  // slider3.position(100, 242);
-  // slider3.size(30);
+  // slideR color agua/fondo
+  slider2 = createSlider(40, 150, 40, 1);
+  slider2.position(100, 180);
+
+  // slider topografia on/off
+  slider3 = createSlider(0, 1, 0, 1);
+  slider3.position(100, 242);
+  slider3.size(30);
 }
 
 function updateSliders() {
   // cambio el color del fondo
-  // let colorfondo = slider2.value();
+  colorFondo = slider2.value();
   // toogle topografico
-  // let topo = slider3.value();
-  // if (topo == 0) {
-  //   booleantopo = false;
-  // } else if (topo == 1) {
-  //   booleantopo = true;
-  // }
+  booleanTopo = slider3.value() === 0 ? false : true;
 }
 
 function updatePoints() {

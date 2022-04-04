@@ -1,6 +1,11 @@
+/**
+ * Extiende la clase Location para dibujar un alo radioactivo
+ */
 class RadioactiveLocation extends Location {
   constructor(config) {
     super(config);
+    this.phase = 0;
+    this.zoff = 0;
   }
   draw() {
     super.draw();
@@ -17,17 +22,17 @@ class RadioactiveLocation extends Location {
       beginShape();
       let noiseMax = 2;
       for (let a = 0; a < TWO_PI; a += radians(5)) {
-        let xoff = map(cos(a + phase), -1, 1, 0, noiseMax);
-        let yoff = map(sin(a + phase), -1, 1, 0, noiseMax);
-        let r = map(noise(xoff, yoff, zoff), 0, 1, 10, 10 / 2);
+        let xoff = map(cos(a + this.phase), -1, 1, 0, noiseMax);
+        let yoff = map(sin(a + this.phase), -1, 1, 0, noiseMax);
+        let r = map(noise(xoff, yoff, this.zoff), 0, 1, 10, 10 / 2);
         let x = r * cos(a);
         let y = r * sin(a);
         vertex(x, y);
       }
       endShape(CLOSE);
 
-      phase += 0.003;
-      zoff += 0.01;
+      this.phase += 0.003;
+      this.zoff += 0.01;
 
       // fade in edificios
       // if (fade >= 0) {

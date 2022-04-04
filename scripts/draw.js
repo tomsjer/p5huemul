@@ -1,18 +1,20 @@
 function draw() {
-  background(colorfondo);
+  background(colorFondo);
 
-  //AHORA EL PUNTO DE ORIGEN ESTA EN EL LIMITE SUPERIOR IZQUIERDO DE LA IMAGEN
+  // AHORA EL PUNTO DE ORIGEN ESTA EN EL LIMITE SUPERIOR IZQUIERDO DE LA IMAGEN
   translate(-width / 2, -height / 2, 0);
+  // Mantengo la relación de aspecto en 16/9, tengo que compensar la diferencia en Y
   translate(0, HEIGHT_OFFSET);
 
+  // UI para manejar colorFondo y topografía
   updateSliders();
 
   ////////// FONDO MAPA!   //////
-  image(grillamapa, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // fondo grilla
-  //image(img, 0, 0,VIEWPORT_WIDTH, VIEWPORT_HEIGHT);  // imagen fondo gris illustrator referencia posiciones
-  image(islavectorliso, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
+  image(imgGrillaMapa, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // fondo grilla
+  image(imgGuia, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
+  image(imgIslaVectorLiso, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
 
-  if (booleantopo === true) {
+  if (booleanTopo === true) {
     image(topografia, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
   }
 

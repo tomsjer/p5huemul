@@ -1,3 +1,13 @@
+/**
+ * Clase generica para representar una locación:
+ * - Cordenadas y medidas
+ * - Titulo y descripcion
+ * - Limites para mostrar/ocultar panel de información
+ *
+ * Se encarga de calcular si intersecta con el cursor o la cámara
+ * Por fuera en el draw se usa esa lógica al momento del mousePressed,
+ * disparando el metodo onClick si fue clickeada el área que ocupa la location
+ */
 class Location {
   constructor(config) {
     this.image = config.image;
@@ -13,6 +23,12 @@ class Location {
     this.bounds = config.bounds;
     this.isActive = false;
 
+    // TODO: add fade animation
+    this.opacity = 255;
+    this.fade = 0;
+    this.fadeAmount = 1;
+
+    // FIXME:
     // window.addEventListener("resize", () => {
     //   setTimeout(() => {
     //     this.x = VIEWPORT_WIDTH * (this._x / 1600);
@@ -35,7 +51,7 @@ class Location {
     translate(-this.w / 2, -this.h / 2);
     image(this.image, this.x, this.y, this.w, this.h);
     strokeWeight(2);
-    stroke(255, opacidad);
+    stroke(255, this.opacity);
     fill(255, 0, 0, 0);
     rect(this.x, this.y, this.w, this.h);
     pop();

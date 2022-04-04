@@ -6,11 +6,7 @@ function setup() {
   textFont(font);
   setupSliders();
 
-  colorfondo = color("#10002b"); // blue
-  current = createVector(0, 0);
-  fade = 0;
-
-  myEasyCam = new EasyCamHandler(state);
+  myEasyCam = new EasyCamHandler({ distance: 750, center: [0, 0, 0] });
   easycam = myEasyCam.easycam;
 
   windowResized();

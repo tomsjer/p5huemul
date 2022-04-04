@@ -3,9 +3,9 @@ function preload() {
   font = loadFont("assets/Bison-Bold.ttf");
 
   // img = loadImage('assets/fondos/mapa-bche-extendido-ok.jpg'); // Cargar la imagen
-  // img = loadImage('assets/fondos/islafondo.png'); // Cargar la imagen
-  islavectorliso = loadImage("assets/fondos/isla_vector_liso.png"); // Cargar la imagen
-  grillamapa = loadImage("assets/masimg/grillamapa.png");
+  imgGuia = loadImage("assets/fondos/islafondo.png"); // Cargar la imagen
+  imgIslaVectorLiso = loadImage("assets/fondos/isla_vector_liso.png"); // Cargar la imagen
+  imgGrillaMapa = loadImage("assets/masimg/grillamapa.png");
   reactor = loadImage("assets/imgtargets/reactor-3d.png"); // Cargar la imagen
   auditorio = loadImage("assets/imgedificios/auditorio.png"); // Cargar la imagen
 
