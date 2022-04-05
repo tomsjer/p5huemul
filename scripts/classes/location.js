@@ -17,7 +17,7 @@ class Location {
     this.h = config.h;
     this.r = this.w / 2;
     this.xCenter = this.x - width / 2
-    this.yCenter = this.y - height / 2
+    this.yCenter = this.y - height / 2 + HEIGHT_OFFSET
     this.label = config.label;
     this.text = config.text;
     this.isActive = false;
@@ -51,13 +51,13 @@ class Location {
       push();
       // tint(255, fade);
       translate(-this.w / 2, -this.h / 2);
-      image(this.image, this.x, this.y, this.w, this.h);
       if (DEBUG) {
-        strokeWeight(2);
-        stroke(255, this.opacity);
-        fill(255, 0, 0, 0);
+        strokeWeight(this.isActive ? 2 : 1);
+        stroke(255, this.isActive ? 255 : 100);
+        fill(0, this.isActive ? 100 : 0);
         rect(this.x, this.y, this.w, this.h);
       }
+      image(this.image, this.x, this.y, this.w, this.h);
       pop();
       if (DEBUG) {
         strokeWeight(1);
@@ -66,8 +66,7 @@ class Location {
         line(this.x, this.y - 10, this.x, this.y  + 10)
         fill(255, 0, 0);
         textSize(12);
-        text(this.x, this.x + 10, this.y + 10, 100, 100);
-        text(this.y, this.x + 10, this.y + 20, 100, 100);
+        text(nfs([this.x, this.y], 1, 1), this.x + 10, this.y + 10, 100, 100);
       }
     }
   }
@@ -114,6 +113,10 @@ class Location {
     return d < this.r + 30;
   }
   onClick() {
-    console.log("onClick", this);
+    easycam.setState({
+      ...easycam.state,
+      center: [ this.xCenter, this.yCenter , 0],
+      distance: 250
+    }, 2000); // animate to state in 1 second
   }
 }

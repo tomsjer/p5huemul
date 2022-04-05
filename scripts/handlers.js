@@ -20,7 +20,7 @@ function keyPressed() {
 
 function mousePressed() {
   locations.forEach((location) => {
-    if (location.intersectsCursor(mouseX, mouseY)) {
+    if (location.isActive) {
       location.onClick();
     }
   });
