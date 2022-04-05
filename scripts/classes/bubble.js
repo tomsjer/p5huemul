@@ -43,11 +43,16 @@ class Bubble {
 
   show() {
     this.update();
-    //stroke(255);
-    //strokeWeight(4);
+
+    fill(0, 255, 0);
     noStroke();
-    //fill(this.brightness, 125);
-    fill(0, 0, 255);
+
+    if (DEBUG){
+      noStroke();
+      textSize(25);
+      text("X: " + int(this.x),this.x + 25, this.y);
+      text("Y: " + int(this.y), this.x + 25, this.y + 25);
+    }
     ellipse(this.x, this.y, this.r * 2);
   }
 }

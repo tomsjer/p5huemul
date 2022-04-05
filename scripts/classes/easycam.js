@@ -26,24 +26,15 @@ class EasyCamHandler {
     this.easycam.attachMouseListeners(this._renderer);
 
     // Origin for the HUD
-    this.x = 50;
-    this.y = 50;
+    this.x = 25;
+    this.y = 25;
   }
 
   draw() {
     updatePoints();
-    if (DEBUG) {
+    if (booleanHUD || DEBUG) {
       this.drawHUD();
     }
-    this.drawCursor();
-  }
-
-  drawCursor() {
-    noStroke();
-    fill(255, 0, 0);
-    textSize(25);
-    text("X: " + int(mouseX), mouseX + 25, mouseY);
-    text("Y: " + int(mouseY), mouseX + 25, mouseY + 25);
   }
 
   drawHUD() {
@@ -55,30 +46,38 @@ class EasyCamHandler {
 
     // Render the background box for the HUD
     noStroke();
-    fill(0);
-    rect(this.x, this.y, 20, 75);
-    fill(50, 50, 52, 200); // a bit of transparency
-    rect(this.x + 20, this.y, 250, 75);
+    fill(0, 200);
+    rect(this.x, this.y, 250, 75);
 
     // Render the labels
     textSize(20);
     fill(69, 161, 255);
-    text("Distance:", this.x + 35, this.y + 25);
-    text("Center:  ", this.x + 35, this.y + 25 + 20);
-    // text("Rotation:",this.x+35,this.y+25+40);
-    text("Framerate:", this.x + 35, this.y + 65);
+    text("Distance:", this.x + 10, this.y + 25);
+    text("Center:  ", this.x + 10, this.y + 25 + 20);
+    text("Framerate:", this.x + 10, this.y + 65);
 
     // Render the state numbers
     fill(69, 161, 255);
-    text(nfs(state.distance, 1, 2), this.x + 125, this.y + 25);
-    text(nfs(state.center, 1, 2), this.x + 125, this.y + 25 + 20);
-    //  text(nfs(state.rotation, 1, 3),this.x+125,this.y+25+40);
-    text(nfs(frameRate(), 1, 2), this.x + 125, this.y + 65);
+    text(nfs(state.distance, 1, 2), this.x + 100, this.y + 25);
+    text(nfs(state.center, 1, 2), this.x + 100, this.y + 25 + 20);
+    text(nfs(Math.round(frameRate()), 1, 2), this.x + 100, this.y + 65);
 
-    // fill(255);
-    // textSize(15);
-    // text("Topografia", 103, 240);
-
+    if (DEBUG) {
+      push()
+      let x = width / 2 - state.center[0]
+      let y = height / 2 - state.center[1]
+      translate(x, y);
+      strokeWeight(4);
+      stroke(0, 250, 255);
+      line(state.center[0] - 20, state.center[1], state.center[0] + 20, state.center[1])
+      line(state.center[0], state.center[1] - 20, state.center[0], state.center[1]  + 20)
+      textSize(16);
+      fill(0, 200, 255);
+      text(nfs([state.center[0],state.center[1]],1,1), state.center[0] + 10, state.center[1] + 10, 100, 100);
+      fill(255, 0, 255);
+      text(nfs([x, y],1,1), state.center[0] + 10, state.center[1] + 30, 100, 100);
+      pop()
+    }
     this.easycam.endHUD();
   }
 }

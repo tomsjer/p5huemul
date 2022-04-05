@@ -4,7 +4,13 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL); // resolucion monitor
   setAttributes("antialias", true);
   textFont(font);
-  setupSliders();
+  
+  let gui_col = new dat.GUI();
+	gui_col.add(window, 'colorFondo', 0, 255);
+  gui_col.add(window, 'booleanTopo');
+  gui_col.add(window, 'booleanGuia');
+  gui_col.add(window, 'booleanHUD');
+  gui_col.add(window, 'DEBUG');
 
   myEasyCam = new EasyCamHandler({ distance: 750, center: [0, 0, 0] });
   easycam = myEasyCam.easycam;

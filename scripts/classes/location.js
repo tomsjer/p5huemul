@@ -11,16 +11,15 @@
 class Location {
   constructor(config) {
     this.image = config.image;
-    this._x = config.x;
-    this._y = config.y;
     this.x = config.x;
     this.y = config.y;
     this.w = config.w;
     this.h = config.h;
     this.r = this.w / 2;
+    this.xCenter = this.x - width / 2
+    this.yCenter = this.y - height / 2
     this.label = config.label;
     this.text = config.text;
-    this.bounds = config.bounds;
     this.isActive = false;
 
     // TODO: add fade animation
@@ -28,13 +27,15 @@ class Location {
     this.fade = 0;
     this.fadeAmount = 1;
 
-    // FIXME:
-    // window.addEventListener("resize", () => {
-    //   setTimeout(() => {
-    //     this.x = VIEWPORT_WIDTH * (this._x / 1600);
-    //     this.y = VIEWPORT_HEIGHT * (this._y / 900);
-    //   }, 1000);
-    // });
+    this.minZoom = 350
+    this.range = 100
+
+    window.addEventListener("resize", this.onResize.bind(this));
+  }
+  onResize() {
+    // TODO: reposition
+    // this.x = VIEWPORT_WIDTH * (this._x / 1600);
+    // this.y = VIEWPORT_HEIGHT * (this._y / 900);
   }
   update() {
     this.draw();
@@ -51,25 +52,37 @@ class Location {
       // tint(255, fade);
       translate(-this.w / 2, -this.h / 2);
       image(this.image, this.x, this.y, this.w, this.h);
-      strokeWeight(2);
-      stroke(255, this.opacity);
-      fill(255, 0, 0, 0);
-      rect(this.x, this.y, this.w, this.h);
+      if (DEBUG) {
+        strokeWeight(2);
+        stroke(255, this.opacity);
+        fill(255, 0, 0, 0);
+        rect(this.x, this.y, this.w, this.h);
+      }
       pop();
+      if (DEBUG) {
+        strokeWeight(1);
+        stroke(255, 0, 0);
+        line(this.x - 10, this.y, this.x + 10, this.y)
+        line(this.x, this.y - 10, this.x, this.y  + 10)
+        fill(255, 0, 0);
+        textSize(12);
+        text(this.x, this.x + 10, this.y + 10, 100, 100);
+        text(this.y, this.x + 10, this.y + 20, 100, 100);
+      }
     }
   }
   drawLabel() {
     push();
     translate(this.w / 2, -this.h / 2 - 20);
-    image(cruz, this.x, this.y, 18, 18);
+    image(imgCruz, this.x, this.y, 18, 18);
     fill(255);
     textSize(15);
     text(this.label, this.x + 20, this.y + 14);
     pop();
   }
   drawHUD() {
-    easycam.beginHUD();
     push();
+    easycam.beginHUD();
     translate(50, windowHeight - 450);
     noLights();
     // Render the background box for the HUD
@@ -80,21 +93,18 @@ class Location {
     fill(255);
     textSize(15);
     text(this.text, 25, 300, 350, 350); // TODO: relative coordinates
-    pop();
     easycam.endHUD();
+    pop();
   }
   intersects() {
-    if (!this.bounds || this.bounds.length < 5) {
-      return false;
-    }
     return (
       (bubble !== undefined ? this.intersectsBubble() : true) ||
-      (easycam.state.distance <= this.bounds[0] &&
-        easycam.state.center[0] <= this.bounds[1] &&
-        easycam.state.center[0] >= this.bounds[2] &&
-        easycam.state.center[1] >= this.bounds[3] &&
-        easycam.state.center[1] <= this.bounds[4])
-    );
+      (easycam.state.distance <= this.minZoom &&
+        easycam.state.center[0] <= this.xCenter + this.r &&
+        easycam.state.center[0] >= this.xCenter - this.r &&
+        easycam.state.center[1] <= this.yCenter + this.r &&
+        easycam.state.center[1] >= this.yCenter - this.r
+    ));
   }
   intersectsBubble() {
     return bubble.intersects(this);
