@@ -40,6 +40,21 @@ var LocationTypes = {
 };
 var LOCATIONS_CONFIG = [
   {
+    id: 'prefectura',
+    type: "DEFAULT",
+    config: {
+      // x: VIEWPORT_WIDTH * (640 / 1600),
+      // y: VIEWPORT_HEIGHT * (310 / 900),
+      x: VIEWPORT_WIDTH * 0.26,
+      y: VIEWPORT_HEIGHT * 0.53,
+      w: 70,
+      h: 70,
+      label: "Prefectura",
+      text: "Lorem ipsum",
+      image: "img_danger_guardia"
+    }
+  },
+  {
     id: 'reactor-principal',
     type: "RADIOACTIVE",
     config: {

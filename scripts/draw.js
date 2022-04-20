@@ -1,4 +1,4 @@
-function draw() {
+function drawBackground() {
   background(colorFondo);
 
   // AHORA EL PUNTO DE ORIGEN ESTA EN EL LIMITE SUPERIOR IZQUIERDO DE LA IMAGEN
@@ -6,12 +6,10 @@ function draw() {
   // Mantengo la relación de aspecto en 16/9, tengo que compensar la diferencia en Y
   translate(0, HEIGHT_OFFSET);
 
-  // UI para manejar colorFondo y topografía
-  // updateSliders();
-
   ////////// FONDO MAPA!   //////
   image(imgGrillaMapa, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // fondo grilla
   image(imgIslaVectorLiso, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
+  image(img_recorridopunteado, 390,390, 850 ,800);
   
   if (booleanGuia) {
     image(imgGuia, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
@@ -20,6 +18,10 @@ function draw() {
   if (booleanTopo) {
     image(imgTopografia, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
   }
+}
+
+function draw() {
+  drawBackground()
 
   if (DEBUG) {
     cursor(CROSS);
@@ -37,7 +39,9 @@ function draw() {
   
   // Actualizo Locations
   locations.forEach((location) => location.update());
-
+  
+  updatePoints();
+  
   myEasyCam.draw();
   bubble.show();
 

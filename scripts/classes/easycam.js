@@ -13,7 +13,7 @@ class EasyCamHandler {
   ) {
     this.easycam = createEasyCam(state);
     this.easycam.setRotationScale(0); // BLOQUEO ROTACION 3D!!!
-    this.easycam.setViewport([0, 0, windowWidth, VIEWPORT_HEIGHT]);
+    this.easycam.setViewport([0, 0, windowWidth, windowHeight]);
 
     // slower transitions look nicer in the ortho mode
     this.easycam.setDefaultInterpolationTime(config.defaultInterpolation); //slower transition
@@ -31,7 +31,6 @@ class EasyCamHandler {
   }
 
   draw() {
-    updatePoints();
     if (booleanHUD || DEBUG) {
       this.drawHUD();
     }
