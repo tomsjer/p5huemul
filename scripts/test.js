@@ -4,15 +4,17 @@ let booleanHUD = DEBUG = true
 let font
 let now
 let prev
+var VIEWPORT_WIDTH = 1920; // window.innerWidth;
+var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 
 function preload() {
     font = loadFont("assets/Bison-Bold.ttf");
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight, WEBGL); // resolucion monitor
+    createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, WEBGL); // resolucion monitor
     myEasyCam = new EasyCamHandler({ distance: 750, center: [0, 0, 0] });
-    unit = windowWidth / 10
+    unit = VIEWPORT_WIDTH / 10
     textFont(font);
     prev = performance.now()
 }
@@ -25,7 +27,7 @@ function draw() {
 
     stroke('#00f')
     noFill()
-    rect(0,0,windowWidth, windowHeight)
+    rect(0,0,VIEWPORT_WIDTH, VIEWPORT_HEIGHT)
  
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {

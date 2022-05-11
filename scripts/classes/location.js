@@ -11,16 +11,22 @@
 class Location {
   constructor(config) {
     this.image = config.image;
+    this.imagePopup = config.imagePopup;
     this.x = config.x;
     this.y = config.y;
     this.w = config.w;
     this.h = config.h;
     this.r = this.w / 2;
-    this.xCenter = this.x - width / 2
-    this.yCenter = this.y - height / 2 + HEIGHT_OFFSET
-    this.label = config.label;
+    this.xCenter = this.x - width / 2;
+    this.yCenter = this.y - height / 2; // + HEIGHT_OFFSET
+    this.title = config.title;
     this.text = config.text;
+    this.isActivable = this.title !== '' && this.text !== ''
     this.isActive = false;
+    this.sp = createVector(0,0,0)
+    this.tv = createVector(-width/2, -height/2, 0)
+    this.noCross = config.noCross || false
+    this.crossPosition = config.crossPosition || 'top'
 
     // TODO: add fade animation
     this.opacity = 255;
@@ -38,18 +44,19 @@ class Location {
     // this.y = VIEWPORT_HEIGHT * (this._y / 900);
   }
   update() {
+    this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
     this.draw();
-    this.drawLabel();
-    this.isActive = false;
-    if (this.intersects()) {
-      this.isActive = true;
-      this.drawHUD();
+    if (this.isActivable) {
+      this.isActive = false;
+      if (this.intersects()) {
+        this.isActive = true;
+        this.drawHUD();
+      }
     }
   }
   draw() {
     if (this.image) {
       push();
-      // tint(255, fade);
       translate(-this.w / 2, -this.h / 2);
       if (DEBUG) {
         strokeWeight(this.isActive ? 2 : 1);
@@ -59,6 +66,16 @@ class Location {
       }
       image(this.image, this.x, this.y, this.w, this.h);
       pop();
+      if (!this.noCross) {
+        push();
+        if (this.crossPosition === 'bottom') {
+          translate(- 20, this.h / 2);
+        } else {
+          translate(this.w / 2 - 20, -this.h / 2);
+        }
+        image(imgCruz, this.x, this.y, 18, 18);
+        pop();
+      }
       if (DEBUG) {
         strokeWeight(1);
         stroke(255, 0, 0);
@@ -67,18 +84,22 @@ class Location {
         fill(255, 0, 0);
         textSize(12);
         text(nfs([this.x, this.y], 1, 1), this.x + 10, this.y + 10, 100, 100);
+        text(nfs([this.sp.x, this.sp.y], 1, 1), this.x + 10, this.y + 20, 100, 100);
       }
     }
   }
-  drawLabel() {
-    push();
-    translate(this.w / 2, -this.h / 2 - 20);
-    image(imgCruz, this.x, this.y, 18, 18);
-    fill(255);
-    textSize(15);
-    text(this.label, this.x + 20, this.y + 14);
-    pop();
-  }
+  // drawLabel() {
+  //   push();
+  //   if (this.crossPosition === 'bottom') {
+  //     translate(- 20, this.h / 2);
+  //   } else {
+  //     translate(this.w / 2 - 20, -this.h / 2);
+  //   }
+  //   fill(255);
+  //   textSize(15);
+  //   text(this.title, this.x + 20, this.y + 14);
+  //   pop();
+  // }
   drawHUD() {
     push();
     easycam.beginHUD();
@@ -89,9 +110,16 @@ class Location {
     fill(0, 200);
     rect(0, 0, 400, 400);
 
+    // Render Image
+    if (this.imagePopup) {
+      image(this.imagePopup, 25, 25, 350, 200);
+    }
+    // Render texts
     fill(255);
+    textSize(24);
+    text(this.title, 25, 300, 350, 350); // TODO: relative coordinates
     textSize(15);
-    text(this.text, 25, 300, 350, 350); // TODO: relative coordinates
+    text(this.text, 25, 330, 350, 350); // TODO: relative coordinates
     easycam.endHUD();
     pop();
   }
@@ -106,7 +134,7 @@ class Location {
     ));
   }
   intersectsBubble() {
-    return bubble.intersects(this);
+    return bubble.intersects({ x: this.sp.x, y: this.sp.y, r: this.r + this.r * (1 - easycam.getZoomMult()) });
   }
   intersectsCursor() {
     let d = dist(this.x, this.y, mouseX, mouseY);

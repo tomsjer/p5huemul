@@ -14,17 +14,17 @@ class RadioactiveLocation extends Location {
       push();
       smooth();
       translate(this.x, this.y);
-      stroke(200, 0, 0);
-      strokeWeight(1);
-      //noFill();
-      fill(255, 0, 0, 50);
+      // stroke(200, 0, 0);
+      // strokeWeight(1);
+      noStroke();
+      fill(255, 0, 0, 100);
       curveDetail(200);
       beginShape();
       let noiseMax = 2;
       for (let a = 0; a < TWO_PI; a += radians(5)) {
         let xoff = map(cos(a + this.phase), -1, 1, 0, noiseMax);
         let yoff = map(sin(a + this.phase), -1, 1, 0, noiseMax);
-        let r = map(noise(xoff, yoff, this.zoff), 0, 1, 10, 10 / 2);
+        let r = map(noise(xoff, yoff, this.zoff), 0, 1, 35, 35 / 2);
         let x = r * cos(a);
         let y = r * sin(a);
         vertex(x, y);

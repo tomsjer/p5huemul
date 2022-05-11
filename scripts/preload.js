@@ -5,7 +5,7 @@ function preload() {
   // img = loadImage('assets/fondos/mapa-bche-extendido-ok.jpg'); // Cargar la imagen
   imgGuia = loadImage("assets/fondos/islafondo.png"); // Cargar la imagen
   imgIslaVectorLiso = loadImage("assets/fondos/isla-base.png"); // Cargar la imagen
-  imgGrillaMapa = loadImage("assets/masimg/grillamapa.png");
+  imgGrillaMapa = loadImage("assets/masimg/grillamapa_cropped.png");
   imgReactor = loadImage("assets/imgtargets/reactor-3d.png"); // Cargar la imagen
   imgAuditorio = loadImage("assets/imgedificios/auditorio.png"); // Cargar la imagen
   imgCruz = loadImage("assets/masimg/cruz.png"); // Cargar la imagen
@@ -33,8 +33,8 @@ function preload() {
   danger_usina = loadImage('assets/img_dangers/danger_usina.png');
   danger_reactor_posta = loadImage('assets/img_dangers/danger_reactor.png');
   danger_auditorio = loadImage('assets/img_dangers/danger_auditorio.png');
-  danger_edif_blindado = loadImage('assets/img_dangers/danger_edif_blindado.png');
-  danger_guardia = loadImage('assets/img_dangers/danger_guardia.png');
+  img_danger_edif_blindado = loadImage('assets/img_dangers/danger_edif_blindado.png');
+  img_danger_guardia = loadImage('assets/img_dangers/danger_guardia.png');
 
   //  ARQ
   img_danger_reactor = loadImage('assets/masimg/base-danger-reactor.png');

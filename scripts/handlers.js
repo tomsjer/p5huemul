@@ -1,3 +1,6 @@
+let dragging = false;
+let draggingLocation = null;
+
 //MAS FUNCIONES
 document.ontouchmove = function (event) {
   event.preventDefault();
@@ -22,16 +25,37 @@ function mousePressed() {
   locations.forEach((location) => {
     if (location.isActive) {
       location.onClick();
+      // dragging = true
+      // draggingLocation = location
+      // console.log('dragging true')
     }
   });
 }
 
+function mouseReleased() {
+  if (dragging) {
+    console.log('released')
+    dragging = false
+    draggingLocation = null
+  }
+}
+
+function mouseDragged() {
+  if (dragging) {
+    draggingLocation.x = mouseX
+    draggingLocation.y = mouseY
+    console.log('dragged')
+  }
+}
+
 function windowResized() {
-  VIEWPORT_WIDTH = windowWidth;
-  VIEWPORT_HEIGHT = windowWidth * 0.5625;
-  HEIGHT_OFFSET = (windowHeight - VIEWPORT_HEIGHT) / 2;
-  resizeCanvas(windowWidth, windowHeight);
-  easycam.setViewport([0, 0, windowWidth, VIEWPORT_HEIGHT]);
+  // VIEWPORT_WIDTH = windowWidth;
+  // VIEWPORT_HEIGHT = windowWidth * 0.5625;
+  // HEIGHT_OFFSET = (windowHeight - VIEWPORT_HEIGHT) / 2;
+  resizeCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+  if (easycam) {
+    easycam.setViewport([0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT]);
+  }
 }
 
 function setupSliders() {

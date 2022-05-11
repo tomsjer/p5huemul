@@ -2,8 +2,8 @@
 /** -------------- GENERAL  ---------------- */
 /** ---------------------------------------- */
 var DEBUG = true;
-var VIEWPORT_WIDTH = window.innerWidth;
-var VIEWPORT_HEIGHT = window.innerHeight;
+var VIEWPORT_WIDTH = 1920; // window.innerWidth;
+var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 var HEIGHT_OFFSET;
 var font;
 var colorFondo = 33;
@@ -15,11 +15,10 @@ var booleanHUD = true;
 /** ---------------------------------------- */
 var easycam; // EasyCam instance
 var myEasyCam; // EasyCamHandler instance
-
 /** ---------------------------------------- */
 /** ------------- LOCATIONS ---------------- */
 /** ---------------------------------------- */
-var locations; // Location instances & container
+var locations = []; // Location instances & container
 // Imgs se instancian en preload.js
 var imgGuia,
   imgHuemulScan,
@@ -40,76 +39,131 @@ var LocationTypes = {
 };
 var LOCATIONS_CONFIG = [
   {
+    id: 'muelle',
+    type: "DEFAULT",
+    config: {
+      x: 356, y: 670, w: 120, h: 120,
+      title: "El muelle",
+      text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
+      image: "imgMuelle",
+      imagePopup: "imgMuelle"
+    }
+  },
+  {
     id: 'prefectura',
     type: "DEFAULT",
     config: {
-      // x: VIEWPORT_WIDTH * (640 / 1600),
-      // y: VIEWPORT_HEIGHT * (310 / 900),
-      x: VIEWPORT_WIDTH * 0.26,
-      y: VIEWPORT_HEIGHT * 0.53,
-      w: 70,
-      h: 70,
-      label: "Prefectura",
+      x: 495,
+      y: 640,
+      w: 40,
+      h: 40,
+      title: "Prefectura",
       text: "Lorem ipsum",
-      image: "img_danger_guardia"
+      image: "img_danger_guardia",
+      crossPosition: 'bottom'
+    }
+  },
+  {
+    id: 'casa-richter',
+    type: "DEFAULT",
+    config: {
+      x: 450,
+      y: 550,
+      w: 40,
+      h: 40,
+      title: "Casa Richter",
+      text: "Lorem ipsum",
+      image: "img_danger_guardia",
+      noCross: true
+    }
+  },
+  {
+    id: 'gemelos',
+    type: "DEFAULT",
+    config: {
+      x: 595,
+      y: 560,
+      w: 40,
+      h: 120,
+      title: "LABORATORIOS GEMELOS y laboratorio blindado",
+      text: "Lorem ipsum",
+      image: "img_gemelos_3d",
+      imagePopup: "img_gemelas_arq",
+      noCross: true
+    }
+  },
+  {
+    id: 'blindado',
+    type: "DEFAULT",
+    config: {
+      x: 636,
+      y: 598,
+      w: 25,
+      h: 40,
+      title: "Laboratorio Blindado",
+      text: "",
+      image: "img_danger_edif_blindado",
+      imagePopup: "img_laboblindado_arq",
+      noCross: true
+    }
+  },
+  {
+    id: 'laboratorio-richter',
+    type: "RADIOACTIVE",
+    config: {
+      x: 726,
+      y: 398,
+      w: 60,
+      h: 60,
+      title: "Laboratorio de Richter",
+      text: "lorem ipsum",
+      image: "img_laborichter_3d",
+      imagePopup: "img_laborichter",
+      crossPosition: 'bottom'
     }
   },
   {
     id: 'reactor-principal',
     type: "RADIOACTIVE",
     config: {
-      // x: VIEWPORT_WIDTH * (640 / 1600),
-      // y: VIEWPORT_HEIGHT * (310 / 900),
-      x: VIEWPORT_WIDTH * 0.36,
-      y: VIEWPORT_HEIGHT * 0.33,
-      w: 70,
-      h: 70,
-      label: "Reactor Principal",
+      x: 850,
+      y: 450,
+      w: 65,
+      h: 65,
+      title: "Reactor Principal",
       text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
-      image: "imgReactorCenital"
+      image: "img_reactor_3d",
+      imagePopup: "img_reactor_arq",
+      noCross: true
     }
   },
   {
     id: 'usina',
     type: "DEFAULT",
     config: {
-      // x: VIEWPORT_WIDTH * (630 / 1600),
-      // y: VIEWPORT_HEIGHT * (150 / 900),
-      x: VIEWPORT_WIDTH * 0.35,
-      y: VIEWPORT_HEIGHT * 0.2,
-      w: 120,
-      h: 120,
-      label: "Usina",
+      x: 820,
+      y: 380,
+      w: 65,
+      h: 65,
+      title: "Usina",
       text: "Texto usina",
-      image: "imgUsina"
-    }
-  },
-  {
-    id: 'muelle',
-    type: "DEFAULT",
-    config: {
-      // x: VIEWPORT_WIDTH * (320 / 1600),
-      // y: VIEWPORT_HEIGHT * (660 / 900),
-      x: VIEWPORT_WIDTH * 0.2,
-      y: VIEWPORT_HEIGHT * 0.5,
-      w: 120,
-      h: 120,
-      label: "El muelle",
-      text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
-      image: "imgMuelle"
+      image: "img_usina_3d",
+      imagePopup: "imgUsina",
+      noCross: true
     }
   },
   { 
     id: 'auditorio',
     type: "DEFAULT",
     config: {
-      x: VIEWPORT_WIDTH * 0.35,
-      y: VIEWPORT_HEIGHT * 0.55,
-      w: 120,
-      h: 120,
-      label: "Audiotorio",
+      x: 790,
+      y: 492,
+      w: 60,
+      h: 60,
+      title: "Audiotorio",
       text: "Texto auditorio",
-      image: "imgAuditorio"
+      image: "img_auditorio_3d",
+      imagePopup: "img_auditorio_arq"
     }
   },
 ];

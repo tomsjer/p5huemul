@@ -6,6 +6,8 @@ class EasyCamHandler {
   constructor(
     state,
     config = {
+      viewportWidth: 1920,
+      viewportHeight: 1080,
       defaultInterpolation: 2000,
       distanceMin: 150,
       distanceMax: 2000
@@ -13,7 +15,8 @@ class EasyCamHandler {
   ) {
     this.easycam = createEasyCam(state);
     this.easycam.setRotationScale(0); // BLOQUEO ROTACION 3D!!!
-    this.easycam.setViewport([0, 0, windowWidth, windowHeight]);
+    this.easycam.setViewport([0, 0, config.viewportWidth, config.viewportHeight]);
+    // this.easycam.setViewport([0, 0, windowWidth, windowHeight]);
 
     // slower transitions look nicer in the ortho mode
     this.easycam.setDefaultInterpolationTime(config.defaultInterpolation); //slower transition
@@ -24,6 +27,8 @@ class EasyCamHandler {
     this.easycam.setDistanceMin(config.distanceMin); // MAXIMO ZOOM IN
     this.easycam.setDistanceMax(config.distanceMax); // MAXIMO ZOOM OUT
     this.easycam.attachMouseListeners(this._renderer);
+
+    console.log(this.easycam)
 
     // Origin for the HUD
     this.x = 25;
@@ -72,9 +77,9 @@ class EasyCamHandler {
       line(state.center[0], state.center[1] - 20, state.center[0], state.center[1]  + 20)
       textSize(16);
       fill(0, 200, 255);
-      text(nfs([state.center[0],state.center[1]],1,1), state.center[0] + 10, state.center[1] + 10, 100, 100);
+      text('state: ' + nfs([state.center[0],state.center[1]],1,1), state.center[0] + 10, state.center[1] + 10, 100, 100);
       fill(255, 0, 255);
-      text(nfs([x, y],1,1), state.center[0] + 10, state.center[1] + 30, 100, 100);
+      text('x/y: ' + nfs([x, y],1,1), state.center[0] + 10, state.center[1] + 30, 100, 100);
       pop()
     }
     this.easycam.endHUD();

@@ -35,10 +35,8 @@ class Bubble {
     }
   */
   update() {
-    // FIXME: algun calculo para mapear mouseX/Y ?
-    // let zoomMult = easycam.getZoomMult();
-    this.x = mouseX; // * zoomMult;
-    this.y = mouseY - HEIGHT_OFFSET; // * zoomMult;
+    this.x = mouseX;
+    this.y = mouseY;
   }
 
   show() {
@@ -50,8 +48,8 @@ class Bubble {
     if (DEBUG){
       noStroke();
       textSize(25);
-      text("X: " + int(this.x),this.x + 25, this.y);
-      text("Y: " + int(this.y), this.x + 25, this.y + 25);
+      text("mouseX: " + int(this.x),this.x + 25, this.y);
+      text("mouseY: " + int(this.y), this.x + 25, this.y + 25);
     }
     ellipse(this.x, this.y, this.r * 2);
   }

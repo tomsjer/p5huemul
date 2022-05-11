@@ -1,7 +1,10 @@
 function setup() {
   console.log("setup");
 
-  createCanvas(windowWidth, windowHeight, WEBGL); // resolucion monitor
+  createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, WEBGL); // resolucion monitor
+  addScreenPositionFunction();
+
+  // createCanvas(windowWidth, windowHeight, WEBGL); // resolucion monitor
   setAttributes("antialias", true);
   textFont(font);
   
@@ -12,7 +15,10 @@ function setup() {
   gui_col.add(window, 'booleanHUD');
   gui_col.add(window, 'DEBUG');
 
-  myEasyCam = new EasyCamHandler({ distance: 750, center: [0, 0, 0] });
+  myEasyCam = new EasyCamHandler({ distance: 1100, center: [0, 0, 0] }, {
+    viewportWidth: VIEWPORT_WIDTH,
+    viewportHeight: VIEWPORT_HEIGHT
+  });
   easycam = myEasyCam.easycam;
 
   windowResized();
@@ -27,7 +33,7 @@ function setup() {
   }
 
   bubble = new Bubble(200, 250); // Mouse
-  bubble1 = new Bubble(773, 396); // Ubicacion Isla Huemul
+  // bubble1 = new Bubble(773, 396); // Ubicacion Isla Huemul
   // bubble2 = new Bubble(500, 500); // Ubicacion
 
   locations = LOCATIONS_CONFIG.map(
@@ -35,7 +41,8 @@ function setup() {
       new LocationTypes[location.type]({
         ...location.config,
         // la imagen se instancia en preload.js
-        image: window[location.config.image]
+        image: window[location.config.image],
+        imagePopup: window[location.config.imagePopup || 'imgCruz']
       })
   );
 }

@@ -4,7 +4,7 @@ function drawBackground() {
   // AHORA EL PUNTO DE ORIGEN ESTA EN EL LIMITE SUPERIOR IZQUIERDO DE LA IMAGEN
   translate(-width / 2, -height / 2, 0);
   // Mantengo la relación de aspecto en 16/9, tengo que compensar la diferencia en Y
-  translate(0, HEIGHT_OFFSET);
+  // translate(0, HEIGHT_OFFSET);
 
   ////////// FONDO MAPA!   //////
   image(imgGrillaMapa, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // fondo grilla
@@ -33,16 +33,18 @@ function draw() {
 
   ////////// Nombre de la isla Huemul   //////////////
   // FIXME: embeber en la imagen de fondo?
-  fill(255);
-  textSize(30);
-  text("Isla Huemul", 1130, 100);
+  // fill(255);
+  // textSize(30);
+  // text("Isla Huemul", 1130, 100);
   
   // Actualizo Locations
   locations.forEach((location) => location.update());
   
-  updatePoints();
+  // updatePoints();
   
   myEasyCam.draw();
+  easycam.beginHUD();
   bubble.show();
+  easycam.endHUD();
 
 }
