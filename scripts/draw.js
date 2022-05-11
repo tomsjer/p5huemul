@@ -39,10 +39,14 @@ function draw() {
   
   // Actualizo Locations
   locations.forEach((location) => location.update());
+  // Dibujo en capas
+  locations.forEach((location) => location.draw());
+  locations.forEach((location) => location.drawHUD());
   
   // updatePoints();
   
   myEasyCam.draw();
+  // Draw bubble on fixed screen and user screenPosition
   easycam.beginHUD();
   bubble.show();
   easycam.endHUD();

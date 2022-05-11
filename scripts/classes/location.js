@@ -28,29 +28,45 @@ class Location {
     this.noCross = config.noCross || false
     this.crossPosition = config.crossPosition || 'top'
 
-    // TODO: add fade animation
-    this.opacity = 255;
+    this.ppW = 400;
+    this.ppH = 500;
+    this.ppX = 50;
+    this.ppP = 25;
+    this.ppY = windowHeight - this.ppH - this.ppP * 2;
+    this.ppImgW = this.ppW - this.ppP * 2;
+    this.ppImgH = this.ppH / 2;
+    this.ppTxtW = this.ppW - this.ppP * 2
+    this.ppTxtH = this.ppH / 2 - this.ppP * 2
+    this.ppPHalf = this.ppP / 2
+    this.ppTtlH = this.ppH - this.ppImgH
+    this.ppPTriple = this.ppP * 3
+    this.ppImgY = this.ppPTriple + this.ppPHalf / 2
+    this.ppTxtY = this.ppPTriple + this.ppPHalf + this.ppImgH
+    
+    this.titleSize = 56;
+    this.textSize = 24;
+
     this.fade = 0;
-    this.fadeAmount = 1;
+    this.fadeAmount = 20;
 
     this.minZoom = 350
     this.range = 100
-
-    window.addEventListener("resize", this.onResize.bind(this));
-  }
-  onResize() {
-    // TODO: reposition
-    // this.x = VIEWPORT_WIDTH * (this._x / 1600);
-    // this.y = VIEWPORT_HEIGHT * (this._y / 900);
   }
   update() {
     this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
-    this.draw();
     if (this.isActivable) {
-      this.isActive = false;
       if (this.intersects()) {
+        if (this.fade < 255) {
+          this.fade += this.fadeAmount;
+        }
         this.isActive = true;
-        this.drawHUD();
+      } else {
+        if (this.fade > 0) {
+          this.fade -= this.fadeAmount;
+        }
+        if (this.isActive && this.fade === 0) {
+          this.isActive = false
+        }
       }
     }
   }
@@ -88,38 +104,36 @@ class Location {
       }
     }
   }
-  // drawLabel() {
-  //   push();
-  //   if (this.crossPosition === 'bottom') {
-  //     translate(- 20, this.h / 2);
-  //   } else {
-  //     translate(this.w / 2 - 20, -this.h / 2);
-  //   }
-  //   fill(255);
-  //   textSize(15);
-  //   text(this.title, this.x + 20, this.y + 14);
-  //   pop();
-  // }
   drawHUD() {
+    if (!this.isActive) return
     push();
     easycam.beginHUD();
-    translate(50, windowHeight - 450);
+    translate(this.ppX, this.ppY);
     noLights();
     // Render the background box for the HUD
     noStroke();
-    fill(0, 200);
-    rect(0, 0, 400, 400);
+    fill(0, this.fade - 50);
+    rect(0, 0, this.ppW, this.ppH);
+
+    // Render title
+    fill(255, this.fade);
+    textSize(this.titleSize);
+    text(this.title, this.ppP, this.ppPHalf, this.ppTxtW, this.ppTtlH);
 
     // Render Image
     if (this.imagePopup) {
-      image(this.imagePopup, 25, 25, 350, 200);
+      tint (255, this.fade);
+      if (DEBUG) {
+        noFill();
+        stroke(255, 0, 0);
+        rect(this.ppP, this.ppImgY, this.ppImgW, this.ppImgH);
+      }
+      image(this.imagePopup, this.ppP, this.ppImgY, this.ppImgW, this.ppImgH);
     }
-    // Render texts
-    fill(255);
-    textSize(24);
-    text(this.title, 25, 300, 350, 350); // TODO: relative coordinates
-    textSize(15);
-    text(this.text, 25, 330, 350, 350); // TODO: relative coordinates
+    // Render description
+    fill(255, this.fade);
+    textSize(this.textSize);
+    text(this.text, this.ppP, this.ppTxtY, this.ppTxtW, this.ppTxtH);
     easycam.endHUD();
     pop();
   }
@@ -134,6 +148,7 @@ class Location {
     ));
   }
   intersectsBubble() {
+    // Uso las posiciones del objeto 3d en pantalla 2d
     return bubble.intersects({ x: this.sp.x, y: this.sp.y, r: this.r + this.r * (1 - easycam.getZoomMult()) });
   }
   intersectsCursor() {

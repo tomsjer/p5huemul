@@ -21,6 +21,14 @@ function keyPressed() {
   }
 }
 
+window.onpointerdown = (e) => {
+  mouseX = e.x;
+  mouseY = e.y;
+  setTimeout(() => {
+    mousePressed()
+  }, 100)
+}
+
 function mousePressed() {
   locations.forEach((location) => {
     if (location.isActive) {
