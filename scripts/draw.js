@@ -38,14 +38,15 @@ function draw() {
   // text("Isla Huemul", 1130, 100);
   
   // Actualizo Locations
-  locations.forEach((location) => location.update());
+  LOCATIONS.forEach((location) => location.update());
   // Dibujo en capas
-  locations.forEach((location) => location.draw());
-  locations.forEach((location) => location.drawHUD());
+  LOCATIONS.forEach((location) => location.draw());
+  LOCATIONS.forEach((location) => location.drawHUD());
   
   // updatePoints();
   
   myEasyCam.draw();
+  ISLA.draw();
   // Draw bubble on fixed screen and user screenPosition
   easycam.beginHUD();
   bubble.show();

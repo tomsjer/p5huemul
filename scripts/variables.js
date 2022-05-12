@@ -10,6 +10,9 @@ var colorFondo = 33;
 var booleanGuia = false;
 var booleanTopo = false;
 var booleanHUD = true;
+var OPENED_POPUP = false;
+var PLAYER;
+var ISLA;
 /** ---------------------------------------- */
 /** -------------- EASY CAM ---------------- */
 /** ---------------------------------------- */
@@ -18,21 +21,11 @@ var myEasyCam; // EasyCamHandler instance
 /** ---------------------------------------- */
 /** ------------- LOCATIONS ---------------- */
 /** ---------------------------------------- */
-var locations = []; // Location instances & container
-// Imgs se instancian en preload.js
-var imgGuia,
-  imgHuemulScan,
-  imgGrillaMapa,
-  imgMuelle,
-  imgReactorCenital,
-  imgUsina,
-  imgIslaVectorLiso,
-  imgGemelas,
-  imgTopografia,
-  imgCruz,
-  imgReactor,
-  imgAuditorio;
-
+var ISLA_CONFIG = {
+  image: 'img_intro',
+  text: 'La isla Huemul esta ubicada a 1,5km de la costa de la ciudad de S.C. de Bariloche. A principios de la decada del 50, se desarrollo "el proyecto huemul". and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+}
+var LOCATIONS = []; // Location instances & container
 var LocationTypes = {
   RADIOACTIVE: RadioactiveLocation,
   DEFAULT: Location
@@ -123,21 +116,6 @@ var LOCATIONS_CONFIG = [
     }
   },
   {
-    id: 'reactor-principal',
-    type: "RADIOACTIVE",
-    config: {
-      x: 850,
-      y: 450,
-      w: 65,
-      h: 65,
-      title: "Reactor Principal",
-      text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
-      image: "img_reactor_3d",
-      imagePopup: "img_reactor_arq",
-      noCross: true
-    }
-  },
-  {
     id: 'usina',
     type: "DEFAULT",
     config: {
@@ -166,6 +144,21 @@ var LOCATIONS_CONFIG = [
       imagePopup: "img_auditorio_arq"
     }
   },
+  {
+    id: 'reactor-principal',
+    type: "RADIOACTIVE",
+    config: {
+      x: 850,
+      y: 450,
+      w: 65,
+      h: 65,
+      title: "Reactor Principal",
+      text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
+      image: "img_reactor_3d",
+      imagePopup: "img_reactor_arq",
+      noCross: true
+    }
+  }
 ];
 
 /** ---------------------------------------- */

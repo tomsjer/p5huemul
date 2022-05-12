@@ -6,3 +6,77 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+.toolbar-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 63px;
+  text-align: center;
+  padding: 16px 0;
+  background: rgba(0,0,0,.5);
+  border-radius: 8px;
+}
+
+#player-buttons.toolbar-container {
+  top: auto;
+  bottom: 16px;
+  transform: translate3d(-50%, 0, 0);
+  padding-left: 16px;
+  transition: opacity .25s ease;
+}
+
+#player-buttons.toolbar-container.intro-visible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#info-button.toolbar-container {
+  top: auto;
+  left: auto;
+  right: 16px;
+  bottom: 16px;
+}
+
+button {
+  border: none;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  color: transparent;
+  opacity: 0.8;
+  font-size: 24px;
+  line-height: 48px;
+  transition: opacity 0.25s ease;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative !important;
+  margin: 8px 16px;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+button:active, button:focus {
+  opacity: 1;
+}
+
+button.play { 
+  background-image: url('/assets/icons/circle-play-solid.svg');
+}
+button.pause { 
+  background-image: url('/assets/icons/circle-pause-solid.svg');
+}
+button.stop { 
+  background-image: url('/assets/icons/circle-stop-solid.svg');
+}
+button.prev { 
+  background-image: url('/assets/icons/backward-step-solid.svg');
+}
+button.next { 
+  background-image: url('/assets/icons/forward-step-solid.svg');
+}
+button.info { 
+  background-image: url('/assets/icons/circle-info-solid.svg');
+}

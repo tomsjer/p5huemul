@@ -21,23 +21,18 @@ function keyPressed() {
   }
 }
 
-window.onpointerdown = (e) => {
-  mouseX = e.x;
-  mouseY = e.y;
-  setTimeout(() => {
-    mousePressed()
-  }, 100)
+if (window.onmousedown === null || window.onmousedown === undefined ) {
+  // window.onpointerdown = (e) => {
+  //   mouseX = e.x;
+  //   mouseY = e.y;
+  //   setTimeout(() => mousePressed());
+  // }
 }
 
 function mousePressed() {
-  locations.forEach((location) => {
-    if (location.isActive) {
-      location.onClick();
-      // dragging = true
-      // draggingLocation = location
-      // console.log('dragging true')
-    }
-  });
+  if (!PLAYER.playing) {
+    LOCATIONS.forEach((location, index) => location.onMousePressed());
+  }
 }
 
 function mouseReleased() {

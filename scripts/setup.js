@@ -4,7 +4,6 @@ function setup() {
   createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, WEBGL); // resolucion monitor
   addScreenPositionFunction();
 
-  // createCanvas(windowWidth, windowHeight, WEBGL); // resolucion monitor
   setAttributes("antialias", true);
   textFont(font);
   
@@ -36,7 +35,7 @@ function setup() {
   // bubble1 = new Bubble(773, 396); // Ubicacion Isla Huemul
   // bubble2 = new Bubble(500, 500); // Ubicacion
 
-  locations = LOCATIONS_CONFIG.map(
+  LOCATIONS = LOCATIONS_CONFIG.map(
     (location) =>
       new LocationTypes[location.type]({
         ...location.config,
@@ -45,4 +44,7 @@ function setup() {
         imagePopup: window[location.config.imagePopup || 'imgCruz']
       })
   );
+
+  PLAYER = new Player({ items: LOCATIONS })
+  ISLA = new IslaInfo({...ISLA_CONFIG, image: window[ISLA_CONFIG.image]})
 }

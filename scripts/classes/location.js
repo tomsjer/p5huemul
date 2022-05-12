@@ -16,13 +16,14 @@ class Location {
     this.y = config.y;
     this.w = config.w;
     this.h = config.h;
-    this.r = this.w / 2;
+    this.r = this.w > this.h ? this.w / 2 : this.h / 2;
     this.xCenter = this.x - width / 2;
     this.yCenter = this.y - height / 2; // + HEIGHT_OFFSET
     this.title = config.title;
     this.text = config.text;
     this.isActivable = this.title !== '' && this.text !== ''
     this.isActive = false;
+    this.clicked = false;
     this.sp = createVector(0,0,0)
     this.tv = createVector(-width/2, -height/2, 0)
     this.noCross = config.noCross || false
@@ -61,11 +62,14 @@ class Location {
         }
         this.isActive = true;
       } else {
-        if (this.fade > 0) {
-          this.fade -= this.fadeAmount;
-        }
-        if (this.isActive && this.fade === 0) {
-          this.isActive = false
+        if (!this.clicked) {
+          if (this.fade > 0) {
+            this.fade -= this.fadeAmount;
+          }
+          if (this.isActive && this.fade === 0) {
+            this.isActive = false
+            OPENED_POPUP = false;
+          }
         }
       }
     }
@@ -78,6 +82,12 @@ class Location {
         strokeWeight(this.isActive ? 2 : 1);
         stroke(255, this.isActive ? 255 : 100);
         fill(0, this.isActive ? 100 : 0);
+        rect(this.x, this.y, this.w, this.h);
+      }
+      if (this.clicked) {
+        strokeWeight(4);
+        stroke(255, 0, 0);
+        fill(0, 200);
         rect(this.x, this.y, this.w, this.h);
       }
       image(this.image, this.x, this.y, this.w, this.h);
@@ -105,7 +115,7 @@ class Location {
     }
   }
   drawHUD() {
-    if (!this.isActive) return
+    if ((!this.isActive && !this.clicked)) return
     push();
     easycam.beginHUD();
     translate(this.ppX, this.ppY);
@@ -155,11 +165,35 @@ class Location {
     let d = dist(this.x, this.y, mouseX, mouseY);
     return d < this.r + 30;
   }
+  onMousePressed() {
+    if (this.intersectsBubble()) {
+      this.onClick()
+    } else if (this.clicked) {
+      this.clicked = false
+    }
+  }
   onClick() {
+    this.clicked = !this.clicked;
+    if (this.clicked) {
+      // OPENED_POPUP = true;
+      // easycam.setState({
+      //   ...easycam.state,
+      //   center: [ this.xCenter, this.yCenter , 0],
+      //   distance: 250
+      // }, 2000); // animate to state in 1 second
+    }
+  }
+  show() {
+    this.isActive = true
+    this.clicked = true
     easycam.setState({
-      ...easycam.state,
-      center: [ this.xCenter, this.yCenter , 0],
-      distance: 250
-    }, 2000); // animate to state in 1 second
+        ...easycam.state,
+        center: [ this.xCenter, this.yCenter , 0],
+        distance: 250
+      }, 2000); // animate to state in 1 second
+  }
+  hide() {
+    this.isActive = false
+    this.clicked = false
   }
 }
