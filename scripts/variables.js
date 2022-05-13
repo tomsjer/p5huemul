@@ -13,6 +13,7 @@ var booleanHUD = true;
 var OPENED_POPUP = false;
 var PLAYER;
 var ISLA;
+var MAP_CONTROLLER;
 /** ---------------------------------------- */
 /** -------------- EASY CAM ---------------- */
 /** ---------------------------------------- */
@@ -112,7 +113,8 @@ var LOCATIONS_CONFIG = [
       text: "lorem ipsum",
       image: "img_laborichter_3d",
       imagePopup: "img_laborichter",
-      crossPosition: 'bottom'
+      crossPosition: 'bottom',
+      dangerImage: 'danger_laborichter'
     }
   },
   {
@@ -156,6 +158,7 @@ var LOCATIONS_CONFIG = [
       text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
       image: "img_reactor_3d",
       imagePopup: "img_reactor_arq",
+      dangerImage: 'danger_reactor_posta',
       noCross: true
     }
   }

@@ -22,12 +22,18 @@ class IslaInfo {
         })
     }
     toggleVisible() {
-        this.visible = !this.visible
-        this.toolbar.container.classList.toggle('intro-visible')
+        // setTimeout(() => {
+            this.visible = !this.visible
+            this.toolbar.container.classList.toggle('intro-visible')
+        // }, 500)
         const event = new CustomEvent('toggle-info', { detail: this.visible });
         document.dispatchEvent(event);
     }
     update() {
+        if (this.visible && easycam.state.distance < 800) {
+            this.toggleVisible()
+            return
+        }
         if (this.visible && this.fade < 255) {
             this.fade += this.fadeAmount
         } else if (!this.visible && this.fade > 0) {
@@ -36,7 +42,8 @@ class IslaInfo {
     }
     draw() {
         this.update();
-        easycam.beginHUD();
+        if (this.fade === 0) return
+        // easycam.beginHUD();
        // push();
         noStroke();
         fill(0, this.fade - 30);
@@ -47,6 +54,6 @@ class IslaInfo {
         textSize(24);
         text(this.text, this.x + this.p, this.imgY + this.imgH + this.p, this.width - this.p * 2, this.height - this.imgH - this.p * 3)
        // pop();
-        easycam.endHUD();
+        // easycam.endHUD();
     }
 }

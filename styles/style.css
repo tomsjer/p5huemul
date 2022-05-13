@@ -12,9 +12,9 @@ body {
   top: 50%;
   left: 50%;
   width: auto;
-  height: 63px;
+  height: 48px;
   text-align: center;
-  padding: 16px 0;
+  padding: 8px 0;
   background: rgba(0,0,0,.5);
   border-radius: 8px;
 }
@@ -23,7 +23,7 @@ body {
   top: auto;
   bottom: 16px;
   transform: translate3d(-50%, 0, 0);
-  padding-left: 16px;
+  /* padding-left: 16px; */
   transition: opacity .25s ease;
 }
 
@@ -37,6 +37,12 @@ body {
   left: auto;
   right: 16px;
   bottom: 16px;
+  width: 64px;
+}
+#map-controller.toolbar-container {
+  top: auto;
+  bottom: 16px;
+  left: 16px;
 }
 
 button {
@@ -46,19 +52,21 @@ button {
   height: 48px;
   background: transparent;
   color: transparent;
-  opacity: 0.8;
+  opacity: 0.6;
   font-size: 24px;
   line-height: 48px;
   transition: opacity 0.25s ease;
   background-repeat: no-repeat;
+  background-size: 32px 32px;
+  background-position: 50% 50%;
   display: inline-block;
   position: relative !important;
-  margin: 8px 16px;
+  margin: 0 8px;
   left: 0 !important;
   top: 0 !important;
 }
 
-button:active, button:focus {
+button.active, button:active, button:focus {
   opacity: 1;
 }
 
@@ -79,4 +87,13 @@ button.next {
 }
 button.info { 
   background-image: url('/assets/icons/circle-info-solid.svg');
+}
+button.north { 
+  background-image: url('/assets/icons/brujula.png');
+  opacity: 1;
+  background-size: 64px;
+  transition: transform 1.25s ease;
+}
+button.north.true-north {
+  transform: rotate(-184deg);
 }

@@ -17,6 +17,7 @@ class Player {
                 { label: '', handler: this.next.bind(this), class: 'next' }
             ]
         })
+        this.playButton = this.toolbar.buttons[1].elt
         document.addEventListener('toggle-info', (e) => {
             if (e.detail) {
                 this.stop()
@@ -40,6 +41,7 @@ class Player {
     }
     play() {
         if (this.playing) return
+        this.playButton.classList.add('active')
         this.playing = true;
         this.stoped = false;
         this.items[this.index].show()
@@ -56,15 +58,17 @@ class Player {
     pause() {
         if (!this.playing && !this.stopped) return
         this.playing = false;
+        this.playButton.classList.remove('active')
         clearInterval(this.intervalId);
     }
     stop() {
         this.stoped = true;
         this.playing = false;
+        this.playButton.classList.remove('active')
         clearInterval(this.intervalId);
         this.items[this.index].hide()
         this.index = 0;
         // this.items[this.index].show();
-        easycam.reset(500);
+        easycam.reset(100);
     }
 }

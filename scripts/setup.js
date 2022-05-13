@@ -14,10 +14,7 @@ function setup() {
   gui_col.add(window, 'booleanHUD');
   gui_col.add(window, 'DEBUG');
 
-  myEasyCam = new EasyCamHandler({ distance: 1100, center: [0, 0, 0] }, {
-    viewportWidth: VIEWPORT_WIDTH,
-    viewportHeight: VIEWPORT_HEIGHT
-  });
+  myEasyCam = new EasyCamHandler({ distance: 1200, center: [0, 0, 0] });
   easycam = myEasyCam.easycam;
 
   windowResized();
@@ -41,9 +38,12 @@ function setup() {
         ...location.config,
         // la imagen se instancia en preload.js
         image: window[location.config.image],
-        imagePopup: window[location.config.imagePopup || 'imgCruz']
+        imagePopup: window[location.config.imagePopup || 'imgCruz'],
+        dangerImage: window[location.config.dangerImage],
       })
   );
+
+  MAP_CONTROLLER = new MapController({})
 
   PLAYER = new Player({ items: LOCATIONS })
   ISLA = new IslaInfo({...ISLA_CONFIG, image: window[ISLA_CONFIG.image]})

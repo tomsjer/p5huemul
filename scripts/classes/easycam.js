@@ -10,7 +10,7 @@ class EasyCamHandler {
       viewportHeight: 1080,
       defaultInterpolation: 2000,
       distanceMin: 150,
-      distanceMax: 2000
+      distanceMax: 1200
     }
   ) {
     this.easycam = createEasyCam(state);
@@ -44,7 +44,6 @@ class EasyCamHandler {
   drawHUD() {
     //HUD CON DATOS DE LA POSICION DE LA CAMARA VIRTUAL
     // 2D screen-aligned rendering section
-    this.easycam.beginHUD();
     noLights();
     let state = this.easycam.getState();
 
@@ -82,6 +81,5 @@ class EasyCamHandler {
       text('x/y: ' + nfs([x, y],1,1), state.center[0] + 10, state.center[1] + 30, 100, 100);
       pop()
     }
-    this.easycam.endHUD();
   }
 }

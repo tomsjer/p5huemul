@@ -4,12 +4,12 @@
 class RadioactiveLocation extends Location {
   constructor(config) {
     super(config);
+    this.dangerImage = config.dangerImage;
     this.phase = 0;
     this.zoff = 0;
   }
   draw() {
-    super.draw();
-    if (this.intersects()) {
+    if (this.isActive) {
       //////// PROBANDO PERLIN NOISE - RADIACION?? /////
       push();
       smooth();
@@ -17,16 +17,16 @@ class RadioactiveLocation extends Location {
       // stroke(200, 0, 0);
       // strokeWeight(1);
       noStroke();
-      fill(255, 0, 0, 100);
+      fill(255, 0, 0, this.fade - 100);
       curveDetail(200);
       beginShape();
       let noiseMax = 2;
       for (let a = 0; a < TWO_PI; a += radians(5)) {
         let xoff = map(cos(a + this.phase), -1, 1, 0, noiseMax);
         let yoff = map(sin(a + this.phase), -1, 1, 0, noiseMax);
-        let r = map(noise(xoff, yoff, this.zoff), 0, 1, 35, 35 / 2);
-        let x = r * cos(a);
-        let y = r * sin(a);
+        let r = map(noise(xoff, yoff, this.zoff), 0, 1, this.r * 1.5, this.r * .6);
+        let x = r * cos(a) - 5;
+        let y = r * sin(a) - 5;
         vertex(x, y);
       }
       endShape(CLOSE);
@@ -34,14 +34,10 @@ class RadioactiveLocation extends Location {
       this.phase += 0.003;
       this.zoff += 0.01;
 
-      // fade in edificios
-      // if (fade >= 0) {
-      //   fadeAmount = 20;
-      //   // if (fade>200) fadeAmount=0;
-      //   fade += fadeAmount;
-      //   opacidad = 0;
-      // }
+      tint(255, this.fade)
+      image(this.dangerImage, -this.w/2, -this.h/2 - 2, this.w, this.h);
       pop();
     }
+    super.draw();
   }
 }

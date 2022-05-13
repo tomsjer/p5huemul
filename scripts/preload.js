@@ -29,10 +29,10 @@ function preload() {
   img_gemelos_3d = loadImage('assets/img_edif_3d/gemelos_3d.png');
   
   //bases danger 
-  // danger_laborichter = loadImage('assets/img_dangers/danger_laborichter.png');
+  danger_laborichter = loadImage('assets/img_dangers/danger_laborichter.png');
   // danger_gemelos = loadImage('assets/img_dangers/danger_gemelos.png');
   // danger_usina = loadImage('assets/img_dangers/danger_usina.png');
-  // danger_reactor_posta = loadImage('assets/img_dangers/danger_reactor.png');
+  danger_reactor_posta = loadImage('assets/img_dangers/danger_reactor.png');
   // danger_auditorio = loadImage('assets/img_dangers/danger_auditorio.png');
   img_danger_edif_blindado = loadImage('assets/img_dangers/danger_edif_blindado.png');
   img_danger_guardia = loadImage('assets/img_dangers/danger_guardia.png');

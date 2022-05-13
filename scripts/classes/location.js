@@ -31,7 +31,7 @@ class Location {
 
     this.ppW = 400;
     this.ppH = 500;
-    this.ppX = 50;
+    this.ppX = 64;
     this.ppP = 25;
     this.ppY = windowHeight - this.ppH - this.ppP * 2;
     this.ppImgW = this.ppW - this.ppP * 2;
@@ -117,7 +117,6 @@ class Location {
   drawHUD() {
     if ((!this.isActive && !this.clicked)) return
     push();
-    easycam.beginHUD();
     translate(this.ppX, this.ppY);
     noLights();
     // Render the background box for the HUD
@@ -144,7 +143,6 @@ class Location {
     fill(255, this.fade);
     textSize(this.textSize);
     text(this.text, this.ppP, this.ppTxtY, this.ppTxtW, this.ppTxtH);
-    easycam.endHUD();
     pop();
   }
   intersects() {
