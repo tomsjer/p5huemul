@@ -43,6 +43,9 @@ class Location {
     this.ppPTriple = this.ppP * 3
     this.ppImgY = this.ppPTriple + this.ppPHalf / 2
     this.ppTxtY = this.ppPTriple + this.ppPHalf + this.ppImgH
+    this.cr = this.w > this.h ? this.w * 2 : this.h * 2;
+    this.cx = this.x - this.cr / 4 - 10;
+    this.cy = this.y - this.cr / 4 - 5;
     
     this.titleSize = 56;
     this.textSize = 24;
@@ -74,6 +77,15 @@ class Location {
       }
     }
   }
+  drawGradient() {
+    let radius = this.w / 2;
+    let h = 0;
+    for (let r = radius; r > 0; --r) {
+      fill(255, h);
+      ellipse(this.x, this.y, r, r);
+      h = (h + 1) % 360;
+    }
+  }
   draw() {
     if (this.image) {
       push();
@@ -85,11 +97,16 @@ class Location {
         rect(this.x, this.y, this.w, this.h);
       }
       if (this.clicked) {
-        strokeWeight(4);
-        stroke(255, 0, 0);
-        fill(0, 200);
-        rect(this.x, this.y, this.w, this.h);
+        tint(255, 50);
+        image(imgLocationClicked, this.cx, this.cy, this.cr, this.cr);
+        if (DEBUG) {
+          strokeWeight(4);
+          stroke(255, 0, 0);
+          fill(0, 200);
+          rect(this.x, this.y, this.w, this.h);
+        }
       }
+      tint(255, 255);
       image(this.image, this.x, this.y, this.w, this.h);
       pop();
       if (!this.noCross) {

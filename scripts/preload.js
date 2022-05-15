@@ -15,6 +15,7 @@ function preload() {
   imgMuelle = loadImage("assets/imgedificios/muelle-transp.png");
   // imgGemelas = loadImage("assets/imgedificios/gemelas-transp.png");
   // imgHuemulScan = loadImage("assets/masimg/huemulscan.png");
+  imgLocationClicked = loadImage('assets/fondos/location-clicked.png');
 
   // img_recorridomacro = loadImage('assets/masimg/recorridomacro.png'); // Cargar la imagen
   img_recorridopunteado = loadImage('assets/masimg/recorrido_punteado_solo.png'); 

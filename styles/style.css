@@ -68,6 +68,9 @@ button {
 
 button.active, button:active, button:focus {
   opacity: 1;
+  border: none;
+  box-shadow: none;
+  outline: none;
 }
 
 button.play { 
