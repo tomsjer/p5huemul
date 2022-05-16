@@ -22,11 +22,11 @@ function keyPressed() {
 }
 
 if (window.onmousedown === null || window.onmousedown === undefined ) {
-  // window.onpointerdown = (e) => {
-  //   mouseX = e.x;
-  //   mouseY = e.y;
-  //   setTimeout(() => mousePressed());
-  // }
+  window.onpointerdown = (e) => {
+     mouseX = e.x;
+     mouseY = e.y;
+     setTimeout(() => mousePressed());
+  }
 }
 
 function mousePressed() {
