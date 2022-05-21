@@ -22,10 +22,8 @@ class IslaInfo {
         })
     }
     toggleVisible() {
-        // setTimeout(() => {
-            this.visible = !this.visible
-            this.toolbar.container.classList.toggle('intro-visible')
-        // }, 500)
+        this.visible = !this.visible
+        this.toolbar.container.classList.toggle('intro-visible')
         const event = new CustomEvent('toggle-info', { detail: this.visible });
         document.dispatchEvent(event);
     }

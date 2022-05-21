@@ -91,6 +91,10 @@ button.next {
 button.info { 
   background-image: url('/assets/icons/circle-info-solid.svg');
 }
+.intro-visible button.info { 
+  background-image: url('/assets/icons/circle-xmark-solid.svg');
+}
+
 button.north { 
   background-image: url('/assets/icons/brujula.png');
   opacity: 1;

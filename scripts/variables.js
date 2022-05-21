@@ -9,7 +9,7 @@ var font;
 var colorFondo = 33;
 var booleanGuia = false;
 var booleanTopo = false;
-var booleanHUD = true;
+var booleanHUD = false;
 var OPENED_POPUP = false;
 var PLAYER;
 var ISLA;

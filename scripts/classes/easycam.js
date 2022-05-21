@@ -29,6 +29,7 @@ class EasyCamHandler {
     this.easycam.attachMouseListeners(this._renderer);
 
     console.log(this.easycam)
+    this.easycam.detachListener.call(this.easycam, this.easycam.mouse.dblclick)
 
     // Origin for the HUD
     this.x = 25;

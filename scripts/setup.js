@@ -13,6 +13,7 @@ function setup() {
   gui_col.add(window, 'booleanGuia');
   gui_col.add(window, 'booleanHUD');
   gui_col.add(window, 'DEBUG');
+  gui_col.closed = true
 
   myEasyCam = new EasyCamHandler({ distance: 1200, center: [0, 0, 0] });
   easycam = myEasyCam.easycam;
@@ -47,4 +48,9 @@ function setup() {
 
   PLAYER = new Player({ items: LOCATIONS })
   ISLA = new IslaInfo({...ISLA_CONFIG, image: window[ISLA_CONFIG.image]})
+  
+  // FIXME: esto debería ser un interval qe entre en este modo cada N tiempo
+  setTimeout(() => {
+    ISLA.toggleVisible()
+  }, 3000)
 }
