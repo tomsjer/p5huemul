@@ -18,7 +18,8 @@ function preload() {
   imgLocationClicked = loadImage('assets/fondos/location-clicked.png');
 
   // img_recorridomacro = loadImage('assets/masimg/recorridomacro.png');
-  img_recorridopunteado = loadImage('assets/masimg/recorrido_punteado_solo.png'); 
+  // img_recorridopunteado = loadImage('assets/masimg/recorrido_punteado_solo.png'); 
+  img_recorridopunteado = loadImage('assets/fondos/CAMINO_FONDO ISLA REFERENCIAS (1920X1080)-01.png'); 
   // img_brujula = loadImage('assets/masimg/brujula.png');
   img_intro = loadImage('assets/masimg/ilus_intro.png');
 

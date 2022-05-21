@@ -1,7 +1,7 @@
 /** ---------------------------------------- */
 /** -------------- GENERAL  ---------------- */
 /** ---------------------------------------- */
-var DEBUG = true;
+var DEBUG = false;
 var VIEWPORT_WIDTH = 1920; // window.innerWidth;
 var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 var HEIGHT_OFFSET;
@@ -36,49 +36,52 @@ var LOCATIONS_CONFIG = [
     id: 'muelle',
     type: "DEFAULT",
     config: {
-      x: 356, y: 670, w: 120, h: 120,
+      x: 342, y: 634, w: 40, h: 40,
       title: "El muelle",
       text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
       image: "imgMuelle",
-      imagePopup: "imgMuelle"
+      imagePopup: "imgMuelle",
+      noCross: true
     }
   },
   {
     id: 'prefectura',
     type: "DEFAULT",
     config: {
-      x: 495,
-      y: 640,
+      x: 428,
+      y: 624,
       w: 40,
       h: 40,
       title: "Prefectura",
       text: "Lorem ipsum",
       image: "img_guardia_3d",
-      crossPosition: 'bottom'
-    }
-  },
-  {
-    id: 'casa-richter',
-    type: "DEFAULT",
-    config: {
-      x: 450,
-      y: 550,
-      w: 40,
-      h: 40,
-      title: "Casa Richter",
-      text: "Lorem ipsum",
-      image: "img_casa_richter_3d",
+      crossPosition: 'bottom',
       noCross: true
     }
   },
+  // FIXME: esta location va?
+  // {
+  //   id: 'casa-richter',
+  //   type: "DEFAULT",
+  //   config: {
+  //     x: 450,
+  //     y: 550,
+  //     w: 40,
+  //     h: 40,
+  //     title: "Casa Richter",
+  //     text: "Lorem ipsum",
+  //     image: "img_casa_richter_3d",
+  //     noCross: true
+  //   }
+  // },
   {
     id: 'gemelos',
     type: "DEFAULT",
     config: {
-      x: 595,
-      y: 560,
-      w: 40,
-      h: 120,
+      x: 542,
+      y: 558,
+      w: 50,
+      h: 90,
       title: "Lab. Gemelos",
       text: "Lorem ipsum",
       image: "img_gemelos_3d",
@@ -90,8 +93,8 @@ var LOCATIONS_CONFIG = [
     id: 'blindado',
     type: "DEFAULT",
     config: {
-      x: 636,
-      y: 598,
+      x: 580,
+      y: 590,
       w: 25,
       h: 40,
       title: "Lab. Blindado",
@@ -105,26 +108,27 @@ var LOCATIONS_CONFIG = [
     id: 'laboratorio-richter',
     type: "RADIOACTIVE",
     config: {
-      x: 726,
-      y: 398,
-      w: 60,
-      h: 60,
+      x: 640,
+      y: 420,
+      w: 50,
+      h: 50,
       title: "Lab. de Richter",
       text: "lorem ipsum",
       image: "img_laborichter_3d",
       imagePopup: "img_laborichter",
       crossPosition: 'bottom',
-      dangerImage: 'danger_laborichter'
+      dangerImage: 'danger_laborichter',
+      noCross: true
     }
   },
   {
     id: 'usina',
     type: "DEFAULT",
     config: {
-      x: 820,
-      y: 380,
-      w: 65,
-      h: 65,
+      x: 720,
+      y: 360,
+      w: 55,
+      h: 55,
       title: "Usina",
       text: "Texto usina",
       image: "img_usina_3d",
@@ -136,24 +140,25 @@ var LOCATIONS_CONFIG = [
     id: 'auditorio',
     type: "DEFAULT",
     config: {
-      x: 790,
-      y: 492,
-      w: 60,
-      h: 60,
+      x: 720,
+      y: 505,
+      w: 50,
+      h: 50,
       title: "Audiotorio",
       text: "Texto auditorio",
       image: "img_auditorio_3d",
-      imagePopup: "img_auditorio_arq"
+      imagePopup: "img_auditorio_arq",
+      noCross: true
     }
   },
   {
     id: 'reactor-principal',
     type: "RADIOACTIVE",
     config: {
-      x: 850,
-      y: 450,
-      w: 65,
-      h: 65,
+      x: 766,
+      y: 482,
+      w: 60,
+      h: 60,
       title: "Reactor Principal",
       text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
       image: "img_reactor_3d",

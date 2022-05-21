@@ -29,11 +29,11 @@ class Location {
     this.noCross = config.noCross || false
     this.crossPosition = config.crossPosition || 'top'
 
-    this.ppW = 400;
-    this.ppH = 500;
-    this.ppX = 64;
+    this.ppW = 450;
+    this.ppH = 600;
+    this.ppX = VIEWPORT_WIDTH - this.ppW - 128;
     this.ppP = 25;
-    this.ppY = windowHeight - this.ppH - this.ppP * 2;
+    this.ppY = VIEWPORT_HEIGHT - this.ppH - 148;
     this.ppImgW = this.ppW - this.ppP * 2;
     this.ppImgH = this.ppH / 2;
     this.ppTxtW = this.ppW - this.ppP * 2
@@ -132,7 +132,7 @@ class Location {
     }
   }
   drawHUD() {
-    if ((!this.isActive && !this.clicked)) return
+    if (DEBUG || (!this.isActive && !this.clicked)) return
     push();
     translate(this.ppX, this.ppY);
     noLights();

@@ -23,7 +23,7 @@ function keyPressed() {
 
 if (window.onmousedown === null || window.onmousedown === undefined ) {
   window.onpointerdown = (e) => {
-    if (DEBUG) return
+    // if (!DEBUG) return
      mouseX = e.x;
      mouseY = e.y;
      setTimeout(() => mousePressed());
@@ -32,7 +32,13 @@ if (window.onmousedown === null || window.onmousedown === undefined ) {
 
 function mousePressed() {
   if (!PLAYER.playing) {
-    LOCATIONS.forEach((location, index) => location.onMousePressed());
+    LOCATIONS.forEach((location, index) => {
+      location.onMousePressed()
+      if (DEBUG && location.clicked) {
+        dragging = true
+        draggingLocation = location
+      }
+    });
   }
 }
 
