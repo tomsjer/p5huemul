@@ -53,7 +53,7 @@ var LOCATIONS_CONFIG = [
       h: 40,
       title: "Prefectura",
       text: "Lorem ipsum",
-      image: "img_danger_guardia",
+      image: "img_guardia_3d",
       crossPosition: 'bottom'
     }
   },
@@ -67,7 +67,7 @@ var LOCATIONS_CONFIG = [
       h: 40,
       title: "Casa Richter",
       text: "Lorem ipsum",
-      image: "img_danger_guardia",
+      image: "img_casa_richter_3d",
       noCross: true
     }
   },
@@ -96,7 +96,7 @@ var LOCATIONS_CONFIG = [
       h: 40,
       title: "Lab. Blindado",
       text: "Lorem ipsum",
-      image: "img_danger_edif_blindado",
+      image: "img_edif_blindado_3d",
       imagePopup: "img_laboblindado_arq",
       noCross: true
     }
