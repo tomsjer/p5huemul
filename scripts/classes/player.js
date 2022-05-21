@@ -68,7 +68,6 @@ class Player {
         clearInterval(this.intervalId);
         this.items[this.index].hide()
         this.index = 0;
-        // this.items[this.index].show();
-        easycam.reset(100);
+        easycam.reset(1000);
     }
 }

@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'bison';
+  src: url('/assets/Bison-Bold.ttf');
+}
 html,
 body {
   margin: 0;
@@ -5,6 +9,29 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+}
+object {
+  visibility: hidden;
+  position: fixed;
+  opacity: 0;
+  z-index: -999;
+  width: 1920px;
+  height: 1080px;
+}
+h1 {
+  position: fixed;
+  display: block;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0px 32px;
+  border-radius: 8px;
+  margin: 0px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 28px;
+  line-height: 64px;
 }
 
 .toolbar-container {

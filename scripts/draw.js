@@ -31,6 +31,15 @@ function draw() {
     noCursor();
   }
 
+  // noFill();
+  // stroke(255,0,0);
+  // strokeWeight(2);
+  // beginShape();
+  // PATH_DATA.points.forEach(p => {
+  //   curveVertex(p.x, p.y);
+  // })
+  // endShape();
+
   ////////// Nombre de la isla Huemul   //////////////
   // FIXME: embeber en la imagen de fondo?
   // fill(255);

@@ -14,6 +14,8 @@ var OPENED_POPUP = false;
 var PLAYER;
 var ISLA;
 var MAP_CONTROLLER;
+var SVG_OBJECT;
+var PATH, PATH_DATA;
 /** ---------------------------------------- */
 /** -------------- EASY CAM ---------------- */
 /** ---------------------------------------- */
