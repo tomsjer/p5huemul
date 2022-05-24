@@ -7,7 +7,8 @@ function setup() {
   setAttributes("antialias", true);
   textFont(font);
   
-  let gui_col = new dat.GUI();
+  let gui_col = new dat.GUI({ autoPlace: false });
+  gui_col.domElement.id = 'gui';
 	gui_col.add(window, 'colorFondo', 0, 255);
   gui_col.add(window, 'booleanTopo');
   gui_col.add(window, 'booleanGuia');
@@ -15,9 +16,11 @@ function setup() {
   gui_col.add(window, 'booleanPath');
   gui_col.add(window, 'DEBUG');
   gui_col.closed = true
+  document.body.appendChild(gui_col.domElement)
 
   myEasyCam = new EasyCamHandler({ distance: 1200, center: [0, 0, 0] });
   easycam = myEasyCam.easycam;
+  
 
   windowResized();
 

@@ -11,6 +11,20 @@ class MapController {
                 { label: '', class: 'north', handler: this.toggleNorth.bind(this) }
             ]
         })
+        this.themeToolbar = new Toolbar({
+            id: 'map-theme',
+            buttons: [
+                { label: '', class: 'dark', handler: () => {
+                    colorFondo = 22;
+                } },
+                { label: '', class: 'light', handler: () => {
+                    colorFondo = 200;
+                } },
+                { label: '', class: 'layers', handler: () => {
+
+                } }
+            ]
+        })
     }
     toggleNorth() {
         this.north = !this.north

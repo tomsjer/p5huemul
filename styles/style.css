@@ -11,6 +11,12 @@ body {
   overflow: hidden;
   font-family: sans-serif;
 }
+#gui {
+  position:fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
 object {
   visibility: hidden;
   position: fixed;
@@ -73,6 +79,12 @@ h1 {
   left: 16px;
 }
 
+#map-theme.toolbar-container {
+  top: 16px;
+  left: auto;
+  right: 16px;
+}
+
 button {
   border: none;
   padding: 0;
@@ -131,6 +143,16 @@ button.north {
 }
 button.north.true-north {
   transform: rotate(-184deg);
+}
+
+button.dark { 
+  background-image: url('/assets/icons/moon-solid.svg');
+}
+button.light { 
+  background-image: url('/assets/icons/sun-solid.svg');
+}
+button.layers { 
+  background-image: url('/assets/icons/layer-group-solid.svg');
 }
 
 .location-HUD-container {
