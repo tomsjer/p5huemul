@@ -16,12 +16,17 @@ class MapController {
             buttons: [
                 { label: '', class: 'dark', handler: () => {
                     colorFondo = 22;
+                    this.themeToolbar.buttons[0].elt.classList.add('active')
+                    this.themeToolbar.buttons[1].elt.classList.remove('active')
                 } },
                 { label: '', class: 'light', handler: () => {
                     colorFondo = 200;
+                    this.themeToolbar.buttons[0].elt.classList.remove('active')
+                    this.themeToolbar.buttons[1].elt.classList.add('active')
                 } },
                 { label: '', class: 'layers', handler: () => {
-
+                    booleanTopo = !booleanTopo
+                    this.themeToolbar.buttons[2].elt.classList.toggle('active')
                 } }
             ]
         })

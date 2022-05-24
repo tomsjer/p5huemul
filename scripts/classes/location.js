@@ -69,26 +69,19 @@ class Location {
   }
   update() {
     this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
-    if (this.isActivable) {
-      if (this.intersects()) {
-        // if (this.fade < 255) {
-        //   this.fade += this.fadeAmount;
-        // }
-        this.isActive = true;
-        this.HUDcontainer.classList.add('active')
-      } else {
-        if (!this.clicked) {
-          // if (this.fade > 0) {
-          //   this.fade -= this.fadeAmount;
-          // }
-          if (this.isActive && this.fade === 0) {
-            this.isActive = false
-            this.HUDcontainer.classList.remove('active')
-            // OPENED_POPUP = false;
-          }
-        }
-      }
-    }
+    // if (this.isActivable) {
+    //   if (this.intersects() || this.clicked) {
+    //     OPENED_POPUP = !OPENED_POPUP && true;
+    //     this.isActive = true;
+    //     this.HUDcontainer.classList.add('active')
+    //   } else {
+    //     if (this.clicked) {
+    //     } else {
+    //       this.isActive = false
+    //       this.HUDcontainer.classList.remove('active')
+    //     }
+    //   }
+    // }
   }
   drawGradient() {
     let radius = this.w / 2;
@@ -177,7 +170,7 @@ class Location {
   }
   intersects() {
     return (
-      (bubble !== undefined ? this.intersectsBubble() : true) ||
+      // (bubble !== undefined ? this.intersectsBubble() : true) ||
       (easycam.state.distance <= this.minZoom &&
         easycam.state.center[0] <= this.xCenter + this.r &&
         easycam.state.center[0] >= this.xCenter - this.r &&
@@ -187,7 +180,7 @@ class Location {
   }
   intersectsBubble() {
     // Uso las posiciones del objeto 3d en pantalla 2d
-    return bubble.intersects({ x: this.sp.x, y: this.sp.y, r: this.r + this.r * (1 - easycam.getZoomMult()) });
+    return bubble.intersects({ x: this.sp.x, y: this.sp.y, r: this.r  });
   }
   intersectsCursor() {
     let d = dist(this.x, this.y, mouseX, mouseY);
@@ -198,22 +191,26 @@ class Location {
       this.onClick()
     } else if (this.clicked) {
       this.clicked = false
+      this.isActive = false
+      this.HUDcontainer.classList.remove('active')
     }
   }
   onClick() {
     this.clicked = !this.clicked;
     if (this.clicked) {
-      // OPENED_POPUP = true;
-      // easycam.setState({
-      //   ...easycam.state,
-      //   center: [ this.xCenter, this.yCenter , 0],
-      //   distance: 250
-      // }, 2000); // animate to state in 1 second
+      this.isActive = true;
+      this.HUDcontainer.classList.add('active')
+    } else {
+      this.isActive = false
+      this.HUDcontainer.classList.remove('active')
     }
   }
   show() {
     this.isActive = true
     this.clicked = true
+    setTimeout(() => {
+      this.HUDcontainer.classList.add('active')
+    }, 2000)
     easycam.setState({
         ...easycam.state,
         center: [ this.xCenter, this.yCenter , 0],
@@ -223,6 +220,7 @@ class Location {
   hide() {
     this.isActive = false
     this.clicked = false
+    this.HUDcontainer.classList.remove('active')
   }
   createHUDElements() {
     this.HUDcontainer = document.createElement('div')

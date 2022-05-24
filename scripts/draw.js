@@ -43,6 +43,11 @@ function draw() {
       ellipse(p.x, p.y, 10, 10);
     })
     endShape();
+    fill(255, 0, 0)
+    PATH_DATA.points.forEach(p => {
+      text(nfs(p.x,1,2), p.x + 10, p.y + 10);
+      text(nfs(p.y,1,2), p.x + 10, p.y + 20);
+    })
   }
   
   // Actualizo Locations

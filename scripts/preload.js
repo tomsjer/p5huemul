@@ -9,7 +9,7 @@ function preload() {
   // imgReactor = loadImage("assets/imgtargets/reactor-3d.png");
   // imgAuditorio = loadImage("assets/imgedificios/auditorio.png");
   imgCruz = loadImage("assets/masimg/cruz.png");
-  imgTopografia = loadImage("assets/masimg/topografia.png");
+  imgTopografia = loadImage("assets/fondos/isla_huemul_topografia.png");
   imgUsina = loadImage("assets/imgedificios/usina-transp.png");
   // imgReactorCenital = loadImage("assets/imgedificios/reactor-transp.png");
   imgMuelle = loadImage("assets/img_edif_3d/muelle_3d.png");

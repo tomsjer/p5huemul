@@ -1,7 +1,7 @@
 /** ---------------------------------------- */
 /** -------------- GENERAL  ---------------- */
 /** ---------------------------------------- */
-var DEBUG = false;
+var DEBUG = true;
 var VIEWPORT_WIDTH = 1920; // window.innerWidth;
 var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 var HEIGHT_OFFSET;
@@ -11,7 +11,7 @@ var booleanGrilla = true;
 var booleanGuia = false;
 var booleanTopo = false;
 var booleanHUD = false;
-var booleanPath = false;
+var booleanPath = true;
 var OPENED_POPUP = false;
 var PLAYER;
 var ISLA;
@@ -106,8 +106,8 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 580,
       y: 590,
-      w: 25,
-      h: 40,
+      w: 30,
+      h: 35,
       title: "Lab. Blindado",
       text: "Lorem ipsum",
       image: "img_edif_blindado_3d",
@@ -163,7 +163,7 @@ var LOCATIONS_CONFIG = [
       w: 50,
       h: 50,
       title: "Audiotorio",
-      text: "Texto auditorio",
+      text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti atque est dignissimos ipsum odit ut laudantium accusamus doloremque, consequuntur impedit, repellendus cupiditate voluptas totam voluptate repellat corrupti aliquam magni vel.",
       image: "img_auditorio_3d",
       imagePopup: "img_auditorio_arq",
       noCross: true

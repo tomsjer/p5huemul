@@ -21,14 +21,14 @@ function keyPressed() {
   }
 }
 
-if (window.onmousedown === null || window.onmousedown === undefined) {
-  window.onpointerdown = (e) => {
-    // if (!DEBUG) return
-     mouseX = e.x;
-     mouseY = e.y;
-     setTimeout(() => mousePressed());
-  }
-}
+// if (window.onmousedown === null || window.onmousedown === undefined) {
+//   window.onpointerdown = (e) => {
+//     // if (!DEBUG) return
+//      mouseX = e.x;
+//      mouseY = e.y;
+//      setTimeout(() => mousePressed());
+//   }
+// }
 
 function mousePressed() {
   if (!PLAYER.playing) {
