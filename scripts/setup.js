@@ -38,19 +38,20 @@ function setup() {
   // bubble2 = new Bubble(500, 500); // Ubicacion
 
   LOCATIONS = LOCATIONS_CONFIG.map(
-    (location) =>
+    (location, index) =>
       new LocationTypes[location.type](location.id, {
         ...location.config,
         // la imagen se instancia en preload.js
         image: window[location.config.image],
         imagePopup: location.config.imagePopup || 'imgCruz',
         dangerImage: window[location.config.dangerImage],
-      })
+      }, index)
   );
 
   MAP_CONTROLLER = new MapController({})
 
   PLAYER = new Player({ items: LOCATIONS })
+
   ISLA = new IslaInfo({...ISLA_CONFIG, image: window[ISLA_CONFIG.image]})
     
   SVG_OBJECT = document.getElementById('svg-object')

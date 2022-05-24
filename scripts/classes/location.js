@@ -9,7 +9,8 @@
  * disparando el metodo onClick si fue clickeada el área que ocupa la location
  */
 class Location {
-  constructor(id, config) {
+  constructor(id, config, index) {
+    this.index = index;
     this.id = id
     this.image = config.image;
     this.imagePopup = config.imagePopup;
@@ -69,19 +70,19 @@ class Location {
   }
   update() {
     this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
-    // if (this.isActivable) {
-    //   if (this.intersects() || this.clicked) {
-    //     OPENED_POPUP = !OPENED_POPUP && true;
-    //     this.isActive = true;
-    //     this.HUDcontainer.classList.add('active')
-    //   } else {
-    //     if (this.clicked) {
-    //     } else {
-    //       this.isActive = false
-    //       this.HUDcontainer.classList.remove('active')
-    //     }
-    //   }
-    // }
+    if (this.isActivable) {
+      if (this.intersects()) {
+        // OPENED_POPUP = !OPENED_POPUP && true;
+        this.isActive = true;
+        this.HUDcontainer.classList.add('active')
+      } else {
+        if (this.clicked) {
+        } else {
+          this.isActive = false
+          this.HUDcontainer.classList.remove('active')
+        }
+      }
+    }
   }
   drawGradient() {
     let radius = this.w / 2;
@@ -207,7 +208,7 @@ class Location {
   }
   show() {
     this.isActive = true
-    this.clicked = true
+    // this.clicked = true
     setTimeout(() => {
       this.HUDcontainer.classList.add('active')
     }, 2000)
@@ -219,7 +220,7 @@ class Location {
   }
   hide() {
     this.isActive = false
-    this.clicked = false
+    // this.clicked = false
     this.HUDcontainer.classList.remove('active')
   }
   createHUDElements() {
