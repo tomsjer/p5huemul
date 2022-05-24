@@ -1,7 +1,7 @@
 /** ---------------------------------------- */
 /** -------------- GENERAL  ---------------- */
 /** ---------------------------------------- */
-var DEBUG = true;
+var DEBUG = false;
 var VIEWPORT_WIDTH = 1920; // window.innerWidth;
 var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 var HEIGHT_OFFSET;
@@ -11,7 +11,7 @@ var booleanGrilla = true;
 var booleanGuia = false;
 var booleanTopo = false;
 var booleanHUD = false;
-var booleanPath = true;
+var booleanPath = false;
 var OPENED_POPUP = false;
 var PLAYER;
 var ISLA;

@@ -24,6 +24,19 @@ class Player {
             }
             this.toolbar.container.classList.toggle('intro-visible')
         })
+
+        let i = 0;
+        let intervalId = setInterval(() => {
+            i += 1
+          if (i === PATH_DATA.points.length) {
+            clearInterval(intervalId)
+          }
+          easycam.setState({
+            ...easycam.state,
+            center: [ PATH_DATA.points[i].x - width / 2, PATH_DATA.points[i].y - height / 2, 0],
+            distance: 250
+          }, 300); // animate to state in 1 second
+        }, 300)
     }
     next() {
         if (this.items[this.index + 1]) {

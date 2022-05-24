@@ -62,7 +62,7 @@ function setup() {
     max: PATH.getPointAtLength(length),
     points: []
   }
-  const resolution = PATH_DATA.length / 50;
+  const resolution = PATH_DATA.length / 100;
   for (let i = 0; i < PATH_DATA.length; i+=resolution) {
     let {x, y} = PATH.getPointAtLength(i)
     PATH_DATA.points.push({
@@ -71,20 +71,6 @@ function setup() {
       y: (y - 25) * 1.2
     })
   }
-
-  console.log(PATH_DATA)
-  // let i = 0;
-  // let intervalId = setInterval(() => {
-  //   if (i >= PATH_DATA.points.length) {
-  //     clearInterval(intervalId)
-  //   }
-  //   easycam.setState({
-  //     ...easycam.state,
-  //     center: [ PATH_DATA.points[i].x, PATH_DATA.points[i].y , 0],
-  //     distance: 250
-  //   }, 1000); // animate to state in 1 second
-  //   i += 1
-  // }, 5000)
   
   // FIXME: esto debería ser un interval qe entre en este modo cada N tiempo
   // setTimeout(() => {
