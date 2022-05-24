@@ -32,8 +32,8 @@ class EasyCamHandler {
     this.easycam.detachListener.call(this.easycam, this.easycam.mouse.dblclick)
 
     // Origin for the HUD
-    this.x = 25;
-    this.y = 25;
+    this.x = 16;
+    this.y = 96;
   }
 
   draw() {

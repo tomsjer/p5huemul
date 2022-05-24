@@ -2,8 +2,8 @@
  * Extiende la clase Location para dibujar un alo radioactivo
  */
 class RadioactiveLocation extends Location {
-  constructor(config) {
-    super(config);
+  constructor(id, config) {
+    super(id, config);
     this.dangerImage = config.dangerImage;
     this.phase = 0;
     this.zoff = 0;

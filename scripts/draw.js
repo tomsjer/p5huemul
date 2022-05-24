@@ -31,29 +31,27 @@ function draw() {
     noCursor();
   }
 
-  // noFill();
-  // stroke(255,0,0);
-  // strokeWeight(2);
-  // beginShape();
-  // PATH_DATA.points.forEach(p => {
-  //   curveVertex(p.x, p.y);
-  // })
-  // endShape();
-
-  ////////// Nombre de la isla Huemul   //////////////
-  // FIXME: embeber en la imagen de fondo?
-  // fill(255);
-  // textSize(30);
-  // text("Isla Huemul", 1130, 100);
+  if (booleanPath) {
+    noFill();
+    stroke(255,0,0);
+    strokeWeight(2);
+    beginShape();
+    PATH_DATA.points.forEach(p => {
+      curveVertex(p.x, p.y);
+      ellipse(p.x, p.y, 10, 10);
+    })
+    endShape();
+  }
   
   // Actualizo Locations
   LOCATIONS.forEach((location) => location.update());
   // Dibujo en capas
   LOCATIONS.forEach((location) => location.draw());
 
+  // DRAW ON 2D FIXED POSITION
   easycam.beginHUD();
 
-  LOCATIONS.forEach((location) => location.drawHUD());
+  // LOCATIONS.forEach((location) => location.drawHUD());
   
   // updatePoints();
   
@@ -62,6 +60,6 @@ function draw() {
   MAP_CONTROLLER.draw();
   // Draw bubble on fixed screen and user screenPosition
   bubble.show();
+  
   easycam.endHUD();
-
 }

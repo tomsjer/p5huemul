@@ -12,6 +12,7 @@ function setup() {
   gui_col.add(window, 'booleanTopo');
   gui_col.add(window, 'booleanGuia');
   gui_col.add(window, 'booleanHUD');
+  gui_col.add(window, 'booleanPath');
   gui_col.add(window, 'DEBUG');
   gui_col.closed = true
 
@@ -35,11 +36,11 @@ function setup() {
 
   LOCATIONS = LOCATIONS_CONFIG.map(
     (location) =>
-      new LocationTypes[location.type]({
+      new LocationTypes[location.type](location.id, {
         ...location.config,
         // la imagen se instancia en preload.js
         image: window[location.config.image],
-        imagePopup: window[location.config.imagePopup || 'imgCruz'],
+        imagePopup: location.config.imagePopup || 'imgCruz',
         dangerImage: window[location.config.dangerImage],
       })
   );
@@ -58,7 +59,7 @@ function setup() {
     max: PATH.getPointAtLength(length),
     points: []
   }
-  const resolution = PATH_DATA.length / 10;
+  const resolution = PATH_DATA.length / 50;
   for (let i = 0; i < PATH_DATA.length; i+=resolution) {
     let {x, y} = PATH.getPointAtLength(i)
     PATH_DATA.points.push({

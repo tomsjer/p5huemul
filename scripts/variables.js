@@ -10,6 +10,7 @@ var colorFondo = 33;
 var booleanGuia = false;
 var booleanTopo = false;
 var booleanHUD = false;
+var booleanPath = false;
 var OPENED_POPUP = false;
 var PLAYER;
 var ISLA;
@@ -42,8 +43,15 @@ var LOCATIONS_CONFIG = [
       title: "El muelle",
       text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
       image: "imgMuelle",
-      imagePopup: "imgMuelle",
-      noCross: true
+      imagePopup: "/assets/img_edif_3d/muelle_3d.png",
+      noCross: true,
+      data: {
+        sector: 'Rojo',
+        superficie: '594',
+        elevacion: '838',
+        lat: "41º 6' 18.40''S",
+        lon: "71º 23' 46.27''O"
+      }
     }
   },
   {
@@ -87,7 +95,7 @@ var LOCATIONS_CONFIG = [
       title: "Lab. Gemelos",
       text: "Lorem ipsum",
       image: "img_gemelos_3d",
-      imagePopup: "img_gemelas_arq",
+      imagePopup: "/assets/masimg/gemelas_arq.png",
       noCross: true
     }
   },
@@ -102,7 +110,7 @@ var LOCATIONS_CONFIG = [
       title: "Lab. Blindado",
       text: "Lorem ipsum",
       image: "img_edif_blindado_3d",
-      imagePopup: "img_laboblindado_arq",
+      imagePopup: "/assets/masimg/laboblindado_arq.png",
       noCross: true
     }
   },
@@ -114,13 +122,20 @@ var LOCATIONS_CONFIG = [
       y: 420,
       w: 50,
       h: 50,
-      title: "Lab. de Richter",
-      text: "lorem ipsum",
+      title: "Laboratorio Richter",
+      text: "El laboratorio de Ronal Richter es probablemente el mas interesante de toda la isla. Demolido por las fuerzas militares sin razon expresa, es aun recorrible en su interior a traves de un pasillo que atraviesa todo el largo del laboratioro. Los escombron yacen inmoviles en un enjambre de hierros y cemento. Se conservan aun los elementos originales del laboratorio en donde el físico Richter realizo experimentos concretos.",
       image: "img_laborichter_3d",
-      imagePopup: "img_laborichter",
+      imagePopup: "/assets/imgedificios/HUDSlaborichter.png",
       crossPosition: 'bottom',
       dangerImage: 'danger_laborichter',
-      noCross: true
+      noCross: true,
+      data: {
+        sector: 'Rojo',
+        superficie: '105',
+        elevacion: '830',
+        lat: "41º 6' 22.01''S",
+        lon: "71º 23' 48.40''O"
+      }
     }
   },
   {
@@ -164,7 +179,7 @@ var LOCATIONS_CONFIG = [
       title: "Reactor Principal",
       text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
       image: "img_reactor_3d",
-      imagePopup: "img_reactor_arq",
+      imagePopup: "/assets/imgedificios/HUDSreactor.png",
       dangerImage: 'danger_reactor_posta',
       noCross: true
     }

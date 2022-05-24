@@ -9,7 +9,8 @@
  * disparando el metodo onClick si fue clickeada el área que ocupa la location
  */
 class Location {
-  constructor(config) {
+  constructor(id, config) {
+    this.id = id
     this.image = config.image;
     this.imagePopup = config.imagePopup;
     this.x = config.x;
@@ -55,23 +56,35 @@ class Location {
 
     this.minZoom = 350
     this.range = 100
+
+    this.data = config.data || {
+      sector: 'Abcd',
+      superficie: '123',
+      elevacion: '123',
+      lat: '1234',
+      lon: '1234'
+    }
+
+    this.createHUDElements();
   }
   update() {
     this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
     if (this.isActivable) {
       if (this.intersects()) {
-        if (this.fade < 255) {
-          this.fade += this.fadeAmount;
-        }
+        // if (this.fade < 255) {
+        //   this.fade += this.fadeAmount;
+        // }
         this.isActive = true;
+        this.HUDcontainer.classList.add('active')
       } else {
         if (!this.clicked) {
-          if (this.fade > 0) {
-            this.fade -= this.fadeAmount;
-          }
+          // if (this.fade > 0) {
+          //   this.fade -= this.fadeAmount;
+          // }
           if (this.isActive && this.fade === 0) {
             this.isActive = false
-            OPENED_POPUP = false;
+            this.HUDcontainer.classList.remove('active')
+            // OPENED_POPUP = false;
           }
         }
       }
@@ -210,5 +223,23 @@ class Location {
   hide() {
     this.isActive = false
     this.clicked = false
+  }
+  createHUDElements() {
+    this.HUDcontainer = document.createElement('div')
+    this.HUDcontainer.id = this.id
+    this.HUDcontainer.classList.add('location-HUD-container')
+    this.HUDcontainer.innerHTML = `
+      <h3>${this.title}</h3>
+      <div class="img-container" style="background-image: url(${this.imagePopup});"></div>
+      <div class="data-container">
+        <div class="sector"><label>Sector</label><span>${this.data.sector}</span></div>
+        <div class="superficie"><label>Superficie</label><span>${this.data.superficie}</span>m2</div>
+        <div class="elevacion"><label>Elevacion</label><span>${this.data.elevacion}</span>m2</div>
+        <div class="lat"><label>Lat.</label><span>${this.data.lat}</span></div>
+        <div class="lon"><label>Lon.</label><span>${this.data.lon}</span></div>
+      </div>
+      <div class="description">${this.text}</div>
+    `
+    document.body.appendChild(this.HUDcontainer)
   }
 }
