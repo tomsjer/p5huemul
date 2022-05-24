@@ -522,7 +522,7 @@ class EasyCam {
       
       cam.attachListener(el    , 'mousedown' , mouse.mousedown , op);
       cam.attachListener(el    , 'mouseup'   , mouse.mouseup   , op);
-      cam.attachListener(el    , 'dblclick'  , mouse.dblclick  , op);
+      // cam.attachListener(el    , 'dblclick'  , mouse.dblclick  , op);
       cam.attachListener(el    , 'wheel'     , mouse.wheel     , op);
       cam.attachListener(el    , 'touchstart', mouse.touchstart, op);
       cam.attachListener(el    , 'touchend'  , mouse.touchend  , op);
