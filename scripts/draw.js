@@ -7,7 +7,9 @@ function drawBackground() {
   // translate(0, HEIGHT_OFFSET);
 
   ////////// FONDO MAPA!   //////
-  image(imgGrillaMapa, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // fondo grilla
+  if(booleanGrilla) {
+    image(imgGrillaMapa, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // fondo grilla
+  }
   image(imgIslaVectorLiso, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
   image(img_recorridopunteado, 350, 415, 430, 400);
   

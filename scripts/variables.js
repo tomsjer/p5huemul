@@ -7,6 +7,7 @@ var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 var HEIGHT_OFFSET;
 var font;
 var colorFondo = 33;
+var booleanGrilla = true;
 var booleanGuia = false;
 var booleanTopo = false;
 var booleanHUD = false;

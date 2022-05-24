@@ -30,9 +30,13 @@ class MapController {
         this.north = !this.north
         this.toolbar.buttons[0].elt.classList.toggle('true-north')
         if (this.north) {
+            booleanGrilla = false;
             easycam.setRotation([1, 0, 0, -1.5], 600)
         } else {
             easycam.setRotation([1, 0, 0, 0], 600)
+            setTimeout(() => {
+                booleanGrilla = true;
+            }, 600)
         }
     }
     update() {
