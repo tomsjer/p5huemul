@@ -40,7 +40,10 @@ var LOCATIONS_CONFIG = [
     id: 'muelle',
     type: "DEFAULT",
     config: {
+      // Coordinates & dimensions
       x: 342, y: 634, w: 40, h: 40,
+      // Coordinates for path hotspot
+      px: 350, py: 640,
       title: "El muelle",
       text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
       image: "imgMuelle",
@@ -220,10 +223,4 @@ var LOCATIONS_CONFIG = [
 /** ---------------------------------------- */
 /** ----------------- UI ------------------- */
 /** ---------------------------------------- */
-var bubble;
-var bubble1;
-// array
-var numPoints = 0; // how many points to keep?
-var points = []; // list of points
-
-
+var MOUSE_BUBBLE;

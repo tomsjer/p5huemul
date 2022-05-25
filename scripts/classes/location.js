@@ -18,6 +18,8 @@ class Location {
     this.y = config.y;
     this.w = config.w;
     this.h = config.h;
+    this.px = config.px;
+    this.py = config.px;
     this.r = this.w > this.h ? this.w / 2 : this.h / 2;
     this.halfR = this.r / 2;
     this.doubleR = this.r * 2;
@@ -130,14 +132,14 @@ class Location {
         text(nfs([this.sp.x, this.sp.y], 1, 1), this.x + 10, this.y + 20, 100, 100);
         noFill();
         stroke(0, 255, 0);
-        ellipse(this.x, this.y, this.doubleR, this.doubleR);
+        ellipse(this.px, this.py, this.halfR, this.halfR);
 
       }
     }
   }
   intersects() {
     return (
-      (bubble !== undefined ? this.intersectsBubble() : true) ||
+      (MOUSE_BUBBLE !== undefined ? this.intersectsBubble() : true) ||
       (easycam.state.distance <= this.minZoom &&
         easycam.state.center[0] <= this.xCenter + this.halfR &&
         easycam.state.center[0] >= this.xCenter - this.halfR &&
@@ -147,7 +149,7 @@ class Location {
   }
   intersectsBubble() {
     // Uso las posiciones del objeto 3d en pantalla 2d
-    return bubble.intersects({ x: this.sp.x, y: this.sp.y, r: this.r  });
+    return MOUSE_BUBBLE.intersects({ x: this.sp.x, y: this.sp.y, r: this.r  });
   }
   onMousePressed() {
     if (this.intersectsBubble()) {

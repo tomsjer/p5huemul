@@ -1,12 +1,4 @@
-function setup() {
-  console.log("setup");
-
-  createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, WEBGL); // resolucion monitor
-  addScreenPositionFunction();
-
-  setAttributes("antialias", true);
-  textFont(font);
-  
+function setupGUI() {
   let gui_col = new dat.GUI({ autoPlace: false });
   gui_col.domElement.id = 'gui';
 	gui_col.add(window, 'colorFondo', 0, 255);
@@ -17,24 +9,27 @@ function setup() {
   gui_col.add(window, 'DEBUG');
   gui_col.closed = true
   document.body.appendChild(gui_col.domElement)
+}
+
+function setup() {
+  console.log("setup");
+
+  createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, WEBGL); // resolucion monitor
+  addScreenPositionFunction();
+
+  setAttributes("antialias", true);
+  textFont(font);
+  
+  setupGUI()
 
   myEasyCam = new EasyCamHandler({ distance: 1200, center: [0, 0, 0] });
   easycam = myEasyCam.easycam;
   
 
   windowResized();
-
-  // array linea
-  for (let i = 0; i < numPoints; i++) {
-    // first, create a vector with x/y coords
-    const point = createVector(width / 2, height / 2);
-
-    // the push (add) it to the array!
-    points.push(point);
-  }
   
   // Mouse
-  bubble = new Bubble(200, 250); 
+  MOUSE_BUBBLE = new Bubble(200, 250); 
   
   SVG_OBJECT = document.getElementById('svg-object')
   PATH = SVG_OBJECT.contentDocument.querySelector('path')
