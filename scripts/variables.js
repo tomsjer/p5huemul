@@ -1,7 +1,7 @@
 /** ---------------------------------------- */
 /** -------------- GENERAL  ---------------- */
 /** ---------------------------------------- */
-var DEBUG = false;
+var DEBUG = true;
 var VIEWPORT_WIDTH = 1920; // window.innerWidth;
 var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 var HEIGHT_OFFSET;
@@ -70,21 +70,36 @@ var LOCATIONS_CONFIG = [
       noCross: true
     }
   },
-  // FIXME: esta location va?
-  // {
-  //   id: 'casa-richter',
-  //   type: "DEFAULT",
-  //   config: {
-  //     x: 450,
-  //     y: 550,
-  //     w: 40,
-  //     h: 40,
-  //     title: "Casa Richter",
-  //     text: "Lorem ipsum",
-  //     image: "img_casa_richter_3d",
-  //     noCross: true
-  //   }
-  // },
+  {
+    id: 'huenul',
+    type: "DEFAULT",
+    config: {
+      x: 620,
+      y: 750,
+      w: 40,
+      h: 40,
+      title: "Cacique Huenul",
+      text: "Aqui descansan los restos del Cacique Huenul,el último poblador de la isla. Lorem ipsum....",
+      image: "imgCruz",
+      imagePopup: "/assets/masimg/cruz.png",
+      crossPosition: 'bottom',
+      noCross: true
+    }
+  },
+  {
+    id: 'casa-richter',
+    type: "DEFAULT",
+    config: {
+      x: 450,
+      y: 550,
+      w: 40,
+      h: 40,
+      title: "Casa Richter",
+      text: "Lorem ipsum",
+      image: "img_casa_richter_3d",
+      noCross: true
+    }
+  },
   {
     id: 'gemelos',
     type: "DEFAULT",
@@ -182,6 +197,21 @@ var LOCATIONS_CONFIG = [
       image: "img_reactor_3d",
       imagePopup: "/assets/imgedificios/HUDSreactor.png",
       dangerImage: 'danger_reactor_posta',
+      noCross: true
+    }
+  },
+  {
+    id: 'mirador',
+    type: "DEFAULT",
+    config: {
+      x: 900,
+      y: 480,
+      w: 30,
+      h: 30,
+      title: "Mirador",
+      text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti atque est dignissimos ipsum odit ut laudantium accusamus doloremque, consequuntur impedit, repellendus cupiditate voluptas totam voluptate repellat corrupti aliquam magni vel.",
+      image: "imgCruz",
+      imagePopup: "/assets/masimg/cruz.png",
       noCross: true
     }
   }

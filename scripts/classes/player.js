@@ -1,7 +1,7 @@
 class Player {
     constructor(config) {
         this.items = config.items || [];
-        this.time = config.time || 1000;
+        this.time = config.time || 500;
         this.playing = false;
         this.stoped = true;
         this.index = 0;
@@ -26,6 +26,11 @@ class Player {
             }
             this.toolbar.container.classList.toggle('intro-visible')
         })
+
+        this.PATH_DATA = {
+            ...PATH_DATA,
+            points: PATH_DATA.points.map(p => ({ x: p.x - width / 2, y: p.y - height / 2 }))
+        }
     }
     next() {
         if (this.items[this.index + 1]) {
@@ -50,26 +55,35 @@ class Player {
         this.stoped = false;
         // this.items[this.index].show()
         this.intervalId = setInterval(() => {
+            
+            let { x, y } = this.PATH_DATA.points[this.currentPathIndex]
+
+            this.items.forEach(location => {
+                const d = dist(x, y, location.x, location.y)
+                // console.log(d)
+                if (d < 30 && !location.isActive) {
+                    console.log(location.id, d)
+                    location.show()
+                    this.pause()
+                } else if (location.isActive) {
+                    location.hide()
+                }
+            })
+            
             easycam.setState({
                 ...easycam.state,
-                center: [ PATH_DATA.points[this.currentPathIndex].x - width / 2, PATH_DATA.points[this.currentPathIndex].y - height / 2, 0],
+                center: [ x, y, 0],
                 distance: 250
             }, this.time);
-            this.activeLocation = this.items.find(location => location.isActive)
+            
+            if (this.currentPathIndex === this.PATH_DATA.points.length - 1) {
+                this.stop()
+            }
 
-            if (this.currentPathIndex === PATH_DATA.points.length - 1) {
-                clearInterval(this.intervalId)
-                this.currentPathIndex = 0;
-            }
-            if (this.activeLocation) {
-                this.index = this.activeLocation.index
-                // this.pause()
-                // this.activeLocation.show()
-                // this.currentPathIndex += 1
-                // return
-            }
             this.currentPathIndex += 1
+        
         }, this.time)
+
         // this.intervalId = setInterval(() => {
         //     if (this.index === this.last) {
         //         this.stop()
@@ -88,13 +102,14 @@ class Player {
         clearInterval(this.intervalId);
     }
     stop() {
-        easycam.linearInterpolation = false
+        clearInterval(this.intervalId);
         this.stoped = true;
         this.playing = false;
         this.playButton.classList.remove('active')
-        clearInterval(this.intervalId);
         this.items[this.index].hide()
         this.index = 0;
+        this.currentPathIndex = 0;
+        easycam.linearInterpolation = false
         easycam.reset(1000);
     }
 }

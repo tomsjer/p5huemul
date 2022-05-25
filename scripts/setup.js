@@ -32,10 +32,28 @@ function setup() {
     // the push (add) it to the array!
     points.push(point);
   }
-
-  bubble = new Bubble(200, 250); // Mouse
-  // bubble1 = new Bubble(773, 396); // Ubicacion Isla Huemul
-  // bubble2 = new Bubble(500, 500); // Ubicacion
+  
+  // Mouse
+  bubble = new Bubble(200, 250); 
+  
+  SVG_OBJECT = document.getElementById('svg-object')
+  PATH = SVG_OBJECT.contentDocument.querySelector('path')
+  PATH_DATA = {
+    ...PATH,
+    length: PATH.getTotalLength(),
+    min: PATH.getPointAtLength(0),
+    max: PATH.getPointAtLength(length),
+    points: []
+  }
+  const resolution = PATH_DATA.length / 50;
+  for (let i = 0; i < PATH_DATA.length; i+=resolution) {
+    let {x, y} = PATH.getPointAtLength(i)
+    PATH_DATA.points.push({
+      // FIXME: magic numbers
+      x: (x - 490) * 1.2,
+      y: (y - 25) * 1.2
+    })
+  }
 
   LOCATIONS = LOCATIONS_CONFIG.map(
     (location, index) =>
@@ -53,25 +71,6 @@ function setup() {
   PLAYER = new Player({ items: LOCATIONS })
 
   ISLA = new IslaInfo({...ISLA_CONFIG, image: window[ISLA_CONFIG.image]})
-    
-  SVG_OBJECT = document.getElementById('svg-object')
-  PATH = SVG_OBJECT.contentDocument.querySelector('path')
-  PATH_DATA = {
-    ...PATH,
-    length: PATH.getTotalLength(),
-    min: PATH.getPointAtLength(0),
-    max: PATH.getPointAtLength(length),
-    points: []
-  }
-  const resolution = PATH_DATA.length / 20;
-  for (let i = 0; i < PATH_DATA.length; i+=resolution) {
-    let {x, y} = PATH.getPointAtLength(i)
-    PATH_DATA.points.push({
-      // FIXME: magic numbers
-      x: (x - 490) * 1.2,
-      y: (y - 25) * 1.2
-    })
-  }
   
   // FIXME: esto debería ser un interval qe entre en este modo cada N tiempo
   // setTimeout(() => {

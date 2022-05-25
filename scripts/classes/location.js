@@ -20,6 +20,7 @@ class Location {
     this.h = config.h;
     this.r = this.w > this.h ? this.w / 2 : this.h / 2;
     this.halfR = this.r / 2;
+    this.doubleR = this.r * 2;
     this.xCenter = this.x - width / 2;
     this.yCenter = this.y - height / 2; // + HEIGHT_OFFSET
     this.title = config.title;
@@ -31,27 +32,9 @@ class Location {
     this.tv = createVector(-width/2, -height/2, 0)
     this.noCross = config.noCross || false
     this.crossPosition = config.crossPosition || 'top'
-
-    this.ppW = 450;
-    this.ppH = 600;
-    this.ppX = VIEWPORT_WIDTH - this.ppW - 128;
-    this.ppP = 25;
-    this.ppY = VIEWPORT_HEIGHT - this.ppH - 148;
-    this.ppImgW = this.ppW - this.ppP * 2;
-    this.ppImgH = this.ppH / 2;
-    this.ppTxtW = this.ppW - this.ppP * 2
-    this.ppTxtH = this.ppH / 2 - this.ppP * 2
-    this.ppPHalf = this.ppP / 2
-    this.ppTtlH = this.ppH - this.ppImgH
-    this.ppPTriple = this.ppP * 3
-    this.ppImgY = this.ppPTriple + this.ppPHalf / 2
-    this.ppTxtY = this.ppPTriple + this.ppPHalf + this.ppImgH
     this.cr = this.w > this.h ? this.w * 2 : this.h * 2;
     this.cx = this.x - this.cr / 4 - 10;
     this.cy = this.y - this.cr / 4 - 5;
-    
-    this.titleSize = 56;
-    this.textSize = 24;
 
     this.fade = 0;
     this.fadeAmount = 20;
@@ -83,16 +66,13 @@ class Location {
           if (this.fade > 0) {
             this.fade -= this.fadeAmount;
           }
-          // if (this.fade === 0) {
-            this.isActive = false;
-          // }
+          this.isActive = false;
           this.HUDcontainer.classList.remove('active')
         }
       }
     }
     if (this.isActivable) {
       if (this.intersects()) {
-        // OPENED_POPUP = !OPENED_POPUP && true;
         this.isActive = true;
         
       } else {
@@ -102,15 +82,6 @@ class Location {
           this.HUDcontainer.classList.remove('active')
         }
       }
-    }
-  }
-  drawGradient() {
-    let radius = this.w / 2;
-    let h = 0;
-    for (let r = radius; r > 0; --r) {
-      fill(255, h / this.fade);
-      ellipse(this.x, this.y, r, r);
-      h = (h + 1) % 360;
     }
   }
   draw() {
@@ -124,7 +95,7 @@ class Location {
         rect(this.x, this.y, this.w, this.h);
       }
       if (this.isActive) {
-        tint(255, 50);
+        tint(255, this.fade - 200);
         image(imgLocationClicked, this.cx, this.cy, this.cr, this.cr);
         if (DEBUG) {
           strokeWeight(4);
@@ -157,39 +128,12 @@ class Location {
         textSize(12);
         text(nfs([this.x, this.y], 1, 1), this.x + 10, this.y + 10, 100, 100);
         text(nfs([this.sp.x, this.sp.y], 1, 1), this.x + 10, this.y + 20, 100, 100);
-      }
-    }
-  }
-  drawHUD() {
-    if (DEBUG || (!this.isActive && !this.clicked)) return
-    push();
-    translate(this.ppX, this.ppY);
-    noLights();
-    // Render the background box for the HUD
-    noStroke();
-    fill(0, this.fade - 50);
-    rect(0, 0, this.ppW, this.ppH);
-
-    // Render title
-    fill(255, this.fade);
-    textSize(this.titleSize);
-    text(this.title, this.ppP, this.ppPHalf, this.ppTxtW, this.ppTtlH);
-
-    // Render Image
-    if (this.imagePopup) {
-      tint (255, this.fade);
-      if (DEBUG) {
         noFill();
-        stroke(255, 0, 0);
-        rect(this.ppP, this.ppImgY, this.ppImgW, this.ppImgH);
+        stroke(0, 255, 0);
+        ellipse(this.x, this.y, this.doubleR, this.doubleR);
+
       }
-      image(this.imagePopup, this.ppP, this.ppImgY, this.ppImgW, this.ppImgH);
     }
-    // Render description
-    fill(255, this.fade);
-    textSize(this.textSize);
-    text(this.text, this.ppP, this.ppTxtY, this.ppTxtW, this.ppTxtH);
-    pop();
   }
   intersects() {
     return (
@@ -204,10 +148,6 @@ class Location {
   intersectsBubble() {
     // Uso las posiciones del objeto 3d en pantalla 2d
     return bubble.intersects({ x: this.sp.x, y: this.sp.y, r: this.r  });
-  }
-  intersectsCursor() {
-    let d = dist(this.x, this.y, mouseX, mouseY);
-    return d < this.r + 30;
   }
   onMousePressed() {
     if (this.intersectsBubble()) {
