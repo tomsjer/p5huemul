@@ -59,7 +59,6 @@ function draw() {
   easycam.beginHUD();
 
   // LOCATIONS.forEach((location) => location.drawHUD());
-  
   // updatePoints();
   
   myEasyCam.draw();

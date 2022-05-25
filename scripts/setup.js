@@ -63,7 +63,7 @@ function setup() {
     max: PATH.getPointAtLength(length),
     points: []
   }
-  const resolution = PATH_DATA.length / 100;
+  const resolution = PATH_DATA.length / 20;
   for (let i = 0; i < PATH_DATA.length; i+=resolution) {
     let {x, y} = PATH.getPointAtLength(i)
     PATH_DATA.points.push({

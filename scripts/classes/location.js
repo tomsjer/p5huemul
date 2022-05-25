@@ -19,6 +19,7 @@ class Location {
     this.w = config.w;
     this.h = config.h;
     this.r = this.w > this.h ? this.w / 2 : this.h / 2;
+    this.halfR = this.r / 2;
     this.xCenter = this.x - width / 2;
     this.yCenter = this.y - height / 2; // + HEIGHT_OFFSET
     this.title = config.title;
@@ -72,9 +73,28 @@ class Location {
     this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
     if (this.isActivable) {
       if (this.intersects()) {
-        // OPENED_POPUP = !OPENED_POPUP && true;
+        if (this.fade < 255) {
+          this.fade += this.fadeAmount;
+        }
         this.isActive = true;
         this.HUDcontainer.classList.add('active')
+      } else {
+        if (!this.clicked) {
+          if (this.fade > 0) {
+            this.fade -= this.fadeAmount;
+          }
+          // if (this.fade === 0) {
+            this.isActive = false;
+          // }
+          this.HUDcontainer.classList.remove('active')
+        }
+      }
+    }
+    if (this.isActivable) {
+      if (this.intersects()) {
+        // OPENED_POPUP = !OPENED_POPUP && true;
+        this.isActive = true;
+        
       } else {
         if (this.clicked) {
         } else {
@@ -88,7 +108,7 @@ class Location {
     let radius = this.w / 2;
     let h = 0;
     for (let r = radius; r > 0; --r) {
-      fill(255, h);
+      fill(255, h / this.fade);
       ellipse(this.x, this.y, r, r);
       h = (h + 1) % 360;
     }
@@ -103,7 +123,7 @@ class Location {
         fill(0, this.isActive ? 100 : 0);
         rect(this.x, this.y, this.w, this.h);
       }
-      if (this.clicked) {
+      if (this.isActive) {
         tint(255, 50);
         image(imgLocationClicked, this.cx, this.cy, this.cr, this.cr);
         if (DEBUG) {
@@ -127,10 +147,12 @@ class Location {
         pop();
       }
       if (DEBUG) {
+        noFill();
         strokeWeight(1);
         stroke(255, 0, 0);
         line(this.x - 10, this.y, this.x + 10, this.y)
         line(this.x, this.y - 10, this.x, this.y  + 10)
+        ellipse(this.x, this.y, this.r, this.r);
         fill(255, 0, 0);
         textSize(12);
         text(nfs([this.x, this.y], 1, 1), this.x + 10, this.y + 10, 100, 100);
@@ -171,12 +193,12 @@ class Location {
   }
   intersects() {
     return (
-      // (bubble !== undefined ? this.intersectsBubble() : true) ||
+      (bubble !== undefined ? this.intersectsBubble() : true) ||
       (easycam.state.distance <= this.minZoom &&
-        easycam.state.center[0] <= this.xCenter + this.r &&
-        easycam.state.center[0] >= this.xCenter - this.r &&
-        easycam.state.center[1] <= this.yCenter + this.r &&
-        easycam.state.center[1] >= this.yCenter - this.r
+        easycam.state.center[0] <= this.xCenter + this.halfR &&
+        easycam.state.center[0] >= this.xCenter - this.halfR &&
+        easycam.state.center[1] <= this.yCenter + this.halfR &&
+        easycam.state.center[1] >= this.yCenter - this.halfR
     ));
   }
   intersectsBubble() {

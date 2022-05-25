@@ -21,7 +21,7 @@ function keyPressed() {
   }
 }
 
-if (window.onmousedown === null || window.onmousedown === undefined) {
+if ((window.onmousedown === null || window.onmousedown === undefined) && window.location.hash !== '#notouch') {
   window.onpointerdown = (e) => {
     // if (!DEBUG) return
      mouseX = e.x;

@@ -2,14 +2,14 @@
  * Extiende la clase Location para dibujar un alo radioactivo
  */
 class RadioactiveLocation extends Location {
-  constructor(id, config) {
-    super(id, config);
+  constructor(id, config, index) {
+    super(id, config, index);
     this.dangerImage = config.dangerImage;
     this.phase = 0;
     this.zoff = 0;
   }
   draw() {
-    if (this.isActive) {
+    if (this.fade > 0) {
       //////// PROBANDO PERLIN NOISE - RADIACION?? /////
       push();
       smooth();

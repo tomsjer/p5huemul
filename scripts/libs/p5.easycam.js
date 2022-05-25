@@ -85,6 +85,9 @@ class EasyCam {
     if(args.rotation === undefined) args.rotation  = Rotation.identity();
     if(args.viewport === undefined) args.viewport  = [0, 0, renderer.width, renderer.height];
     if(args.offset   === undefined) args.offset    = [bounds.x + window.scrollX, bounds.y + window.scrollY];
+    if(args.linearInterpolation === undefined) args.linearInterpolation  = false;
+
+    this.linearInterpolation = args.linearInterpolation
 
     // library info
     this.INFO = INFO;
@@ -799,7 +802,12 @@ class EasyCam {
   }
   /** Sets the new camera-center, interpolated (t) between given A and B. */
   setInterpolatedCenter(valA, valB, t) {
-    this.cam.state.center = Vec3.mix(valA, valB, Scalar.smoothstep(t));
+    // NOTE: control interpolation on runtime
+    if (this.linearInterpolation) {
+      this.cam.state.center = Vec3.mix(valA, valB, t);
+    } else {
+      this.cam.state.center = Vec3.mix(valA, valB, Scalar.smoothstep(t));
+    }
   }
   /** Sets the new camera-rotation, interpolated (t) between given A and B. */
   setInterpolatedRotation(valA, valB, t) {

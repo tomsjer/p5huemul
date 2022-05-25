@@ -1,7 +1,7 @@
 class Player {
     constructor(config) {
         this.items = config.items || [];
-        this.time = config.time || 500;
+        this.time = config.time || 1000;
         this.playing = false;
         this.stoped = true;
         this.index = 0;
@@ -26,7 +26,6 @@ class Player {
             }
             this.toolbar.container.classList.toggle('intro-visible')
         })
-
     }
     next() {
         if (this.items[this.index + 1]) {
@@ -44,14 +43,23 @@ class Player {
     }
     play() {
         if (this.playing) return
+        easycam.linearInterpolation = true
         this.playButton.classList.add('active')
         this.pauseButton.classList.remove('active')
         this.playing = true;
         this.stoped = false;
         // this.items[this.index].show()
         this.intervalId = setInterval(() => {
+            easycam.setState({
+                ...easycam.state,
+                center: [ PATH_DATA.points[this.currentPathIndex].x - width / 2, PATH_DATA.points[this.currentPathIndex].y - height / 2, 0],
+                distance: 250
+            }, this.time);
+            this.activeLocation = this.items.find(location => location.isActive)
+
             if (this.currentPathIndex === PATH_DATA.points.length - 1) {
                 clearInterval(this.intervalId)
+                this.currentPathIndex = 0;
             }
             if (this.activeLocation) {
                 this.index = this.activeLocation.index
@@ -60,12 +68,6 @@ class Player {
                 // this.currentPathIndex += 1
                 // return
             }
-            easycam.setState({
-                ...easycam.state,
-                center: [ PATH_DATA.points[this.currentPathIndex].x - width / 2, PATH_DATA.points[this.currentPathIndex].y - height / 2, 0],
-                distance: 250
-            }, this.time);
-            this.activeLocation = this.items.find(location => location.isActive)
             this.currentPathIndex += 1
         }, this.time)
         // this.intervalId = setInterval(() => {
@@ -86,6 +88,7 @@ class Player {
         clearInterval(this.intervalId);
     }
     stop() {
+        easycam.linearInterpolation = false
         this.stoped = true;
         this.playing = false;
         this.playButton.classList.remove('active')
