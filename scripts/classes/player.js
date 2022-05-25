@@ -2,9 +2,12 @@ class Player {
     constructor(config) {
         this.items = config.items || [];
         this.time = config.time || 350;
+        this.autopilotId = null;
+        this.autopilotTime = config.autopilotTime || 10000;
         this.playing = false;
         this.stoped = true;
         this.onpause = false;
+        this.reversePlay = false
         this.index = 0;
         this.currentPathIndex = 0;
         this.intervalId = null;
@@ -31,24 +34,32 @@ class Player {
         })
     }
     next() {
-        if (this.items[this.index + 1]) {
-            this.items[this.index].hide();
-            this.items[this.index].intersectsPlayer = false
-            this.index += 1;
-            this.items[this.index].show(true);
-            this.items[this.index].intersectsPlayer = true
-            this.setCurrentPathIndex()
-        }
+        // if (this.items[this.index + 1]) {
+        //     this.items[this.index].hide();
+        //     this.items[this.index].intersectsPlayer = false
+        //     this.index += 1;
+        //     this.items[this.index].show(true);
+        //     this.items[this.index].intersectsPlayer = true
+        //     this.setCurrentPathIndex()
+        //     clearTimeout(this.autopilotId)
+        // }
+        clearTimeout(this.autopilotId)
+        this.reversePlay = false
+        this.play()
     }
     prev() {
-        if (this.index >= 0 && this.items[this.index - 1]) {
-            this.items[this.index].hide();
-            this.items[this.index].intersectsPlayer = false
-            this.index -= 1;
-            this.items[this.index].show(true);
-            this.items[this.index].intersectsPlayer = true
-            this.setCurrentPathIndex()
-        }
+        // if (this.index >= 0 && this.items[this.index - 1]) {
+        //     this.items[this.index].hide();
+        //     this.items[this.index].intersectsPlayer = false
+        //     this.index -= 1;
+        //     this.items[this.index].show(true);
+        //     this.items[this.index].intersectsPlayer = true
+        //     this.setCurrentPathIndex()
+        //     clearTimeout(this.autopilotId)
+        // }
+        clearTimeout(this.autopilotId)
+        this.reversePlay = true
+        this.play()
     }
     play() {
         if (this.playing) return
@@ -89,10 +100,10 @@ class Player {
                 center: [ x - width / 2, y - height / 2, 0],
                 distance: 250
             }, this.time);
-            
-            this.currentPathIndex += 1
 
-            if (this.currentPathIndex === PATH_DATA.points.length) {
+            this.currentPathIndex = this.reversePlay ? this.currentPathIndex - 1 : this.currentPathIndex + 1
+
+            if (this.currentPathIndex === 0 || this.currentPathIndex === PATH_DATA.points.length) {
                 this.stop()
             }
         
@@ -107,9 +118,12 @@ class Player {
         this.stopButton.classList.remove('active')
         this.pauseButton.classList.add('active')
         clearInterval(this.intervalId);
+        this.autopilotId = setTimeout(() => this.play(), this.autopilotTime)
     }
     stop() {
+        if (this.stoped) return
         clearInterval(this.intervalId);
+        clearTimeout(this.autopilotId)
         this.stoped = true;
         this.playing = false;
         this.onpause = false;
