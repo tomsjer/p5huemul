@@ -49,7 +49,11 @@ if ((window.onmousedown === null || window.onmousedown === undefined) && window.
 function mousePressed() {
   if (!PLAYER.playing) {
     LOCATIONS.forEach((location, index) => {
+      if (LOCATION_ACTIVE && LOCATION_ACTIVE.id !== location.id) return
       location.onMousePressed()
+      if (location.clicked) {
+        LOCATION_ACTIVE = location
+      }
       if (DEBUG && location.clicked) {
         dragging = true
         draggingLocation = location

@@ -58,12 +58,13 @@ class Location {
   update() {
     this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
     if (this.isActivable) {
-      if (this.intersects()) {
+      if ((!LOCATION_ACTIVE || LOCATION_ACTIVE.id === this.id) && this.intersects()) {
         if (this.fade < 255) {
           this.fade += this.fadeAmount;
         }
         this.isActive = true;
         this.HUDcontainer.classList.add('active')
+        LOCATION_ACTIVE = this
       } else {
         if (!this.clicked) {
           if (this.fade > 0) {
@@ -71,6 +72,9 @@ class Location {
           }
           this.isActive = false;
           this.HUDcontainer.classList.remove('active')
+        }
+        if (LOCATION_ACTIVE && LOCATION_ACTIVE.id === this.id && !this.clicked) {
+          LOCATION_ACTIVE = null
         }
       }
     }

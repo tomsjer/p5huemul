@@ -12,7 +12,7 @@ var booleanGuia = false;
 var booleanTopo = false;
 var booleanHUD = false;
 var booleanPath = false;
-var OPENED_POPUP = false;
+var LOCATION_ACTIVE = null;
 var PLAYER;
 var ISLA;
 var MAP_CONTROLLER;
