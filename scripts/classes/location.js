@@ -19,7 +19,7 @@ class Location {
     this.w = config.w;
     this.h = config.h;
     this.px = config.px;
-    this.py = config.px;
+    this.py = config.py;
     this.r = this.w > this.h ? this.w / 2 : this.h / 2;
     this.halfR = this.r / 2;
     this.doubleR = this.r * 2;
@@ -37,6 +37,7 @@ class Location {
     this.cr = this.w > this.h ? this.w * 2 : this.h * 2;
     this.cx = this.x - this.cr / 4 - 10;
     this.cy = this.y - this.cr / 4 - 5;
+    this.intersectsPlayer = false
 
     this.fade = 0;
     this.fadeAmount = 20;
@@ -138,6 +139,9 @@ class Location {
     }
   }
   intersects() {
+    if (PLAYER && (PLAYER.playing || PLAYER.onpause)) {
+      return this.intersectsPlayer
+    }
     return (
       (MOUSE_BUBBLE !== undefined ? this.intersectsBubble() : true) ||
       (easycam.state.distance <= this.minZoom &&
@@ -170,21 +174,32 @@ class Location {
       this.HUDcontainer.classList.remove('active')
     }
   }
-  show() {
+  show(sync) {
     this.isActive = true
-    // this.clicked = true
-    setTimeout(() => {
-      this.HUDcontainer.classList.add('active')
-    }, 2000)
-    easycam.setState({
+    if (sync) {
+      easycam.setState({
         ...easycam.state,
         center: [ this.xCenter, this.yCenter , 0],
         distance: 250
-      }, 2000); // animate to state in 1 second
+      }, 1000);
+      setTimeout(() => {
+        this.HUDcontainer.classList.add('active')
+      }, 800)
+    } else {
+      setTimeout(() => {
+        easycam.setState({
+            ...easycam.state,
+            center: [ this.xCenter, this.yCenter , 0],
+            distance: 250
+          }, 1000);
+        setTimeout(() => {
+          this.HUDcontainer.classList.add('active')
+        }, 800)
+      }, 800)
+    }
   }
   hide() {
     this.isActive = false
-    // this.clicked = false
     this.HUDcontainer.classList.remove('active')
   }
   createHUDElements() {

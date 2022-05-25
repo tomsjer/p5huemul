@@ -1,7 +1,7 @@
 /** ---------------------------------------- */
 /** -------------- GENERAL  ---------------- */
 /** ---------------------------------------- */
-var DEBUG = true;
+var DEBUG = false;
 var VIEWPORT_WIDTH = 1920; // window.innerWidth;
 var VIEWPORT_HEIGHT = 1080; // window.innerHeight;
 var HEIGHT_OFFSET;
@@ -18,6 +18,8 @@ var ISLA;
 var MAP_CONTROLLER;
 var SVG_OBJECT;
 var PATH, PATH_DATA;
+var MOUSE_BUBBLE;
+
 /** ---------------------------------------- */
 /** -------------- EASY CAM ---------------- */
 /** ---------------------------------------- */
@@ -43,7 +45,7 @@ var LOCATIONS_CONFIG = [
       // Coordinates & dimensions
       x: 342, y: 634, w: 40, h: 40,
       // Coordinates for path hotspot
-      px: 350, py: 640,
+      px: 352, py: 614,
       title: "El muelle",
       text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
       image: "imgMuelle",
@@ -62,10 +64,8 @@ var LOCATIONS_CONFIG = [
     id: 'prefectura',
     type: "DEFAULT",
     config: {
-      x: 428,
-      y: 624,
-      w: 40,
-      h: 40,
+      x: 428, y: 624, w: 40, h: 40,
+      px: 410, py: 640,
       title: "Prefectura",
       text: "Lorem ipsum",
       image: "img_guardia_3d",
@@ -79,6 +79,8 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 620,
       y: 750,
+      px: 565,
+      py: 757,
       w: 40,
       h: 40,
       title: "Cacique Huenul",
@@ -93,8 +95,10 @@ var LOCATIONS_CONFIG = [
     id: 'casa-richter',
     type: "DEFAULT",
     config: {
-      x: 450,
-      y: 550,
+      x: 440,
+      y: 545,
+      px: 458,
+      py: 554,
       w: 40,
       h: 40,
       title: "Casa Richter",
@@ -109,6 +113,8 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 542,
       y: 558,
+      px: 542,
+      py: 558,
       w: 50,
       h: 90,
       title: "Lab. Gemelos",
@@ -124,6 +130,8 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 580,
       y: 590,
+      px: 578,
+      py: 564,
       w: 30,
       h: 35,
       title: "Lab. Blindado",
@@ -139,6 +147,8 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 640,
       y: 420,
+      px: 654,
+      py: 435,
       w: 50,
       h: 50,
       title: "Laboratorio Richter",
@@ -163,6 +173,8 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 720,
       y: 360,
+      px: 715,
+      py: 425,
       w: 55,
       h: 55,
       title: "Usina",
@@ -172,27 +184,14 @@ var LOCATIONS_CONFIG = [
       noCross: true
     }
   },
-  { 
-    id: 'auditorio',
-    type: "DEFAULT",
-    config: {
-      x: 720,
-      y: 505,
-      w: 50,
-      h: 50,
-      title: "Audiotorio",
-      text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti atque est dignissimos ipsum odit ut laudantium accusamus doloremque, consequuntur impedit, repellendus cupiditate voluptas totam voluptate repellat corrupti aliquam magni vel.",
-      image: "img_auditorio_3d",
-      imagePopup: "img_auditorio_arq",
-      noCross: true
-    }
-  },
   {
     id: 'reactor-principal',
     type: "RADIOACTIVE",
     config: {
       x: 766,
       y: 482,
+      px: 736,
+      py: 462,
       w: 60,
       h: 60,
       title: "Reactor Principal",
@@ -203,12 +202,31 @@ var LOCATIONS_CONFIG = [
       noCross: true
     }
   },
+  { 
+    id: 'auditorio',
+    type: "DEFAULT",
+    config: {
+      x: 720,
+      y: 505,
+      px: 735,
+      py: 505,
+      w: 50,
+      h: 50,
+      title: "Audiotorio",
+      text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti atque est dignissimos ipsum odit ut laudantium accusamus doloremque, consequuntur impedit, repellendus cupiditate voluptas totam voluptate repellat corrupti aliquam magni vel.",
+      image: "img_auditorio_3d",
+      imagePopup: "img_auditorio_arq",
+      noCross: true
+    }
+  },
   {
     id: 'mirador',
     type: "DEFAULT",
     config: {
       x: 900,
       y: 480,
+      px: 759,
+      py: 548,
       w: 30,
       h: 30,
       title: "Mirador",
@@ -219,8 +237,3 @@ var LOCATIONS_CONFIG = [
     }
   }
 ];
-
-/** ---------------------------------------- */
-/** ----------------- UI ------------------- */
-/** ---------------------------------------- */
-var MOUSE_BUBBLE;

@@ -17,6 +17,24 @@ function keyPressed() {
     fullscreen(!fs);
     setTimeout(() => windowResized);
   }
+  const location = LOCATIONS.find(l => l.isActive)
+  if (location) {
+    switch(key) {
+      case 'ArrowUp':
+        location.py -= 1;
+        break;
+      case 'ArrowDown':
+        location.py += 1;
+        break;
+      case 'ArrowLeft':
+        location.px -= 1;
+        break;
+      case 'ArrowRight':
+        location.px += 1;
+        break;
+    }
+    console.log(location.px,location.py)
+  }
 }
 
 if ((window.onmousedown === null || window.onmousedown === undefined) && window.location.hash !== '#notouch') {

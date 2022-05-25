@@ -106,8 +106,10 @@ button {
   top: 0 !important;
 }
 
-button.active, button:active, button:focus {
+button.active {
   opacity: 1;
+}
+button:active, button:focus {
   border: none;
   box-shadow: none;
   outline: none;
