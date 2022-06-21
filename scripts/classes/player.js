@@ -29,6 +29,8 @@ class Player {
         document.addEventListener('toggle-info', (e) => {
             if (e.detail) {
                 this.stop()
+                easycam.linearInterpolation = false
+                easycam.reset(1000);
             }
             this.toolbar.container.classList.toggle('intro-visible')
         })
@@ -118,7 +120,7 @@ class Player {
         this.stopButton.classList.remove('active')
         this.pauseButton.classList.add('active')
         clearInterval(this.intervalId);
-        this.autopilotId = setTimeout(() => this.play(), this.autopilotTime)
+        clearTimeout(this.autopilotId);
     }
     stop() {
         if (this.stoped) return

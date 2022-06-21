@@ -1,7 +1,7 @@
 class MapController {
     constructor(config) {
         this.north = false
-        this.scaleMin = 5
+        this.scaleMin = 10
         this.scaleMax = 200
         this.currentScale = 200
         this.currentScaleWidth = 1
@@ -46,9 +46,9 @@ class MapController {
     }
     update() {
         let state = easycam.getState();
-        let n = map(state.distance, 150, 1200, 5, 200);
+        let n = map(state.distance, 150, 1200, 10, 200);
         if (n < 100) {
-            this.currentScaleWidth = map(n, 5, 100, 100, 50);
+            this.currentScaleWidth = map(n, 10, 100, 100, 25);
             this.currentScale = n < 10 ? 5 : Math.floor((n | 0) * 0.1) * 10
         } else {
             this.currentScale = n < 200 ? 100 : 200;

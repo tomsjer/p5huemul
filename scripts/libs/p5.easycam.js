@@ -388,12 +388,12 @@ class EasyCam {
         mouse.isPressed = (mouse.istouchdown || mouse.ismousedown);
         cam.SHIFT_CONSTRAINT = 0;
         
-        if(mouse.tapcount >= 2){
-          if(mouse.insideViewport(mouse.curr[0], mouse.curr[1])){
-            cam.reset();
-          }
-          mouse.tapcount = 0;
-        }
+        // if(mouse.tapcount >= 2){
+        //   if(mouse.insideViewport(mouse.curr[0], mouse.curr[1])){
+        //     cam.reset();
+        //   }
+        //   mouse.tapcount = 0;
+        // }
       },
 
       

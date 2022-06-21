@@ -65,7 +65,7 @@ function setup() {
 
   PLAYER = new Player({ items: LOCATIONS })
 
-  ISLA = new IslaInfo({...ISLA_CONFIG, image: window[ISLA_CONFIG.image]})
+  ISLA = new IslaInfo({...ISLA_CONFIG, image: ISLA_CONFIG.image })
   
   // FIXME: esto debería ser un interval qe entre en este modo cada N tiempo
   // setTimeout(() => {

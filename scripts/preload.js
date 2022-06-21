@@ -21,7 +21,7 @@ function preload() {
   // img_recorridopunteado = loadImage('assets/masimg/recorrido_punteado_solo.png'); 
   img_recorridopunteado = loadImage('assets/fondos/CAMINO_FONDO ISLA REFERENCIAS (1920X1080)-01.png'); 
   // img_brujula = loadImage('assets/masimg/brujula.png');
-  img_intro = loadImage('assets/masimg/ilus_intro.png');
+  // img_intro = loadImage('assets/masimg/ilus_intro.png');
 
   // img edif 3D
   img_auditorio_3d = loadImage('assets/img_edif_3d/auditorio_3d.png'); 
