@@ -17,7 +17,13 @@ class IslaInfo {
         this.container.innerHTML = `
             <img src="${this.image}">
             <p>${this.text}</p>
+            <button>COMENZAR</button>
         `
+        const event = new CustomEvent('player-start');
+        this.container.querySelector('button').addEventListener('click', () => {
+            this.toggleVisible()
+            document.dispatchEvent(event)
+        })
         document.body.appendChild(this.container)
     }
     toggleVisible() {

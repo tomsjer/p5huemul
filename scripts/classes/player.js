@@ -34,6 +34,7 @@ class Player {
             }
             this.toolbar.container.classList.toggle('intro-visible')
         })
+        document.addEventListener('player-start', () => this.play())
     }
     next() {
         // if (this.items[this.index + 1]) {
