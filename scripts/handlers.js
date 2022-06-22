@@ -47,6 +47,7 @@ if ((window.onmousedown === null || window.onmousedown === undefined) && window.
 }
 
 function mousePressed() {
+  LAST_TOUCH_TIMESTAMP = Date.now()
   if (!PLAYER.playing) {
     LOCATIONS.forEach((location, index) => {
       if (LOCATION_ACTIVE && LOCATION_ACTIVE.id !== location.id) return

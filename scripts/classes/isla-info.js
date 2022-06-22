@@ -34,7 +34,8 @@ class IslaInfo {
         document.dispatchEvent(event);
     }
     update() {
-        if (this.visible && easycam.state.distance < 800) {
+        this.lastDistance = easycam.state.distance
+        if (this.visible && this.lastDistance > easycam.state.distance && easycam.state.distance < 800) {
             this.toggleVisible()
             return
         }

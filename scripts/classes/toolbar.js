@@ -10,8 +10,12 @@ class Toolbar {
     createButton(option, index) {
         const button = createButton(option.label);
         const { x, y } = this.position;
+        const handler = () => {
+            LAST_TOUCH_TIMESTAMP = Date.now()
+            option.handler()
+        }
         button.position(x * index, y);
-        button.mousePressed(option.handler)
+        button.mousePressed(handler)
         button.elt.classList.add(option.class)
         this.container.append(button.elt)
         return button;

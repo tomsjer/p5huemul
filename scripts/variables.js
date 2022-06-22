@@ -19,6 +19,8 @@ var MAP_CONTROLLER;
 var SVG_OBJECT;
 var PATH, PATH_DATA;
 var MOUSE_BUBBLE;
+var INACTIVE_TIMEOUT = 1000 * 60 // 1000 milisegundos = 1 segundo * 60 = 1 minuto
+var LAST_TOUCH_TIMESTAMP, INACTIVE_TIMEOUT_ID;
 
 /** ---------------------------------------- */
 /** -------------- EASY CAM ---------------- */

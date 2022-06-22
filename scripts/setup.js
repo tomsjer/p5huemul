@@ -21,11 +21,11 @@ function setup() {
   textFont(font);
   
   setupGUI()
+  setupInactive()
 
   myEasyCam = new EasyCamHandler({ distance: 1200, center: [0, 0, 0] });
   easycam = myEasyCam.easycam;
   
-
   windowResized();
   
   // Mouse
@@ -66,9 +66,17 @@ function setup() {
   PLAYER = new Player({ items: LOCATIONS })
 
   ISLA = new IslaInfo({...ISLA_CONFIG, image: ISLA_CONFIG.image })
-  
-  // FIXME: esto debería ser un interval qe entre en este modo cada N tiempo
-  // setTimeout(() => {
-  //   ISLA.toggleVisible()
-  // }, 3000)
+  setTimeout(() => {
+    ISLA.toggleVisible()
+  }, 5000)
+}
+
+function setupInactive() {
+  LAST_TOUCH_TIMESTAMP = Date.now()
+  INACTIVE_TIMEOUT_ID = setTimeout(() => {
+    if (Date.now() - LAST_TOUCH_TIMESTAMP >= INACTIVE_TIMEOUT && !ISLA.visible) {
+      ISLA.toggleVisible()
+    }
+    setupInactive()
+  }, INACTIVE_TIMEOUT)
 }
