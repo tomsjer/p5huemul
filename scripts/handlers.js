@@ -42,7 +42,7 @@ if ((window.onmousedown === null || window.onmousedown === undefined) && window.
     // if (!DEBUG) return
      mouseX = e.x;
      mouseY = e.y;
-     setTimeout(() => mousePressed());
+    //  setTimeout(() => mousePressed());
   }
 }
 

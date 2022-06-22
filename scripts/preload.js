@@ -51,4 +51,7 @@ function preload() {
   img_laboblindado_arq = loadImage('assets/masimg/laboblindado_arq.png');
   img_auditorio_arq = loadImage('assets/masimg/auditorio_arq.png');
   img_laborichter = loadImage('assets/masimg/laborichter_arq.png');
+
+  img_crono_muelle = loadImage('/assets/imgs_cronology/comienzo-02.png')
+  img_crono_huenul = loadImage('/assets/imgs_cronology/tumba-huenul-02.png')
 }

@@ -52,6 +52,8 @@ var LOCATIONS_CONFIG = [
       text: "El muelle es el principal acceso a la isla, en su momento era el punto de descarga de materiales de contruccion. Hoy en dia es utilizado por veleros y otras embarcaciones para llegar a la isla.",
       image: "imgMuelle",
       imagePopup: "/assets/img_edif_3d/muelle_3d.png",
+      imageCrono: "img_crono_muelle",
+      x2: 120, y2: 534,
       noCross: true,
       data: {
         sector: 'Rojo',
@@ -89,6 +91,8 @@ var LOCATIONS_CONFIG = [
       text: "Aqui descansan los restos del Cacique Huenul,el último poblador de la isla. Lorem ipsum....",
       image: "imgCruz",
       imagePopup: "/assets/masimg/cruz.png",
+      imageCrono: "img_crono_huenul",
+      x2: 620, y2: 754,
       crossPosition: 'bottom',
       noCross: true
     }

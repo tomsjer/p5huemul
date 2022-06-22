@@ -57,6 +57,7 @@ function setup() {
         // la imagen se instancia en preload.js
         image: window[location.config.image],
         imagePopup: location.config.imagePopup || 'imgCruz',
+        imageCrono: window[location.config.imageCrono],
         dangerImage: window[location.config.dangerImage],
       }, index)
   );
@@ -66,9 +67,9 @@ function setup() {
   PLAYER = new Player({ items: LOCATIONS })
 
   ISLA = new IslaInfo({...ISLA_CONFIG, image: ISLA_CONFIG.image })
-  setTimeout(() => {
-    ISLA.toggleVisible()
-  }, 5000)
+  // setTimeout(() => {
+  //   ISLA.toggleVisible()
+  // }, 5000)
 }
 
 function setupInactive() {

@@ -75,6 +75,7 @@ h1 {
 }
 
 .info-container {
+  pointer-events: none;
   padding: 64px;
   position: fixed;
   z-index: 1;
@@ -90,6 +91,7 @@ h1 {
 }
 .info-container.intro-visible {
   opacity: 1;
+  pointer-events: initial;
 }
 .info-container img {
   width: 66%;

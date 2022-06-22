@@ -37,29 +37,11 @@ class Player {
         document.addEventListener('player-start', () => this.play())
     }
     next() {
-        // if (this.items[this.index + 1]) {
-        //     this.items[this.index].hide();
-        //     this.items[this.index].intersectsPlayer = false
-        //     this.index += 1;
-        //     this.items[this.index].show(true);
-        //     this.items[this.index].intersectsPlayer = true
-        //     this.setCurrentPathIndex()
-        //     clearTimeout(this.autopilotId)
-        // }
         clearTimeout(this.autopilotId)
         this.reversePlay = false
         this.play()
     }
     prev() {
-        // if (this.index >= 0 && this.items[this.index - 1]) {
-        //     this.items[this.index].hide();
-        //     this.items[this.index].intersectsPlayer = false
-        //     this.index -= 1;
-        //     this.items[this.index].show(true);
-        //     this.items[this.index].intersectsPlayer = true
-        //     this.setCurrentPathIndex()
-        //     clearTimeout(this.autopilotId)
-        // }
         clearTimeout(this.autopilotId)
         this.reversePlay = true
         this.play()
@@ -72,8 +54,12 @@ class Player {
         this.playing = true;
         this.stoped = false;
         this.onpause = false;
-        if (this.index === 0 && !this.items[this.index].isActive) {
-            this.items[this.index].show(true)
+        if (LOCATION_ACTIVE) {
+            LOCATION_ACTIVE.hide()
+            LOCATION_ACTIVE = null
+        }
+        if (this.index === 0 && !this.items[this.index].isCronoActive) {
+            this.items[this.index].showCrono()
             setTimeout(() => {
                 this.items[this.index].intersectsPlayer = true
                 this.pause()
@@ -90,11 +76,11 @@ class Player {
                 if (d < 10 && location.index > 0) {
                     this.index = location.index;
                     location.intersectsPlayer = true
-                    location.show()
+                    location.showCrono()
                     this.pause()
-                } else if (location.isActive) {
+                } else if (location.isCronoActive) {
                     location.intersectsPlayer = false
-                    location.hide()
+                    location.hideCrono()
                 }
             })
             
@@ -133,7 +119,7 @@ class Player {
         this.stopButton.classList.add('active')
         this.playButton.classList.remove('active')
         this.pauseButton.classList.remove('active')
-        this.items[this.index].hide()
+        this.items[this.index].hideCrono()
         this.index = 0;
         this.currentPathIndex = 0;
         easycam.linearInterpolation = false

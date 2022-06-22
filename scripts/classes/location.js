@@ -14,10 +14,15 @@ class Location {
     this.id = id
     this.image = config.image;
     this.imagePopup = config.imagePopup;
+    this.imageCrono = config.imageCrono;
     this.x = config.x;
     this.y = config.y;
     this.w = config.w;
     this.h = config.h;
+    this.x2 = config.x2;
+    this.y2 = config.y2;
+    this.w2 = 150;
+    this.h2 = 150;
     this.px = config.px;
     this.py = config.py;
     this.r = this.w > this.h ? this.w / 2 : this.h / 2;
@@ -27,8 +32,8 @@ class Location {
     this.yCenter = this.y - height / 2; // + HEIGHT_OFFSET
     this.title = config.title;
     this.text = config.text;
-    this.isActivable = this.title !== '' && this.text !== ''
     this.isActive = false;
+    this.isCronoActive = false;
     this.clicked = false;
     this.sp = createVector(0,0,0)
     this.tv = createVector(-width/2, -height/2, 0)
@@ -40,7 +45,7 @@ class Location {
     this.intersectsPlayer = false
 
     this.fade = 0;
-    this.fadeAmount = 20;
+    this.fadeAmount = 10;
 
     this.minZoom = 350
     this.range = 100
@@ -57,37 +62,34 @@ class Location {
   }
   update() {
     this.sp = screenPosition(this.x, this.y, 0).sub(this.tv)
-    if (this.isActivable) {
-      if ((!LOCATION_ACTIVE || LOCATION_ACTIVE.id === this.id) && this.intersects()) {
+    if (PLAYER && (PLAYER.playing || PLAYER.onpause)) {
+      if(this.intersectsCrono() && this.isCronoActive) {
         if (this.fade < 255) {
           this.fade += this.fadeAmount;
         }
-        this.isActive = true;
-        this.HUDcontainer.classList.add('active')
-        LOCATION_ACTIVE = this
       } else {
-        if (!this.clicked) {
-          if (this.fade > 0) {
-            this.fade -= this.fadeAmount;
-          }
-          this.isActive = false;
-          this.HUDcontainer.classList.remove('active')
-        }
-        if (LOCATION_ACTIVE && LOCATION_ACTIVE.id === this.id && !this.clicked) {
-          LOCATION_ACTIVE = null
+        if (this.fade > 0 && !this.isCronoActive) {
+          this.fade -= this.fadeAmount;
         }
       }
-    }
-    if (this.isActivable) {
-      if (this.intersects()) {
-        this.isActive = true;
-        
-      } else {
-        if (this.clicked) {
-        } else {
-          this.isActive = false
-          this.HUDcontainer.classList.remove('active')
+
+    } else if ((!LOCATION_ACTIVE || LOCATION_ACTIVE.id === this.id) && this.intersects()) {
+      if (this.fade < 255) {
+        this.fade += this.fadeAmount;
+      }
+      this.isActive = true;
+      this.HUDcontainer.classList.add('active')
+      LOCATION_ACTIVE = this
+    } else {
+      if (!this.clicked) {
+        if (this.fade > 0) {
+          this.fade -= this.fadeAmount;
         }
+        this.isActive = false;
+        this.HUDcontainer.classList.remove('active')
+      }
+      if (LOCATION_ACTIVE && LOCATION_ACTIVE.id === this.id && !this.clicked) {
+        LOCATION_ACTIVE = null
       }
     }
   }
@@ -113,6 +115,11 @@ class Location {
       }
       tint(255, 255);
       image(this.image, this.x, this.y, this.w, this.h);
+      if(this.fade > 0 && this.imageCrono) {
+        console.log(this.fade)
+        tint(255, this.fade);
+        image(this.imageCrono, this.x2, this.y2, this.w2, this.h2);
+      }
       pop();
       if (!this.noCross) {
         push();
@@ -142,9 +149,12 @@ class Location {
       }
     }
   }
+  intersectsCrono() {
+    return this.intersectsPlayer
+  }
   intersects() {
     if (PLAYER && (PLAYER.playing || PLAYER.onpause)) {
-      return this.intersectsPlayer
+      return false
     }
     return (
       (MOUSE_BUBBLE !== undefined ? this.intersectsBubble() : true) ||
@@ -223,5 +233,24 @@ class Location {
       <div class="description">${this.text}</div>
     `
     document.body.appendChild(this.HUDcontainer)
+  }
+  showCrono() {
+    console.log('show chrono')
+    setTimeout(() => {
+      easycam.setState({
+        ...easycam.state,
+        center: [ this.xCenter, this.yCenter , 0],
+        distance: 250
+      }, 1000);
+      setTimeout(() => {
+        this.isCronoActive = true
+      }, 800)
+    }, 800)
+  }
+  hideCrono() {
+    console.log('hide chrono')
+    setTimeout(() => {
+      this.isCronoActive = false
+    }, 1000)
   }
 }
