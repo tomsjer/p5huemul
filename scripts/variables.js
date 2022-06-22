@@ -53,7 +53,7 @@ var LOCATIONS_CONFIG = [
       image: "imgMuelle",
       imagePopup: "/assets/img_edif_3d/muelle_3d.png",
       imageCrono: "img_crono_muelle",
-      x2: 120, y2: 534,
+      x2: 160, y2: 590,
       noCross: true,
       data: {
         sector: 'Rojo',
@@ -73,6 +73,8 @@ var LOCATIONS_CONFIG = [
       title: "Prefectura",
       text: "Lorem ipsum",
       image: "img_guardia_3d",
+      imageCrono: "img_crono_prefectura",
+      x2: 500, y2: 624,
       crossPosition: 'bottom',
       noCross: true
     }
@@ -92,7 +94,7 @@ var LOCATIONS_CONFIG = [
       image: "imgCruz",
       imagePopup: "/assets/masimg/cruz.png",
       imageCrono: "img_crono_huenul",
-      x2: 620, y2: 754,
+      x2: 700, y2: 654,
       crossPosition: 'bottom',
       noCross: true
     }
@@ -110,6 +112,8 @@ var LOCATIONS_CONFIG = [
       title: "Casa Richter",
       text: "Lorem ipsum",
       image: "img_casa_richter_3d",
+      imageCrono: "img_crono_richter",
+      x2: 300, y2: 430,
       noCross: true
     }
   },
@@ -127,6 +131,8 @@ var LOCATIONS_CONFIG = [
       text: "Lorem ipsum",
       image: "img_gemelos_3d",
       imagePopup: "/assets/masimg/gemelas_arq.png",
+      imageCrono: "img_crono_gemelos",
+      x2: 642, y2: 600,
       noCross: true
     }
   },
@@ -161,6 +167,8 @@ var LOCATIONS_CONFIG = [
       text: "El laboratorio de Ronal Richter es probablemente el mas interesante de toda la isla. Demolido por las fuerzas militares sin razon expresa, es aun recorrible en su interior a traves de un pasillo que atraviesa todo el largo del laboratioro. Los escombron yacen inmoviles en un enjambre de hierros y cemento. Se conservan aun los elementos originales del laboratorio en donde el físico Richter realizo experimentos concretos.",
       image: "img_laborichter_3d",
       imagePopup: "/assets/imgedificios/HUDSlaborichter.png",
+      imageCrono: "img_crono_laborichter",
+      x2: 450, y2: 320,
       crossPosition: 'bottom',
       dangerImage: 'danger_laborichter',
       noCross: true,
@@ -187,7 +195,9 @@ var LOCATIONS_CONFIG = [
       text: "Texto usina",
       image: "img_usina_3d",
       imagePopup: "imgUsina",
-      noCross: true
+      noCross: true,
+      imageCrono: "img_crono_usina",
+      x2: 820, y2: 250,
     }
   },
   {
@@ -204,6 +214,8 @@ var LOCATIONS_CONFIG = [
       text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
       image: "img_reactor_3d",
       imagePopup: "/assets/imgedificios/HUDSreactor.png",
+      imageCrono: "img_crono_reactor",
+      x2: 830, y2: 370,
       dangerImage: 'danger_reactor_posta',
       noCross: true
     }
@@ -222,6 +234,8 @@ var LOCATIONS_CONFIG = [
       text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti atque est dignissimos ipsum odit ut laudantium accusamus doloremque, consequuntur impedit, repellendus cupiditate voluptas totam voluptate repellat corrupti aliquam magni vel.",
       image: "img_auditorio_3d",
       imagePopup: "img_auditorio_arq",
+      imageCrono: "img_crono_auditorio",
+      x2: 800, y2: 520,
       noCross: true
     }
   },
@@ -239,6 +253,8 @@ var LOCATIONS_CONFIG = [
       text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti atque est dignissimos ipsum odit ut laudantium accusamus doloremque, consequuntur impedit, repellendus cupiditate voluptas totam voluptate repellat corrupti aliquam magni vel.",
       image: "imgCruz",
       imagePopup: "/assets/masimg/cruz.png",
+      imageCrono: "img_crono_mirador",
+      x2: 970, y2: 440,
       noCross: true
     }
   }

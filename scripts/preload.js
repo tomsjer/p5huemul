@@ -52,6 +52,14 @@ function preload() {
   img_auditorio_arq = loadImage('assets/masimg/auditorio_arq.png');
   img_laborichter = loadImage('assets/masimg/laborichter_arq.png');
 
-  img_crono_muelle = loadImage('/assets/imgs_cronology/comienzo-02.png')
+  img_crono_muelle = loadImage('/assets/imgs_cronology/tumba-huenul-blanco-02.png')
+  img_crono_prefectura = loadImage('/assets/imgs_cronology/comienzo-02.png')
   img_crono_huenul = loadImage('/assets/imgs_cronology/tumba-huenul-02.png')
+  img_crono_richter = loadImage('/assets/imgs_cronology/paranoia-02.png')
+  img_crono_gemelos = loadImage('/assets/imgs_cronology/reconstruccion-02.png')
+  img_crono_laborichter = loadImage('/assets/imgs_cronology/paranoia-02.png')
+  img_crono_usina = loadImage('/assets/imgs_cronology/paranoia-02.png')
+  img_crono_reactor = loadImage('/assets/imgs_cronology/reconstruccion-02.png')
+  img_crono_auditorio = loadImage('/assets/imgs_cronology/fracaso-02.png')
+  img_crono_mirador = loadImage('/assets/imgs_cronology/cnea-02.png')
 }

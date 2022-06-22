@@ -51,13 +51,13 @@ class Player {
         this.playButton.classList.add('active')
         this.pauseButton.classList.remove('active')
         this.stopButton.classList.remove('active')
-        this.playing = true;
-        this.stoped = false;
-        this.onpause = false;
         if (LOCATION_ACTIVE) {
             LOCATION_ACTIVE.hide()
             LOCATION_ACTIVE = null
         }
+        this.playing = true;
+        this.stoped = false;
+        this.onpause = false;
         if (this.index === 0 && !this.items[this.index].isCronoActive) {
             this.items[this.index].showCrono()
             setTimeout(() => {

@@ -104,6 +104,7 @@ class Location {
         rect(this.x, this.y, this.w, this.h);
       }
       if (this.isActive) {
+        // Img spot/linterna
         tint(255, this.fade - 200);
         image(imgLocationClicked, this.cx, this.cy, this.cr, this.cr);
         if (DEBUG) {
@@ -113,10 +114,11 @@ class Location {
           rect(this.x, this.y, this.w, this.h);
         }
       }
+      // Img edif 3d
       tint(255, 255);
       image(this.image, this.x, this.y, this.w, this.h);
-      if(this.fade > 0 && this.imageCrono) {
-        console.log(this.fade)
+      if(this.fade > 0 && this.imageCrono && PLAYER && (PLAYER.playing || PLAYER.onpause)) {
+        // Img cronology
         tint(255, this.fade);
         image(this.imageCrono, this.x2, this.y2, this.w2, this.h2);
       }
