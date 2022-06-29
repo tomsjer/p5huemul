@@ -3,9 +3,34 @@
   <head>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <meta charset="utf-8" />
+    <style>
+      @keyframes rot {
+        from {
+          transform: translate3d(-50%, -50%, 0) rotate(0deg);
+        }
+        to {
+          transform: translate3d(-50%, -50%, 0) rotate(360deg);
+        }
+      }
+      body {
+        background: #111;
+      }
+      #p5_loading {
+        width: 96px;
+        height: 96px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 10;
+        display: block;
+        border: solid 2px #fff;
+        animation: rot 2s ease-in-out infinite;
+      }
+    </style>
   </head>
   <body>
     <h1>ISLA HUEMUL</h1>
+    <div id="p5_loading"></div>
     <object id="svg-object" data="assets/fondos/guia_camara_recorrido.svg" type="image/svg+xml"></object>
     <script src="scripts/libs/p5.js"></script>
     <script src="scripts/libs/p5.easycam.js"></script>

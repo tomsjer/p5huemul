@@ -21,8 +21,8 @@ class Location {
     this.h = config.h;
     this.x2 = config.x2;
     this.y2 = config.y2;
-    this.w2 = 150;
-    this.h2 = 150;
+    this.w2 = 257;
+    this.h2 = 112.5;
     this.px = config.px;
     this.py = config.py;
     this.r = this.w > this.h ? this.w / 2 : this.h / 2;
@@ -38,6 +38,7 @@ class Location {
     this.sp = createVector(0,0,0)
     this.tv = createVector(-width/2, -height/2, 0)
     this.noCross = config.noCross || false
+    this.noFocus = config.noFocus || false
     this.crossPosition = config.crossPosition || 'top'
     this.cr = this.w > this.h ? this.w * 2 : this.h * 2;
     this.cx = this.x - this.cr / 4 - 10;
@@ -238,16 +239,22 @@ class Location {
   }
   showCrono() {
     console.log('show chrono')
-    setTimeout(() => {
-      easycam.setState({
-        ...easycam.state,
-        center: [ this.xCenter, this.yCenter , 0],
-        distance: 250
-      }, 1000);
+    if (!this.noFocus) {
+      setTimeout(() => {
+        easycam.setState({
+          ...easycam.state,
+          center: [ this.xCenter, this.yCenter , 0],
+          distance: 250
+        }, 1000);
+        setTimeout(() => {
+          this.isCronoActive = true
+        }, 800)
+      }, 800)
+    } else {
       setTimeout(() => {
         this.isCronoActive = true
-      }, 800)
-    }, 800)
+      }, 400)
+    }
   }
   hideCrono() {
     console.log('hide chrono')

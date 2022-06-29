@@ -53,7 +53,7 @@ var LOCATIONS_CONFIG = [
       image: "imgMuelle",
       imagePopup: "/assets/img_edif_3d/muelle_3d.png",
       imageCrono: "img_crono_muelle",
-      x2: 160, y2: 590,
+      x2: 106, y2: 632,
       noCross: true,
       data: {
         sector: 'Rojo',
@@ -69,14 +69,15 @@ var LOCATIONS_CONFIG = [
     type: "DEFAULT",
     config: {
       x: 428, y: 624, w: 40, h: 40,
-      px: 410, py: 640,
+      px: 450, py: 677,
       title: "Prefectura",
       text: "Lorem ipsum",
       image: "img_guardia_3d",
       imageCrono: "img_crono_prefectura",
-      x2: 500, y2: 624,
+      x2: 284, y2: 722,
       crossPosition: 'bottom',
-      noCross: true
+      noCross: true,
+      noFocus: true
     }
   },
   {
@@ -94,7 +95,7 @@ var LOCATIONS_CONFIG = [
       image: "imgCruz",
       imagePopup: "/assets/masimg/cruz.png",
       imageCrono: "img_crono_huenul",
-      x2: 700, y2: 654,
+      x2: 656, y2: 738,
       crossPosition: 'bottom',
       noCross: true
     }
@@ -105,16 +106,17 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 440,
       y: 545,
-      px: 458,
-      py: 554,
+      px: 534,
+      py: 686,
       w: 40,
       h: 40,
       title: "Casa Richter",
       text: "Lorem ipsum",
       image: "img_casa_richter_3d",
       imageCrono: "img_crono_richter",
-      x2: 300, y2: 430,
-      noCross: true
+      x2: 532, y2: 610,
+      noCross: true,
+      noFocus: true
     }
   },
   {
@@ -123,8 +125,8 @@ var LOCATIONS_CONFIG = [
     config: {
       x: 542,
       y: 558,
-      px: 542,
-      py: 558,
+      px: 460,
+      py: 554,
       w: 50,
       h: 90,
       title: "Lab. Gemelos",
@@ -132,8 +134,9 @@ var LOCATIONS_CONFIG = [
       image: "img_gemelos_3d",
       imagePopup: "/assets/masimg/gemelas_arq.png",
       imageCrono: "img_crono_gemelos",
-      x2: 642, y2: 600,
-      noCross: true
+      x2: 294, y2: 464,
+      noCross: true,
+      noFocus: true
     }
   },
   {
@@ -149,8 +152,12 @@ var LOCATIONS_CONFIG = [
       title: "Lab. Blindado",
       text: "Lorem ipsum",
       image: "img_edif_blindado_3d",
+      imageCrono: "img_crono_blindado",
+      x2: 594,
+      y2: 602,
       imagePopup: "/assets/masimg/laboblindado_arq.png",
-      noCross: true
+      noCross: true,
+      noFocus: true
     }
   },
   {
@@ -197,7 +204,7 @@ var LOCATIONS_CONFIG = [
       imagePopup: "imgUsina",
       noCross: true,
       imageCrono: "img_crono_usina",
-      x2: 820, y2: 250,
+      x2: 758, y2: 374,
     }
   },
   {
@@ -215,7 +222,7 @@ var LOCATIONS_CONFIG = [
       image: "img_reactor_3d",
       imagePopup: "/assets/imgedificios/HUDSreactor.png",
       imageCrono: "img_crono_reactor",
-      x2: 830, y2: 370,
+      x2: 794, y2: 392,
       dangerImage: 'danger_reactor_posta',
       noCross: true
     }
@@ -235,7 +242,7 @@ var LOCATIONS_CONFIG = [
       image: "img_auditorio_3d",
       imagePopup: "img_auditorio_arq",
       imageCrono: "img_crono_auditorio",
-      x2: 800, y2: 520,
+      x2: 642, y2: 548,
       noCross: true
     }
   },
@@ -254,7 +261,7 @@ var LOCATIONS_CONFIG = [
       image: "imgCruz",
       imagePopup: "/assets/masimg/cruz.png",
       imageCrono: "img_crono_mirador",
-      x2: 970, y2: 440,
+      x2: 908, y2: 494,
       noCross: true
     }
   }

@@ -11,30 +11,52 @@ document.oncontextmenu = function () {
   return false;
 };
 
+let timeoutId, modX, modY;
+
 function keyPressed() {
   if (key === "f") {
     let fs = fullscreen();
     fullscreen(!fs);
     setTimeout(() => windowResized);
   }
-  const location = LOCATIONS.find(l => l.isActive)
+  if (!modX && !modY) {
+    modX = key === 'q' ? 'x2' : 'px';
+    modY = key === 'q' ? 'y2' : 'py';
+  }
+  if(key !== 'q') {
+    move()
+  }
+}
+
+window.onkeyup = (e) => {
+  if (timeoutId && (e.code === 'ArrowLeft' || e.code === 'ArrowRight' || e.code === 'ArrowUp' || e.code === 'ArrowDown')) {
+    clearTimeout(timeoutId)
+    timeoutId = undefined;
+  } else if (e.code === 'KeyQ') {
+    modX = modY = undefined
+  }
+}
+
+function move() {
+  const location = LOCATIONS.find(l => l.isCronoActive)
   if (location) {
     switch(key) {
       case 'ArrowUp':
-        location.py -= 1;
+        location[modY] -= 2;
         break;
       case 'ArrowDown':
-        location.py += 1;
+        location[modY] += 2;
         break;
       case 'ArrowLeft':
-        location.px -= 1;
+        location[modX] -= 2;
         break;
       case 'ArrowRight':
-        location.px += 1;
+        location[modX] += 2;
         break;
     }
-    console.log(location.px,location.py)
+    console.log(`x2, y2: ${location.x2} ${location.y2} - px, py: ${location.px} ${location.py}`)
   }
+  timeoutId = setTimeout(move, 50)
 }
 
 if ((window.onmousedown === null || window.onmousedown === undefined) && window.location.hash !== '#notouch') {
