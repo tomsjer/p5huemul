@@ -61,6 +61,19 @@ h1 {
   transition: opacity .25s ease;
 }
 
+@keyframes player {
+  from {
+    box-shadow: 0 0 12px 6px #53c0ff;
+  }
+  to {
+    box-shadow: 0 0 16px 8px #9fdcff;
+  }
+}
+
+#player-buttons.toolbar-container.playing {
+  animation: player 1.5s ease-in-out infinite alternate;
+}
+
 #player-buttons.toolbar-container.intro-visible {
   opacity: 0;
   pointer-events: none;

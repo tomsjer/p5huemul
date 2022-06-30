@@ -19,12 +19,14 @@ function keyPressed() {
     fullscreen(!fs);
     setTimeout(() => windowResized);
   }
-  if (!modX && !modY) {
-    modX = key === 'q' ? 'x2' : 'px';
-    modY = key === 'q' ? 'y2' : 'py';
-  }
-  if(key !== 'q') {
-    move()
+  if (DEBUG) {
+    if (!modX && !modY) {
+      modX = key === 'q' ? 'x2' : 'px';
+      modY = key === 'q' ? 'y2' : 'py';
+    }
+    if(key !== 'q') {
+      move()
+    }
   }
 }
 
@@ -61,7 +63,6 @@ function move() {
 
 if ((window.onmousedown === null || window.onmousedown === undefined) && window.location.hash !== '#notouch') {
   window.onpointerdown = (e) => {
-    // if (!DEBUG) return
      mouseX = e.x;
      mouseY = e.y;
      setTimeout(() => mousePressed());
@@ -72,9 +73,12 @@ function mousePressed() {
   LAST_TOUCH_TIMESTAMP = Date.now()
   if (!PLAYER || (PLAYER.stoped)) {
     LOCATIONS.forEach((location, index) => {
-      if (LOCATION_ACTIVE && LOCATION_ACTIVE.id !== location.id) return
       location.onMousePressed()
       if (location.clicked) {
+        if (LOCATION_ACTIVE && LOCATION_ACTIVE.id !== location.id) {
+          LOCATION_ACTIVE.onMousePressed()
+          LOCATION_ACTIVE = null
+        }
         LOCATION_ACTIVE = location
       }
       if (DEBUG && location.clicked) {

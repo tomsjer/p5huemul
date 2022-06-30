@@ -48,6 +48,7 @@ class Player {
     }
     play() {
         if (this.playing) return
+        this.toolbar.container.classList.add('playing')
         this.playButton.classList.add('active')
         this.pauseButton.classList.remove('active')
         this.stopButton.classList.remove('active')
@@ -119,6 +120,7 @@ class Player {
         this.stopButton.classList.add('active')
         this.playButton.classList.remove('active')
         this.pauseButton.classList.remove('active')
+        this.toolbar.container.classList.remove('playing')
         this.items[this.index].hideCrono()
         this.index = 0;
         this.currentPathIndex = 0;
