@@ -52,11 +52,11 @@ class Location {
     this.range = 100
 
     this.data = config.data || {
-      sector: 'Abcd',
-      superficie: '123',
-      elevacion: '123',
-      lat: '1234',
-      lon: '1234'
+      sector: 'SIN DATA',
+      superficie: 'SIN DATA',
+      elevacion: 'SIN DATA',
+      lat: 'SIN DATA',
+      lon: 'SIN DATA'
     }
 
     this.createHUDElements();

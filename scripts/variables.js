@@ -71,13 +71,20 @@ var LOCATIONS_CONFIG = [
       x: 428, y: 624, w: 40, h: 40,
       px: 450, py: 677,
       title: "Prefectura",
-      text: "Lorem ipsum",
+      text: "El edificio ubicado en la zona sur de la isla, que supo ser una guardia, es la única construcción que se puede ver desde la costa de Bariloche y la primera en observarse cuando se llega a la isla. En la actualidad se encuentra abandonada y saqueada, conservando aún en algunos sectores, las gráficas de prefectura (quien supervisó la isla hasta hace algunos años y luego la abandonó).",
       image: "img_guardia_3d",
       imageCrono: "img_crono_prefectura",
       x2: 284, y2: 722,
       crossPosition: 'bottom',
       noCross: true,
-      noFocus: true
+      noFocus: true,
+      data: {
+        sector: 'Azul',
+        superficie: '252',
+        elevacion: '791',
+        lat: "41° 6' 27.91''S",
+        lon: "71° 23' 39.57''O"
+      }
     }
   },
   {
@@ -111,12 +118,19 @@ var LOCATIONS_CONFIG = [
       w: 40,
       h: 40,
       title: "Casa Richter",
-      text: "Lorem ipsum",
+      text: "La casa de Ronald Richter recibía visitas diurnas y rara vez se usaba para pernoctar (el físico austriaco tenía su casa en la costa de Bariloche). En la actualidad se encuentra saqueada y baleada (pruebas militares). Es una casa de humilde tamaño rodeada por bastante vegetación.",
       image: "img_casa_richter_3d",
       imageCrono: "img_crono_richter",
       x2: 532, y2: 610,
       noCross: true,
-      noFocus: true
+      noFocus: true,
+      data: {
+        sector: 'Naranja',
+        superficie: '30',
+        elevacion: '820',
+        lat: "a calcular",
+        lon: "a calcular"
+      }
     }
   },
   {
@@ -136,7 +150,14 @@ var LOCATIONS_CONFIG = [
       imageCrono: "img_crono_gemelos",
       x2: 294, y2: 464,
       noCross: true,
-      noFocus: true
+      noFocus: true,
+      data: {
+        sector: 'Azul',
+        superficie: '550',
+        elevacion: '812',
+        lat: "41° 6' 24.20''S",
+        lon: "71°23' 41.76''O"
+      }
     }
   },
   {
@@ -150,14 +171,21 @@ var LOCATIONS_CONFIG = [
       w: 30,
       h: 35,
       title: "Lab. Blindado",
-      text: "Lorem ipsum",
+      text: "El laboratorio de química del Dr. Ehrenberg se encuentra a un lado de los laboratorios gemelos, tiene un espesor de pared cercano a los 50 cm. Tiene la particularidad de conservar una puerta blindada de gran espesor, con una cerradura de alta complejidad. El laboratorio es uno de los pocos que se encontraba terminado y en funcionamiento.",
       image: "img_edif_blindado_3d",
       imageCrono: "img_crono_blindado",
       x2: 594,
       y2: 602,
       imagePopup: "/assets/masimg/laboblindado_arq.png",
       noCross: true,
-      noFocus: true
+      noFocus: true,
+      data: {
+        sector: 'Azul',
+        superficie: '312',
+        elevacion: '816',
+        lat: "41° 6' 23.31''S",
+        lon: "71° 23' 41.77''O"
+      }
     }
   },
   {
@@ -199,12 +227,19 @@ var LOCATIONS_CONFIG = [
       w: 55,
       h: 55,
       title: "Usina",
-      text: "Texto usina",
+      text: "La usina es otro de los lugares particularmente interesantes debido a que conserva en su interior estructuras rectangulares parecidas a piletones, en donde aún crece vegetación, generando canteros naturales. Es un edificio con grandes ventanas, por las que a su vez ingresa más vegetación. Su uso estaba pensado para generar energía eléctrica con el fin de abastecer a toda la isla y sus dispositivos. ",
       image: "img_usina_3d",
       imagePopup: "imgUsina",
       noCross: true,
       imageCrono: "img_crono_usina",
       x2: 758, y2: 374,
+      data: {
+        sector: 'Rojo',
+        superficie: '374',
+        elevacion: '835',
+        lat: "41° 6' 19.98''S",
+        lon: "71° 23' 50.92''O"
+      }
     }
   },
   {
@@ -218,13 +253,20 @@ var LOCATIONS_CONFIG = [
       w: 60,
       h: 60,
       title: "Reactor Principal",
-      text: "El reactor es la estructura mas ambiociosa de toda la isla. En su interior se desarrollaria el principal experimento: la fusion nuclear.",
+      text: "El reactor (laboratorio 1) se encuentra en la parte más alta de la isla. Sus inmensas paredes de concreto y ladrillo fueron creadas para aislar la radiación (que nunca se generó). La construcción original fue demolida por orden de Richter. Luego se comenzó otra estructura pero bajo tierra, que finalmente se rellenó. Hoy permanecen imponentes, las paredes de una particular estructura, con altas paredes y sin techo, un espacio partido a la mitad por otra pared. Toda la estructura es atravesable a pie de un extremo al otro.",
       image: "img_reactor_3d",
       imagePopup: "/assets/imgedificios/HUDSreactor.png",
       imageCrono: "img_crono_reactor",
       x2: 794, y2: 392,
       dangerImage: 'danger_reactor_posta',
-      noCross: true
+      noCross: true,
+      data: {
+        sector: 'Rojo',
+        superficie: '594',
+        elevacion: '838',
+        lat: "41° 6' 18.40''S",
+        lon: "71° 23' 46.27''O"
+      }
     }
   },
   { 
@@ -237,13 +279,20 @@ var LOCATIONS_CONFIG = [
       py: 505,
       w: 50,
       h: 50,
-      title: "Audiotorio",
-      text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti atque est dignissimos ipsum odit ut laudantium accusamus doloremque, consequuntur impedit, repellendus cupiditate voluptas totam voluptate repellat corrupti aliquam magni vel.",
+      title: "Laboratorio 4",
+      text: "El laboratorio 4 se encuentra al lado del reactor. Es uno de los laboratorios que aún conserva intacto su techo. Al ingresar se puede apreciar un amplio espacio sin divisiones. Luego de la caida de Perón en 1955, se pinto en una de sus paredes, un detalle del costo economico del proyecto Huemul, informacion que luego se tapo con negro en 1973, con la asuncion de Campora.",
       image: "img_auditorio_3d",
       imagePopup: "img_auditorio_arq",
       imageCrono: "img_crono_auditorio",
       x2: 642, y2: 548,
-      noCross: true
+      noCross: true,
+      data: {
+        sector: 'Rojo',
+        superficie: '462',
+        elevacion: '838',
+        lat: "41° 6' 19.36''S",
+        lon: "71° 23' 44.99''O"
+      }
     }
   },
   {
