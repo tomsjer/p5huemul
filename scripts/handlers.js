@@ -61,17 +61,23 @@ function move() {
   timeoutId = setTimeout(move, 50)
 }
 
+let mouseHasBeePressed = false;
+
 if ((window.onmousedown === null || window.onmousedown === undefined) && window.location.hash !== '#notouch') {
   window.onpointerdown = (e) => {
-     mouseX = e.x;
-     mouseY = e.y;
-     setTimeout(() => mousePressed());
+    if (!mouseHasBeePressed) {
+      mouseHasBeePressed = true;
+      mouseX = e.x;
+      mouseY = e.y;
+      setTimeout(() => mousePressed());
+    }
   }
 }
 
 function mousePressed() {
   LAST_TOUCH_TIMESTAMP = Date.now()
-  if (!PLAYER || (PLAYER.stoped)) {
+  if ((!PLAYER || (PLAYER.stoped)) && !mouseHasBeePressed) {
+    mouseHasBeePressed = true;
     LOCATIONS.forEach((location, index) => {
       location.onMousePressed()
       if (location.clicked) {
@@ -86,6 +92,7 @@ function mousePressed() {
         draggingLocation = location
       }
     });
+    mouseHasBeePressed = false;
   }
 }
 

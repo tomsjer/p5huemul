@@ -21,8 +21,8 @@ class Location {
     this.h = config.h;
     this.x2 = config.x2;
     this.y2 = config.y2;
-    this.w2 = 257;
-    this.h2 = 112.5;
+    this.w2 = 222;
+    this.h2 = 101;
     this.px = config.px;
     this.py = config.py;
     this.r = this.w > this.h ? this.w / 2 : this.h / 2;
@@ -58,6 +58,7 @@ class Location {
       lat: 'SIN DATA',
       lon: 'SIN DATA'
     }
+    this.isActivable = config.data !== undefined;
 
     this.createHUDElements();
   }
