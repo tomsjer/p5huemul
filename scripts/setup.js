@@ -76,6 +76,7 @@ function setupInactive() {
   LAST_TOUCH_TIMESTAMP = Date.now()
   INACTIVE_TIMEOUT_ID = setTimeout(() => {
     if (Date.now() - LAST_TOUCH_TIMESTAMP >= INACTIVE_TIMEOUT && !ISLA.visible) {
+      console.log(LAST_TOUCH_TIMESTAMP)
       ISLA.toggleVisible()
     }
     setupInactive()

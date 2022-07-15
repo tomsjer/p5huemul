@@ -17,7 +17,7 @@ class RadioactiveLocation extends Location {
       // stroke(200, 0, 0);
       // strokeWeight(1);
       noStroke();
-      fill(255, 0, 0, this.fade - 100);
+      fill(255, 50, 60, this.fade - 80);
       curveDetail(200);
       beginShape();
       let noiseMax = 2;

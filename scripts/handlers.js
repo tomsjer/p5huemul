@@ -65,19 +65,17 @@ let mouseHasBeePressed = false;
 
 if ((window.onmousedown === null || window.onmousedown === undefined) && window.location.hash !== '#notouch') {
   window.onpointerdown = (e) => {
-    if (!mouseHasBeePressed) {
-      mouseHasBeePressed = true;
-      mouseX = e.x;
-      mouseY = e.y;
-      setTimeout(() => mousePressed());
-    }
+    mouseX = e.x;
+    mouseY = e.y;
+    mousePressed();
   }
 }
 
 function mousePressed() {
-  LAST_TOUCH_TIMESTAMP = Date.now()
   if ((!PLAYER || (PLAYER.stoped)) && !mouseHasBeePressed) {
     mouseHasBeePressed = true;
+    LAST_TOUCH_TIMESTAMP = Date.now()
+    console.log(LAST_TOUCH_TIMESTAMP)
     LOCATIONS.forEach((location, index) => {
       location.onMousePressed()
       if (location.clicked) {
@@ -92,7 +90,9 @@ function mousePressed() {
         draggingLocation = location
       }
     });
-    mouseHasBeePressed = false;
+    setTimeout(() => {
+      mouseHasBeePressed = false;
+    })
   }
 }
 
