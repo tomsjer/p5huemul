@@ -28,7 +28,6 @@ class EasyCamHandler {
     this.easycam.setDistanceMax(config.distanceMax); // MAXIMO ZOOM OUT
     this.easycam.attachMouseListeners(this._renderer);
 
-    console.log(this.easycam)
     this.easycam.detachListener.call(this.easycam, this.easycam.mouse.dblclick)
 
     // Origin for the HUD

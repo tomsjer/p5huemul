@@ -75,7 +75,6 @@ function mousePressed() {
   if ((!PLAYER || (PLAYER.stoped)) && !mouseHasBeePressed) {
     mouseHasBeePressed = true;
     LAST_TOUCH_TIMESTAMP = Date.now()
-    console.log(LAST_TOUCH_TIMESTAMP)
     LOCATIONS.forEach((location, index) => {
       location.onMousePressed()
       if (location.clicked) {
@@ -98,7 +97,6 @@ function mousePressed() {
 
 function mouseReleased() {
   if (dragging) {
-    console.log('released')
     dragging = false
     draggingLocation = null
   }
@@ -108,7 +106,6 @@ function mouseDragged() {
   if (dragging) {
     draggingLocation.x = mouseX
     draggingLocation.y = mouseY
-    console.log('dragged')
   }
 }
 

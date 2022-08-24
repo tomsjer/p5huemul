@@ -35,6 +35,7 @@ class Location {
     this.isActive = false;
     this.isCronoActive = false;
     this.clicked = false;
+    // Aca se guarda el resultado de screenPosition(x,y,z);
     this.sp = createVector(0,0,0)
     this.tv = createVector(-width/2, -height/2, 0)
     this.noCross = config.noCross || false
@@ -239,7 +240,6 @@ class Location {
     document.body.appendChild(this.HUDcontainer)
   }
   showCrono() {
-    console.log('show chrono')
     if (!this.noFocus) {
       setTimeout(() => {
         easycam.setState({
@@ -258,7 +258,6 @@ class Location {
     }
   }
   hideCrono() {
-    console.log('hide chrono')
     setTimeout(() => {
       this.isCronoActive = false
     }, 1000)

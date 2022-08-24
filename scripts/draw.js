@@ -64,7 +64,7 @@ function draw() {
   MAP_CONTROLLER.draw();
   ISLA.update();
   // Draw MOUSE_BUBBLE on fixed screen and user screenPosition
-  MOUSE_BUBBLE.show();
+  MOUSE_BUBBLE.update();
   
   easycam.endHUD();
 }

@@ -15,6 +15,8 @@ function setup() {
   console.log("setup");
 
   createCanvas(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, WEBGL); // resolucion monitor
+
+  // Aca se llama la funcion que exporta scripts/libs/addScreenPositionFunction.js para poder hacer coincidir la proyeccion 3d con las coordenadas 2d de la pantalla
   addScreenPositionFunction();
 
   setAttributes("antialias", true);
@@ -67,16 +69,12 @@ function setup() {
   PLAYER = new Player({ items: LOCATIONS })
 
   ISLA = new IslaInfo({...ISLA_CONFIG, image: ISLA_CONFIG.image })
-  // setTimeout(() => {
-  //   ISLA.toggleVisible()
-  // }, 5000)
 }
 
 function setupInactive() {
   LAST_TOUCH_TIMESTAMP = Date.now()
   INACTIVE_TIMEOUT_ID = setTimeout(() => {
     if (Date.now() - LAST_TOUCH_TIMESTAMP >= INACTIVE_TIMEOUT && !ISLA.visible) {
-      console.log(LAST_TOUCH_TIMESTAMP)
       ISLA.toggleVisible()
     }
     setupInactive()

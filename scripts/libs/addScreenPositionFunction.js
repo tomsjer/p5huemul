@@ -1,3 +1,7 @@
+//// IMPORTANTE //////
+// Se modificaron algunas lineas de la libreria original para que funcione bien en el dispositivo touch 
+// Este archivo hace que se pueda mapear/proyectar un espacio 3d en 2d, para poder hacer coincidir las coordenadas de la pantalla
+
 // Acknowledgement to Thibault Coppex (@tcoppex) for the 3d-modelview-projection-math.
 // Had to adjust it a bit maybe because p5js changed the way webgl is handled since 2016.
 
@@ -199,7 +203,6 @@ function addScreenPositionFunction(p5Instance) {
 
 			let v = p.createVector(x, y, z);
 			let vCanvas = multMatrixVector(m, v);
-			// console.log(vCanvas);
 			return vCanvas;
 
 		} else {
