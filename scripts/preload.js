@@ -3,12 +3,15 @@ function preload() {
   font = loadFont("assets/Bison-Bold.ttf");
 
   imgGuia = loadImage("assets/fondos/FONDO ISLA REFERENCIAS (1920X1080).png");
-  imgIslaVectorLiso = loadImage("assets/fondos/FONDO ISLA  (1920X1080).png");
+  isla_verde = loadImage("assets/fondos/isla_verde_fondo.png");
+
   imgGrillaMapa = loadImage("assets/masimg/grillamapa_cropped.png");
   imgCruz = loadImage("assets/masimg/cruz.png");
   imgTopografia = loadImage("assets/fondos/isla_huemul_topografia.png");
   imgUsina = loadImage("assets/imgedificios/usina-transp.png");
   imgMuelle = loadImage("assets/img_edif_3d/muelle_3d.png");
+  muelle = loadImage("assets/imgs_HUDS/muelle_hud.jpg");
+  tumba = loadImage("assets/imgs_HUDS/tumba_hud.jpg");
   imgLocationClicked = loadImage('assets/fondos/location-clicked.png');
   img_recorridopunteado = loadImage('assets/fondos/CAMINO_FONDO ISLA REFERENCIAS (1920X1080)-01.png'); 
   
@@ -21,6 +24,8 @@ function preload() {
   img_guardia_3d = loadImage('assets/img_edif_3d/guardia_3d.png');
   img_casa_richter_3d = loadImage('assets/img_edif_3d/casarichter_3d.png');
   img_edif_blindado_3d = loadImage('assets/img_edif_3d/lab_quimica_3d-10.png');
+  img_mirador_3d = loadImage('assets/img_edif_3d/mirador_3d.png');
+  titulo = loadImage('assets/masimg/titulo_huemul.png');
   
   //bases danger 
   danger_laborichter = loadImage('assets/img_dangers/danger_laborichter.png');
@@ -32,7 +37,6 @@ function preload() {
   img_laboblindado_arq = loadImage('assets/masimg/laboblindado_arq.png');
   img_auditorio_arq = loadImage('assets/masimg/auditorio_arq.png');
   img_laborichter = loadImage('assets/masimg/laborichter_arq.png');
-
   img_crono_muelle = loadImage('/assets/imgs_cronology/1_COMIENZO.png')
   img_crono_prefectura = loadImage('/assets/imgs_cronology/2_PRIORIDAD.png')
   img_crono_huenul = loadImage('/assets/imgs_cronology/3_TUMBA.png')
@@ -43,5 +47,5 @@ function preload() {
   img_crono_usina = loadImage('/assets/imgs_cronology/8_REACCION.png')
   img_crono_reactor = loadImage('/assets/imgs_cronology/9_ANUNCIO.png')
   img_crono_auditorio = loadImage('/assets/imgs_cronology/10_SOSPECHAS.png')
-  img_crono_mirador = loadImage('/assets/imgs_cronology/11_INTERVENCION.png')
+  img_crono_mirador = loadImage('assets/imgs_cronology/11_INTERVENCION.png')
 }

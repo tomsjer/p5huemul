@@ -8,8 +8,9 @@ function drawBackground() {
   if(booleanGrilla) {
     image(imgGrillaMapa, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // fondo grilla
   }
-  image(imgIslaVectorLiso, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
-  image(img_recorridopunteado, 350, 415, 430, 400);
+  image(isla_verde, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
+  
+  image(img_recorridopunteado, 350, 405, 530, 400);
   
   if (booleanGuia) {
     image(imgGuia, 0, 0, VIEWPORT_WIDTH, VIEWPORT_HEIGHT); // imagen fondo gris illustrator referencia posiciones
@@ -39,6 +40,8 @@ function drawPath() {
 
 function draw() {
   drawBackground()
+
+  image(titulo, 1000, 200, 428, 149); // fondo grilla
 
   if (DEBUG) {
     cursor(CROSS);
