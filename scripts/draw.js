@@ -55,7 +55,7 @@ function draw() {
     if (booleanPath) {
       drawPath()
     }
-    
+
     // Actualizo Locations
     LOCATIONS.forEach((location) => {
       location.update()
@@ -73,8 +73,9 @@ function draw() {
     
     easycam.endHUD();
   } catch(error) {
-    console.log(error)
-    const response = window.confirm(`${JSON.stringify(error, null, 2)}`)
+    console.log(error);
+    noLoop();
+    const response = window.confirm(`${error}`)
     if (response) window.location.reload();
   }
 }

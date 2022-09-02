@@ -69,6 +69,7 @@ class Player {
         }
         easycam.linearInterpolation = true
         this.intervalId = setInterval(() => {
+            if (!PATH_DATA.points[this.currentPathIndex]) return
             
             let { x, y } = PATH_DATA.points[this.currentPathIndex]
 
@@ -129,6 +130,7 @@ class Player {
     }
     setCurrentPathIndex() {
         this.currentPathIndex = PATH_DATA.points.findIndex(({x, y}) => {
+            if (!this.items[this.index]) return 0
             return dist(x, y, this.items[this.index].px, this.items[this.index].py) < 10
         }) + 1
     }
