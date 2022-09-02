@@ -39,35 +39,42 @@ function drawPath() {
 }
 
 function draw() {
-  drawBackground()
-
-  image(titulo, 1000, 200, 428, 149); // fondo grilla
-
-  if (DEBUG) {
-    cursor(CROSS);
-  } else {
-    // saco al cursor para que no se note el desvio con respecto al objeto MOUSE_BUBBLE
-    // que se genera al hacer zoom
-    noCursor();
-  }
-
-  if (booleanPath) {
-    drawPath()
-  }
+  try {
+    drawBackground()
   
-  // Actualizo Locations
-  LOCATIONS.forEach((location) => location.update());
-  // Dibujo en capas
-  LOCATIONS.forEach((location) => location.draw());
-
-  // DRAW ON 2D FIXED POSITION
-  easycam.beginHUD();
-
-  myEasyCam.draw();
-  MAP_CONTROLLER.draw();
-  ISLA.update();
-  // Draw MOUSE_BUBBLE on fixed screen and user screenPosition
-  MOUSE_BUBBLE.update();
+    image(titulo, 1000, 200, 428, 149); // fondo grilla
   
-  easycam.endHUD();
+    if (DEBUG) {
+      cursor(CROSS);
+    } else {
+      // saco al cursor para que no se note el desvio con respecto al objeto MOUSE_BUBBLE
+      // que se genera al hacer zoom
+      noCursor();
+    }
+  
+    if (booleanPath) {
+      drawPath()
+    }
+    
+    // Actualizo Locations
+    LOCATIONS.forEach((location) => {
+      location.update()
+      location.draw()
+    });
+  
+    // DRAW ON 2D FIXED POSITION
+    easycam.beginHUD();
+  
+    myEasyCam.draw();
+    MAP_CONTROLLER.draw();
+    ISLA.update();
+    // Draw MOUSE_BUBBLE on fixed screen and user screenPosition
+    MOUSE_BUBBLE.update();
+    
+    easycam.endHUD();
+  } catch(error) {
+    console.log(error)
+    const response = window.confirm(`${JSON.stringify(error, null, 2)}`)
+    if (response) window.location.reload();
+  }
 }
